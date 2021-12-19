@@ -1,0 +1,27 @@
+﻿<!--
+Copyright information
+  © astel-labs.net.
+  Licence: New BSD License (https://opensource.org/licenses/BSD-3-Clause)
+-->
+
+<Window x:Class="Cloud_OCR_Snip.Shoot"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStyle="None" Topmost="True"
+        Margin="0" Padding="0" AllowsTransparency="True"
+        Background="Transparent" ShowInTaskbar="False" Title=""
+        Loaded="Window_Loaded" Closed="Window_Closed" Opacity="0" ShowActivated="False" Cursor="Cross">
+    <Canvas Name="LayoutRoot" Background="Transparent" Margin="0">
+        <Path x:Name="Path1" Stroke="White" StrokeThickness="2" Fill="#99000000"
+              Margin="0"
+              MouseLeftButtonDown="DrawingPath_MouseLeftButtonDown"
+              MouseLeftButtonUp="DrawingPath_MouseLeftButtonUp"
+              MouseMove="DrawingPath_MouseMove"
+              MouseRightButtonDown="DrawingPath_MouseRightButtonDown"
+              MouseRightButtonUp="DrawingPath_MouseRightButtonUp">
+            <Path.Data>
+                <CombinedGeometry x:Name="ScreenArea" GeometryCombineMode="Xor" />
+            </Path.Data>
+        </Path>
+    </Canvas>
+</Window>

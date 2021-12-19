@@ -1,0 +1,42 @@
+﻿<Page x:Class="Cloud_OCR_Snip.Export_Page2"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:Cloud_OCR_Snip"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Background="White">
+
+    <Grid>
+        <Label x:Name="product_name_label" d:Content="Product" HorizontalAlignment="Left" Margin="22,22,0,0" VerticalAlignment="Top" FontSize="48"/>
+        <Label x:Name="screen_title_label" Content="{StaticResource export_2/screen_title}" ContentStringFormat="｜{0}" Margin="10,96,0,0" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <TextBlock TextWrapping="Wrap" FontSize="20" Margin="45,151,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Text="{StaticResource export_2/instruction_comment}"/>
+        <RadioButton x:Name="encryption_setting_radio_button_enable" Content="{StaticResource export_2/enable_encryption_radio_button_text}" IsChecked="True" HorizontalAlignment="Left" Margin="57,188,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.066,0.502" VerticalContentAlignment="Center" Checked="Encryption_setting_radio_button_enable_Checked">
+            <RadioButton.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.25" ScaleY="1.25"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-11.622" Y="0.03"/>
+                </TransformGroup>
+            </RadioButton.RenderTransform>
+        </RadioButton>
+        <Label Content="{StaticResource export_2/password_box_label_text}" Margin="40,212,0,0" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <PasswordBox x:Name="file_pass_password_box" HorizontalAlignment="Left" Margin="133,215,0,0" VerticalAlignment="Top" FontSize="20" Width="627" PasswordChanged="File_pass_password_box_PasswordChanged"/>
+        <Label Content="{StaticResource export_2/password_requirement_label_text}" Margin="40,244,0,0" FontSize="20" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <RadioButton x:Name="encryption_setting_radio_button_disable" Content="{StaticResource export_2/disable_encryption_radio_button_text}" HorizontalAlignment="Left" Margin="57,291,0,0" VerticalAlignment="Top" FontSize="16" RenderTransformOrigin="0.066,0.502" VerticalContentAlignment="Center" Checked="Encryption_setting_radio_button_disable_Checked">
+            <RadioButton.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="1.25" ScaleY="1.25"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-11.622" Y="0.03"/>
+                </TransformGroup>
+            </RadioButton.RenderTransform>
+        </RadioButton>
+        <Button x:Name="back_button" Content="{StaticResource export/back_button_text}" Margin="0,0,23,23" FontSize="20" HorizontalAlignment="Right" Width="125" Height="31" VerticalAlignment="Bottom" Click="Back_button_Click"/>
+        <Button x:Name="next_button" Content="{StaticResource export/next_button_text}" Margin="0,0,158,23" FontSize="20" HorizontalAlignment="Right" Width="125" Height="31" VerticalAlignment="Bottom" IsDefault="True" IsEnabled="False" Click="Next_button_Click"/>
+
+    </Grid>
+</Page>

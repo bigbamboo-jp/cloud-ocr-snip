@@ -1,0 +1,273 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xml:space="preserve">
+    <!-- ――――― Language Data Area ――――― -->
+
+    <!-- Initial setting window -->
+    <sys:String x:Key="initial_setting/window_title">Initial Setting</sys:String>
+    <sys:String x:Key="initial_setting/next_button_text">Next</sys:String>
+
+    <!-- Initial setting page 1 -->
+    <sys:String x:Key="initial_setting_1/screen_title">License terms</sys:String>
+    <sys:String x:Key="initial_setting_1/agree_button_text">Agree</sys:String>
+    <sys:String x:Key="initial_setting_1/disagree_button_text">Disagree</sys:String>
+
+    <!-- Initial setting page 2 -->
+    <sys:String x:Key="initial_setting_2/screen_title">Transcription service selection</sys:String>
+    <sys:String x:Key="initial_setting_2/instruction_comment">Select the transcription service you want to use.</sys:String>
+    <sys:String x:Key="initial_setting_2/setting_import_panel_title">Importing Settings</sys:String>
+    <sys:String x:Key="initial_setting_2/setting_import_button_text">Select the file</sys:String>
+
+    <!-- Initial setting restart guide page (transcription service) -->
+    <sys:String x:Key="transcription_service_initial_setting_guide_page/window_title">Transcription Service Settings</sys:String>
+    <sys:String x:Key="transcription_service_initial_setting_guide_page/screen_title">To restart the transcription service settings ...</sys:String>
+    <sys:String x:Key="transcription_service_initial_setting_guide_page/instruction_comment">You can restart the transcription service settings from the settings menu.</sys:String>
+    <sys:String x:Key="transcription_service_initial_setting_guide_page/setup_resume_guide1">1. Right-click on the task tray icon
+2. Select "Settings" from the displayed menu</sys:String>
+    <sys:String x:Key="transcription_service_initial_setting_guide_page/setup_resume_guide2">3. Click the "Transcription" tab</sys:String>
+    <sys:String x:Key="transcription_service_initial_setting_guide_page/setup_resume_guide3">4. Click the "Configure" button</sys:String>
+    <sys:String x:Key="transcription_service_initial_setting_guide_page/close_button_text">OK</sys:String>
+
+    <!-- Settings window -->
+    <sys:String x:Key="settings/window_title">Settings</sys:String>
+    <sys:String x:Key="settings/screen_title">Settings</sys:String>
+    <sys:String x:Key="settings/language_change_confirmation_message">If you change the language, the application will restart (unsaved readings will be lost).
+Do you really want to change it?</sys:String>
+    <sys:String x:Key="settings/language_change_confirmation_title">Confirmation</sys:String>
+    <sys:String x:Key="settings/transcription_service_change_confirmation_message">Do you really want to change the transcription service?
+* This operation cannot be undone.</sys:String>
+    <sys:String x:Key="settings/transcription_service_change_confirmation_title">Confirmation</sys:String>
+    <sys:String x:Key="settings/transcription_service_settings_clear_confirmation_message">Do you really want to clear the transcription service settings?
+* This operation cannot be undone.</sys:String>
+    <sys:String x:Key="settings/transcription_service_settings_clear_confirmation_title">Confirmation</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_empty_message">Please enter the URL of the search engine.</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_empty_title">Error</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_incomplete_message">The search engine URL does not contain "{0}".</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_incomplete_title">Error</sys:String>
+    <sys:String x:Key="settings/general_tab_header_text">General</sys:String>
+    <sys:String x:Key="settings/general_tab_language_setting_title">Language</sys:String>
+    <sys:String x:Key="settings/general_tab_data_selection_setting_title">Settings when editing the transcription result (default setting)</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_header_text">Screen Shooting</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_method_setting_title">Screen Shooting Method</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_crop_method_radio_button_text">Cutting Method</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_crop_method_description">First capture the screen and then crop the image (same as Snip &amp; Sketch)</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_live_capture_method_radio_button_text">Live Capture Method</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_live_capture_method_description">Capture the screen after determining the area to crop (best for moving screens)</sys:String>
+    <sys:String x:Key="settings/transcription_tab_header_text">Transcription</sys:String>
+    <sys:String x:Key="settings/transcription_tab_service_settings_title">Transcription Service</sys:String>
+    <sys:String x:Key="settings/transcription_tab_configure_button_text_in_unset">Configure</sys:String>
+    <sys:String x:Key="settings/transcription_tab_configure_button_text_in_configured">Reconfigure</sys:String>
+    <sys:String x:Key="settings/transcription_tab_option_settings_button_text">Option settings</sys:String>
+    <sys:String x:Key="settings/transcription_tab_clear_settings_button_text">Clear settings</sys:String>
+    <sys:String x:Key="settings/transcription_tab_help_label1_text">*To change the transcription service, clear the current service settings.</sys:String>
+    <sys:String x:Key="settings/web_search_tab_header_text">Web Search</sys:String>
+    <sys:String x:Key="settings/web_search_tab_web_search_service_url_settings_title">URL of the search engine (please put "{0}" in the search keyword part)</sys:String>
+    <sys:String x:Key="settings/web_search_tab_test_button_text">Test</sys:String>
+    <sys:String x:Key="settings/web_search_tab_reset_button_text">Restore default</sys:String>
+    <sys:String x:Key="settings/hotkey_tab_header_text">Shortcut Keys</sys:String>
+    <sys:String x:Key="settings/hotkey_tab_hotkey1_settings_title">Shortcut key for shooting the screen and transcribing</sys:String>
+    <sys:String x:Key="settings/hotkey_tab_hotkey2_settings_title">Shortcut key for transcribing from the clipboard image</sys:String>
+    <sys:String x:Key="settings/hotkey_tab_hotkey_enable_checkbox_text">Enable</sys:String>
+    <sys:String x:Key="settings/import_export_settings_tab_header_text">Import/Export Settings</sys:String>
+    <sys:String x:Key="settings/import_export_settings_tab_importing_settings_title">Importing Settings</sys:String>
+    <sys:String x:Key="settings/import_export_settings_tab_settings_import_button_text">Start importing</sys:String>
+    <sys:String x:Key="settings/import_export_settings_tab_exporting_settings_title">Exporting Settings</sys:String>
+    <sys:String x:Key="settings/import_export_settings_tab_settings_export_button_text">Start exporting</sys:String>
+    <sys:String x:Key="settings/save_button_text">OK</sys:String>
+    <sys:String x:Key="settings/cancel_button_text">Cancel</sys:String>
+
+    <!-- Import window -->
+    <sys:String x:Key="import/window_title">Import Settings</sys:String>
+    <sys:String x:Key="import/next_button_text">Next</sys:String>
+    <sys:String x:Key="import/back_button_text">Back</sys:String>
+    <sys:String x:Key="import/close_button_text">OK</sys:String>
+    <sys:String x:Key="import/cancel_button_text">Cancel</sys:String>
+
+    <!-- Import page 1 -->
+    <sys:String x:Key="import_1/screen_title">Import Settings - Selecting the configuration file</sys:String>
+    <sys:String x:Key="import_1/instruction_comment">Please select the file to be inherited.</sys:String>
+    <sys:String x:Key="import_1/setting_file_path_text_box_label_text">Setting file</sys:String>
+    <sys:String x:Key="import_1/setting_file_browse_button_text">Browse</sys:String>
+
+    <!-- Import page 2 -->
+    <sys:String x:Key="import_2/screen_title">Import Settings - Enter password</sys:String>
+    <sys:String x:Key="import_2/instruction_comment">This file is encrypted with a password.
+Please enter the password.
+* If this file is provided by your organization, please check with your system administrator.</sys:String>
+    <sys:String x:Key="import_2/password_box_label_text">Password</sys:String>
+    <sys:String x:Key="import_2/password_error_error_message">The file could not be decrypted.
+Make sure the password is correct.</sys:String>
+    <sys:String x:Key="import_2/password_error_error_title">Error</sys:String>
+
+    <!-- Import page 3 -->
+    <sys:String x:Key="import_3/screen_title">Import Settings - Selecting settings to inherit</sys:String>
+    <sys:String x:Key="import_3/instruction_comment">Select the settings to be inherited.</sys:String>
+    <sys:String x:Key="import_3/application_setting_checkbox_text">Application settings</sys:String>
+    <sys:String x:Key="import_3/transcription_service_credential_checkbox_text">Transcription service credential</sys:String>
+    <sys:String x:Key="import_3/transcription_service_settings_checkbox_text">Transcription service option settings</sys:String>
+
+    <!-- Import page 4 -->
+    <sys:String x:Key="import_4/screen_title">Import Settings - Completion of inheritance</sys:String>
+    <sys:String x:Key="import_4/instruction_comment">The setting inheritance has been completed successfully.
+* The settings that were not inherited have not been changed. Change the settings from each menu as needed.</sys:String>
+
+    <!-- Export window -->
+    <sys:String x:Key="export/window_title">Export Settings</sys:String>
+    <sys:String x:Key="export/next_button_text">Next</sys:String>
+    <sys:String x:Key="export/back_button_text">Back</sys:String>
+    <sys:String x:Key="export/close_button_text">OK</sys:String>
+    <sys:String x:Key="export/cancel_button_text">Cancel</sys:String>
+
+    <!-- Export page 1 -->
+    <sys:String x:Key="export_1/screen_title">Export Settings - Selecting settings to inherit</sys:String>
+    <sys:String x:Key="export_1/instruction_comment">Select the settings to be inherited.</sys:String>
+    <sys:String x:Key="export_1/application_setting_checkbox_text">Application settings</sys:String>
+    <sys:String x:Key="export_1/transcription_service_credential_checkbox_text">Transcription service credential</sys:String>
+    <sys:String x:Key="export_1/transcription_service_credential_export_setting_checkbox_text">Allow imported terminals to export the credential</sys:String>
+    <sys:String x:Key="export_1/transcription_service_settings_checkbox_text">Transcription service option settings</sys:String>
+
+    <!-- Export page 2 -->
+    <sys:String x:Key="export_2/screen_title">Export Settings - Data protection</sys:String>
+    <sys:String x:Key="export_2/instruction_comment">Do you want to encrypt the configuration file?</sys:String>
+    <sys:String x:Key="export_2/enable_encryption_radio_button_text">Encrypt</sys:String>
+    <sys:String x:Key="export_2/password_box_label_text">Password</sys:String>
+    <sys:String x:Key="export_2/password_requirement_label_text">* The password must be at least 12 characters.</sys:String>
+    <sys:String x:Key="export_2/disable_encryption_radio_button_text">Do not encrypt</sys:String>
+
+    <!-- Export page 3 -->
+    <sys:String x:Key="export_3/screen_title">Export Settings - Setting up the file to be created</sys:String>
+    <sys:String x:Key="export_3/instruction_comment">Enter the information of the file to be created.</sys:String>
+    <sys:String x:Key="export_3/file_path_text_box_label_text">File path</sys:String>
+    <sys:String x:Key="export_3/file_browse_button_text">Browse</sys:String>
+
+    <!-- Export page 4 -->
+    <sys:String x:Key="export_4/screen_title">Export Settings - File creation completed</sys:String>
+    <sys:String x:Key="export_4/instruction_comment">The creation of the configuration file is complete.
+* If you have exported the credential, please be careful with the file.</sys:String>
+
+    <!-- Product information window -->
+    <sys:String x:Key="product_information/window_title">About This Product</sys:String>
+    <sys:String x:Key="product_information/version_label_text">Version {0}</sys:String>
+    <sys:String x:Key="product_information/copyright_label_text">{0}</sys:String>
+    <sys:String x:Key="product_information/third_party_notification_label_text">Third Party Notifications</sys:String>
+    <sys:String x:Key="product_information/terms_label_text">License Terms</sys:String>
+    <sys:String x:Key="product_information/close_button_text">OK</sys:String>
+
+    <!-- Input/Output dialog -->
+    <sys:String x:Key="file_dialog/load_image_title">Open Image File</sys:String>
+    <sys:String x:Key="file_dialog/load_image_filter">Bitmap Files (*.bmp;*.dib)|*.bmp;*.dib|GIF (*.gif)|*.gif|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|PNG (*.png)|*.png|TIFF (*.tif;*.tiff)|*.tif;*.tiff|All Files (*.*)|*.*</sys:String>
+    <sys:String x:Key="file_dialog/load_setting_file_title">Open Configuration File</sys:String>
+    <sys:String x:Key="file_dialog/load_setting_file_filter">Configuration File (*.costf)|*.costf</sys:String>
+    <sys:String x:Key="file_dialog/save_setting_file_title">Save Configuration File</sys:String>
+    <sys:String x:Key="file_dialog/save_setting_file_filter">Configuration File (*.costf)|*.costf</sys:String>
+    <sys:String x:Key="file_dialog/save_setting_file_default_file_name">{0} Settings</sys:String>
+    <sys:String x:Key="file_dialog/file_not_found_error_message">The file was not found.</sys:String>
+    <sys:String x:Key="file_dialog/file_not_found_error_title">Error</sys:String>
+    <sys:String x:Key="file_dialog/data_compatibility_error_message">This file cannot be opened by the current version of the application.</sys:String>
+    <sys:String x:Key="file_dialog/data_compatibility_error_title">Error</sys:String>
+    <sys:String x:Key="file_dialog/file_type_error_message">This is an unsupported file.</sys:String>
+    <sys:String x:Key="file_dialog/file_type_error_title">Error</sys:String>
+
+    <!-- Task tray icon -->
+    <sys:String x:Key="task_tray_icon/help_message">Read text on the screen</sys:String>
+    <sys:String x:Key="task_tray_icon/read_from_clipboard_image_text">Read text from clipboard image</sys:String>
+    <sys:String x:Key="task_tray_icon/read_from_image_file_text">Read text from image file</sys:String>
+    <sys:String x:Key="task_tray_icon/settings_text">Settings</sys:String>
+    <sys:String x:Key="task_tray_icon/product_information_text">About this product</sys:String>
+    <sys:String x:Key="task_tray_icon/exit_text">Exit</sys:String>
+
+    <!-- Result window -->
+    <sys:String x:Key="result/window_title">Result</sys:String>
+    <sys:String x:Key="result/no_data_message">(Nothing was read)</sys:String>
+    <sys:String x:Key="result/clipboard_image_acquisition_error_message">Could not get the image from the clipboard.</sys:String>
+    <sys:String x:Key="result/clipboard_image_acquisition_error_title">Error</sys:String>
+    <sys:String x:Key="result/clipboard_copy_error_message">Failed to copy to clipboard.</sys:String>
+    <sys:String x:Key="result/clipboard_copy_error_title">Error</sys:String>
+    <sys:String x:Key="result/save_result_title">Save Results to File</sys:String>
+    <sys:String x:Key="result/save_result_filter">Text Documents (*.txt)|*.txt|All Files (*.*)|*.*</sys:String>
+    <sys:String x:Key="result/save_result_default_file_name">Transcription Result</sys:String>
+    <sys:String x:Key="result/command_bar_label_text">Commands</sys:String>
+    <sys:String x:Key="result/command_bar_retry_button_text">Retry</sys:String>
+    <sys:String x:Key="result/command_bar_remove_newlines_button_text">Remove Newlines</sys:String>
+    <sys:String x:Key="result/command_bar_copy_button_text">Copy All</sys:String>
+    <sys:String x:Key="result/command_bar_copy_button_text_copy_complete">Copy All (Completed)</sys:String>
+    <sys:String x:Key="result/command_bar_save_button_text">Save to File</sys:String>
+    <sys:String x:Key="result/command_bar_web_search_button_text">Web Search</sys:String>
+    <sys:String x:Key="result/command_bar_data_selection_setting_checkbox_text">Use edited text</sys:String>
+
+    <!-- Others -->
+    <sys:String x:Key="other/multiple_startup_error_message">This application is already running.</sys:String>
+    <sys:String x:Key="other/multiple_startup_error_title">Error</sys:String>
+
+    <!-- Transcription Service: Google Cloud Vision API -->
+    <sys:String x:Key="google_cloud_vision_api/explanation">Google Cloud Vision API is a cloud image recognition service provided by Google LLC.
+・ A Google Account is required
+・ You will be charged according to the amount used (there is a monthly free usage limit).</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting/window_title">Google Cloud Vision API Settings</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting/cancel_button_text">Cancel</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_1/screen_title">Google Cloud Vision API - About this service</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_1/service_description">**About this service**  
+Google Cloud Vision API is a cloud image recognition service provided by Google LLC.  
+・ A Google Account is required  
+・ You will be charged according to the amount used (there is a monthly free usage limit).  
+**Fees that may be charged**  
+monthly,  
+1st to 1000th: Free  
+From 1001st time: $ 1.50 billing per 1000 times (if the number of uses is not divisible by 1000, billing will be carried up to 1000 digits)  
+Example: 2500 times → $ 0 [1000 times] + $ 3.00 [2000 times (advanced from 1500 times)] = $ 3.00  
+The above information is current as of December 2021. Please be sure to check the latest information on the [service site](https://cloud.google.com/vision/pricing) before you start using it.  
+\* The dollar in this explanation means the United States dollar.  
+\* This explanation assumes that only this application uses the service on the current terminal.  
+\* The developer does not guarantee the accuracy of the above information.  
+**Privacy protection**  
+See the [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice) for data handling.</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_1/next_button_text">Next</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/screen_title">Google Cloud Vision API - Service account registration</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/setup_guide">Register the service account with the application.  
+This application uses your service account key (JSON key file) to access the Google Cloud Vision API, so register your key file from the menu at the bottom.  
+**If you don't have a Google Account**  
+You need to create a Google Account. For details, see the official Google Account Guide below.  
+[Create a Google Account](https://support.google.com/accounts/answer/27441)  
+**When using the Google Cloud Vision API for the first time (including when the account used is changed)**  
+Issue the service account key after preparing to use the API. For details, see the official Google Cloud guide below.  
+[Quickstart: Setup the Vision API](https://cloud.google.com/vision/docs/setup)  
+**If you have used the Google Cloud Vision API before (only if you don't have the key file)**  
+Please issue the service account key again (for security reasons, we recommend that you revoke the old key). For details, see the official Google Cloud guide below.  
+[Create a service account and download the private key file](https://cloud.google.com/vision/docs/setup#sa-create)  
+  
+\* Enter any name such as the project name.  
+\* Select "JSON" as the type of key to create.</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/file_path_text_box_label_text">Key file</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/file_browse_button_text">Browse</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/load_key_file_title">Select Key File</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/load_key_file_filter">JSON Key File (*.json)|*.json</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/register_button_text">Register</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/back_button_text">Back</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/screen_title">Google Cloud Vision API - Service account settings</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/instruction_comment">Service account registration is complete.  
+\* To maintain security, it is recommended to delete the key file used for registration (it is not necessary after that).</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_description">**Key Export Settings**  
+Allowing key export allows you to include the service account key when exporting the settings to a file. This setting cannot be changed later.</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_checkbox_text">Allow exporting this key</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/complete_button_text">Finish</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/close_button_text">Save and Finish</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/option_setting_button">Save and View Option Settings</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_notification_message_allow">Saved with the setting that allow key export.</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_notification_title_allow">Information</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_notification_message_disallow">Saved with the setting that do not allow key export.</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_notification_title_disallow">Information</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/screen_title">Google Cloud Vision API - Option settings</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/language_hint_setting_label_text">Language hints</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/language_hint_add_button">Add</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/language_hint_delete_button">Delete</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/language_hint_setting_reference_information">\* In most cases, it is best to read without specifying.  
+Reference: [OCR Language Support](https://cloud.google.com/vision/docs/languages)</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_setting_label_text">API endpoint</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_text_box_placeholder_text">(Default setting)</sys:String>
+<sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_setting_reference_information">The default setting is the global API endpoint.  
+Reference: [Multi-regional support](https://cloud.google.com/vision/docs/ocr#regionalization)</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/save_button_text">OK</sys:String>
+
+    <!-- ――――― Language Data Area ――――― -->
+</ResourceDictionary>

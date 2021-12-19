@@ -1,0 +1,96 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>Cloud_OCR_Snip</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <DebugType>none</DebugType>
+    <UseWindowsForms>True</UseWindowsForms>
+    <Copyright>Copyright © 2021 Takuma Otake</Copyright>
+    <ApplicationIcon>Icons/BlackIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icons\BlackIcon.ico" />
+    <None Remove="Icons\WhiteIcon.ico" />
+    <None Remove="TranscriptionServices\TranscriptionServiceInitialSettingGuidePageImages\Image1.png" />
+    <None Remove="TranscriptionServices\TranscriptionServiceInitialSettingGuidePageImages\Image2.png" />
+    <None Remove="TranscriptionServices\TranscriptionServiceInitialSettingGuidePageImages\Image3.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Cloud.Vision.V1" Version="2.4.0" />
+    <PackageReference Include="Markdig" Version="0.26.0" />
+    <PackageReference Include="Markdig.Wpf" Version="0.5.0.1" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\BlackIcon.ico" />
+    <Resource Include="Icons\WhiteIcon.ico" />
+    <Resource Include="TranscriptionServices\TranscriptionServiceInitialSettingGuidePageImages\Image1.png" />
+    <Resource Include="TranscriptionServices\TranscriptionServiceInitialSettingGuidePageImages\Image2.png" />
+    <Resource Include="TranscriptionServices\TranscriptionServiceInitialSettingGuidePageImages\Image3.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="ImportExport\ExportPages\Export_Page4.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ImportExport\ExportPages\Export_Page3.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ImportExport\ExportPages\Export_Page2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ImportExport\ExportPages\Export_Page1.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ImportExport\ImportPages\Import_Page3.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ImportExport\ImportPages\Import_Page2.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="ImportExport\ImportPages\Import_Page1.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="ImportExport\ExportPages\Export_Page4.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ImportExport\ExportPages\Export_Page3.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ImportExport\ExportPages\Export_Page2.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ImportExport\ExportPages\Export_Page1.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ImportExport\ImportPages\Import_Page4.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+    </Page>
+    <Page Update="ImportExport\ImportPages\Import_Page3.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ImportExport\ImportPages\Import_Page2.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ImportExport\ImportPages\Import_Page1.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,87 @@
+﻿<Page x:Class="TranscriptionService.Google_Cloud_Vision_API_InitialSetting_Page4"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:TranscriptionService"
+      mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Background="White">
+
+    <Page.Resources>
+        <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Visibility" Value="Collapsed"/>
+        </Style>
+        <Style x:Key="PlaceHolderTextBox" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Grid>
+                            <TextBox Text="{Binding Path=Text,
+                                                RelativeSource={RelativeSource TemplatedParent}, 
+                                                Mode=TwoWay,
+                                                UpdateSourceTrigger=PropertyChanged}"
+                                 x:Name="textSource" 
+                                 Background="Transparent" 
+                                 Panel.ZIndex="2" />
+                            <TextBox Text="{TemplateBinding Tag}" Background="{TemplateBinding Background}" Panel.ZIndex="1">
+                                <TextBox.Style>
+                                    <Style TargetType="{x:Type TextBox}">
+                                        <Setter Property="Foreground" Value="Transparent"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=Text, Source={x:Reference textSource}}" Value="">
+                                                <Setter Property="Foreground" Value="LightGray"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Label x:Name="screen_title_label" Content="{StaticResource google_cloud_vision_api/initial_setting_4/screen_title}" ContentStringFormat="｜{0}" Margin="10,20,0,0" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="{StaticResource google_cloud_vision_api/initial_setting_4/language_hint_setting_label_text}" HorizontalAlignment="Left" Margin="40,80,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox x:Name="language_hint_additional_text_box" Margin="137,84,0,0" FontSize="20" HorizontalAlignment="Left" Width="556" Height="29" VerticalAlignment="Top"/>
+        <Button x:Name="language_hint_add_button" Content="{StaticResource google_cloud_vision_api/initial_setting_4/language_hint_add_button}" HorizontalAlignment="Left" Margin="693,84,0,0" VerticalAlignment="Top" FontSize="20" Height="29" Width="44" Click="Language_hint_add_button_Click"/>
+        <ListView ItemsSource="{Binding}" x:Name="language_hint_list_view" Margin="137,113,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Left" Width="600" Height="125" VerticalAlignment="Top">
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Content="{Binding}" FontSize="20"></Label>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn>
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="{StaticResource google_cloud_vision_api/initial_setting_4/language_hint_delete_button}" d:Content="" Click="Language_hint_delete_button_Click" FontSize="20"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <RichTextBox x:Name="language_hint_setting_reference_information_rich_text_box" d:FontSize="20" Margin="40,245,63,150" IsReadOnly="True" IsDocumentEnabled="True" BorderThickness="0,0,0,0" VerticalScrollBarVisibility="Auto">
+            <d:FlowDocument>
+                <Paragraph>Language Hint Setting Reference Information</Paragraph>
+            </d:FlowDocument>
+        </RichTextBox>
+        <Label Content="{StaticResource google_cloud_vision_api/initial_setting_4/api_endpoint_setting_label_text}" HorizontalAlignment="Left" Margin="40,298,0,0" VerticalAlignment="Top" FontSize="20"/>
+        <TextBox x:Name="api_endpoint_text_box" Margin="194,302,0,0" FontSize="20" HorizontalAlignment="Left" Width="543" Height="29" VerticalAlignment="Top" Style="{StaticResource PlaceHolderTextBox}" Tag="{StaticResource google_cloud_vision_api/initial_setting_4/api_endpoint_text_box_placeholder_text}"/>
+        <RichTextBox x:Name="api_endpoint_setting_reference_information_rich_text_box" d:FontSize="20" Margin="40,338,63,57" IsReadOnly="True" IsDocumentEnabled="True" BorderThickness="0,0,0,0" VerticalScrollBarVisibility="Auto">
+            <d:FlowDocument>
+                <Paragraph>API Endpoint Setting Reference Information</Paragraph>
+            </d:FlowDocument>
+        </RichTextBox>
+        <Button x:Name="cancel_button" Content="{StaticResource google_cloud_vision_api/initial_setting/cancel_button_text}" Margin="0,0,23,23" FontSize="20" HorizontalAlignment="Right" Width="125" Height="31" VerticalAlignment="Bottom" Click="Cancel_button_Click"/>
+        <Button x:Name="save_button" Content="{StaticResource google_cloud_vision_api/initial_setting_4/save_button_text}" Margin="0,0,158,23" FontSize="20" HorizontalAlignment="Right" Width="125" Height="31" VerticalAlignment="Bottom" IsDefault="True" Click="Save_button_Click"/>
+
+    </Grid>
+</Page>

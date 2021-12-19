@@ -1,0 +1,273 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xml:space="preserve">
+    <!-- ――――― 言語データエリア ――――― -->
+
+    <!-- 初期設定ウィンドウ -->
+    <sys:String x:Key="initial_setting/window_title">初期設定</sys:String>
+    <sys:String x:Key="initial_setting/next_button_text">次へ</sys:String>
+
+    <!-- 初期設定ページ1 -->
+    <sys:String x:Key="initial_setting_1/screen_title">ライセンス条項の確認</sys:String>
+    <sys:String x:Key="initial_setting_1/agree_button_text">同意する</sys:String>
+    <sys:String x:Key="initial_setting_1/disagree_button_text">同意しない</sys:String>
+
+    <!-- 初期設定ページ2 -->
+    <sys:String x:Key="initial_setting_2/screen_title">文字読み取りサービスの選択</sys:String>
+    <sys:String x:Key="initial_setting_2/instruction_comment">使用する文字読み取りサービスを選択してください。</sys:String>
+    <sys:String x:Key="initial_setting_2/setting_import_panel_title">設定のインポート</sys:String>
+    <sys:String x:Key="initial_setting_2/setting_import_button_text">ファイルを選択</sys:String>
+
+    <!-- 初期設定再開ガイドページ（文字読み取りサービス） -->
+    <sys:String x:Key="transcription_service_initial_setting_guide_page/window_title">文字読み取りサービスの設定</sys:String>
+    <sys:String x:Key="transcription_service_initial_setting_guide_page/screen_title">文字読み取りサービスの設定を再開するには…</sys:String>
+    <sys:String x:Key="transcription_service_initial_setting_guide_page/instruction_comment">文字読み取りサービスの設定の再開は設定メニューから行えます。</sys:String>
+    <sys:String x:Key="transcription_service_initial_setting_guide_page/setup_resume_guide1">1. タスクトレイのアイコンを右クリックする
+2. 表示されたメニューから「設定」を選ぶ</sys:String>
+    <sys:String x:Key="transcription_service_initial_setting_guide_page/setup_resume_guide2">3. 「文字読み取り」タブをクリックする</sys:String>
+    <sys:String x:Key="transcription_service_initial_setting_guide_page/setup_resume_guide3">4. 「設定を開始」ボタンをクリックする</sys:String>
+    <sys:String x:Key="transcription_service_initial_setting_guide_page/close_button_text">OK</sys:String>
+
+    <!-- 設定ウィンドウ -->
+    <sys:String x:Key="settings/window_title">設定</sys:String>
+    <sys:String x:Key="settings/screen_title">設定</sys:String>
+    <sys:String x:Key="settings/language_change_confirmation_message">言語を変更すると、アプリケーションが再起動します（保存していない読み取り結果は失われます）。
+本当に変更しますか？</sys:String>
+    <sys:String x:Key="settings/language_change_confirmation_title">確認</sys:String>
+    <sys:String x:Key="settings/transcription_service_change_confirmation_message">本当に文字読み取りサービスを変更しますか？
+※この操作は取り消すことができません。</sys:String>
+    <sys:String x:Key="settings/transcription_service_change_confirmation_title">確認</sys:String>
+    <sys:String x:Key="settings/transcription_service_settings_clear_confirmation_message">本当に文字読み取りサービスの設定を消去しますか？
+※この操作は取り消すことができません。</sys:String>
+    <sys:String x:Key="settings/transcription_service_settings_clear_confirmation_title">確認</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_empty_message">検索エンジンのURLを入力してください。</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_empty_title">エラー</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_incomplete_message">検索エンジンのURLに"{0}"が含まれていません。</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_incomplete_title">エラー</sys:String>
+    <sys:String x:Key="settings/general_tab_header_text">全般設定</sys:String>
+    <sys:String x:Key="settings/general_tab_language_setting_title">言語</sys:String>
+    <sys:String x:Key="settings/general_tab_data_selection_setting_title">読み取り結果を変更した場合に使用するデータの設定（デフォルト設定）</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_header_text">画面撮影</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_method_setting_title">画面撮影の方法</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_crop_method_radio_button_text">切り取り方式</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_crop_method_description">最初に画面をキャプチャして、その画像を切り抜く方式(切り取り&amp;スケッチ と同じ)</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_live_capture_method_radio_button_text">ライブ撮影方式</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_live_capture_method_description">切り抜く範囲を決めてから画面をキャプチャする方式(動きのある画面に最適)</sys:String>
+    <sys:String x:Key="settings/transcription_tab_header_text">文字読み取り</sys:String>
+    <sys:String x:Key="settings/transcription_tab_service_settings_title">文字読み取りサービス</sys:String>
+    <sys:String x:Key="settings/transcription_tab_configure_button_text_in_unset">設定を開始</sys:String>
+    <sys:String x:Key="settings/transcription_tab_configure_button_text_in_configured">設定を変更</sys:String>
+    <sys:String x:Key="settings/transcription_tab_option_settings_button_text">オプション設定</sys:String>
+    <sys:String x:Key="settings/transcription_tab_clear_settings_button_text">設定を消去</sys:String>
+    <sys:String x:Key="settings/transcription_tab_help_label1_text">※文字読み取りサービスを変更するには現在のサービスの設定を消去してください。</sys:String>
+    <sys:String x:Key="settings/web_search_tab_header_text">ウェブ検索</sys:String>
+    <sys:String x:Key="settings/web_search_tab_web_search_service_url_settings_title">検索エンジンのURL（検索キーワード部分に「{0}」を入れてください）</sys:String>
+    <sys:String x:Key="settings/web_search_tab_test_button_text">テスト</sys:String>
+    <sys:String x:Key="settings/web_search_tab_reset_button_text">既定値を復元</sys:String>
+    <sys:String x:Key="settings/hotkey_tab_header_text">ショートカットキー</sys:String>
+    <sys:String x:Key="settings/hotkey_tab_hotkey1_settings_title">画面を撮影して文字を読み取る場合のショートカットキー</sys:String>
+    <sys:String x:Key="settings/hotkey_tab_hotkey2_settings_title">クリップボードの画像から文字を読み取る場合のショートカットキー</sys:String>
+    <sys:String x:Key="settings/hotkey_tab_hotkey_enable_checkbox_text">有効</sys:String>
+    <sys:String x:Key="settings/import_export_settings_tab_header_text">設定のインポート/エクスポート</sys:String>
+    <sys:String x:Key="settings/import_export_settings_tab_importing_settings_title">設定のインポート</sys:String>
+    <sys:String x:Key="settings/import_export_settings_tab_settings_import_button_text">インポートを開始</sys:String>
+    <sys:String x:Key="settings/import_export_settings_tab_exporting_settings_title">設定のエクスポート</sys:String>
+    <sys:String x:Key="settings/import_export_settings_tab_settings_export_button_text">エクスポートを開始</sys:String>
+    <sys:String x:Key="settings/save_button_text">OK</sys:String>
+    <sys:String x:Key="settings/cancel_button_text">キャンセル</sys:String>
+
+    <!-- インポートウィンドウ -->
+    <sys:String x:Key="import/window_title">設定のインポート</sys:String>
+    <sys:String x:Key="import/next_button_text">次へ</sys:String>
+    <sys:String x:Key="import/back_button_text">戻る</sys:String>
+    <sys:String x:Key="import/close_button_text">OK</sys:String>
+    <sys:String x:Key="import/cancel_button_text">キャンセル</sys:String>
+
+    <!-- インポートページ1 -->
+    <sys:String x:Key="import_1/screen_title">設定のインポート - 設定ファイルの選択</sys:String>
+    <sys:String x:Key="import_1/instruction_comment">引き継ぎ元のファイルを選択してください。</sys:String>
+    <sys:String x:Key="import_1/setting_file_path_text_box_label_text">設定ファイル</sys:String>
+    <sys:String x:Key="import_1/setting_file_browse_button_text">参照</sys:String>
+
+    <!-- インポートページ2 -->
+    <sys:String x:Key="import_2/screen_title">設定のインポート - パスワード入力</sys:String>
+    <sys:String x:Key="import_2/instruction_comment">このファイルはパスワードで暗号化されています。
+パスワードを入力してください。
+※このファイルが組織から提供されたものである場合はシステム担当者に確認してください。</sys:String>
+    <sys:String x:Key="import_2/password_box_label_text">パスワード</sys:String>
+    <sys:String x:Key="import_2/password_error_error_message">ファイルの暗号化を解除できませんでした。
+パスワードが間違っていないか確認してください。</sys:String>
+    <sys:String x:Key="import_2/password_error_error_title">エラー</sys:String>
+
+    <!-- インポートページ3 -->
+    <sys:String x:Key="import_3/screen_title">設定のインポート - 引き継ぐ設定の選択</sys:String>
+    <sys:String x:Key="import_3/instruction_comment">引き継ぐ設定を選択してください。</sys:String>
+    <sys:String x:Key="import_3/application_setting_checkbox_text">アプリケーションの設定</sys:String>
+    <sys:String x:Key="import_3/transcription_service_credential_checkbox_text">文字読み取りサービスの認証情報</sys:String>
+    <sys:String x:Key="import_3/transcription_service_settings_checkbox_text">文字読み取りサービスのオプション設定</sys:String>
+
+    <!-- インポートページ4 -->
+    <sys:String x:Key="import_4/screen_title">設定のインポート - 引き継ぎ完了</sys:String>
+    <sys:String x:Key="import_4/instruction_comment">設定の引き継ぎを正常に完了しました。
+※引き継がなかった設定は変更されていません。必要に応じてそれぞれのメニューから設定を変更してください。</sys:String>
+
+    <!-- エクスポートウィンドウ -->
+    <sys:String x:Key="export/window_title">設定のエクスポート</sys:String>
+    <sys:String x:Key="export/next_button_text">次へ</sys:String>
+    <sys:String x:Key="export/back_button_text">戻る</sys:String>
+    <sys:String x:Key="export/close_button_text">OK</sys:String>
+    <sys:String x:Key="export/cancel_button_text">キャンセル</sys:String>
+
+    <!-- エクスポートページ1 -->
+    <sys:String x:Key="export_1/screen_title">設定のエクスポート - 引き継ぐ設定の選択</sys:String>
+    <sys:String x:Key="export_1/instruction_comment">引き継ぐ設定を選択してください。</sys:String>
+    <sys:String x:Key="export_1/application_setting_checkbox_text">アプリケーションの設定</sys:String>
+    <sys:String x:Key="export_1/transcription_service_credential_checkbox_text">文字読み取りサービスの認証情報</sys:String>
+    <sys:String x:Key="export_1/transcription_service_credential_export_setting_checkbox_text">インポートした端末による認証情報のエクスポートを許可する</sys:String>
+    <sys:String x:Key="export_1/transcription_service_settings_checkbox_text">文字読み取りサービスのオプション設定</sys:String>
+
+    <!-- エクスポートページ2 -->
+    <sys:String x:Key="export_2/screen_title">設定のエクスポート - データの保護</sys:String>
+    <sys:String x:Key="export_2/instruction_comment">設定ファイルを暗号化しますか？</sys:String>
+    <sys:String x:Key="export_2/enable_encryption_radio_button_text">暗号化する</sys:String>
+    <sys:String x:Key="export_2/password_box_label_text">パスワード</sys:String>
+    <sys:String x:Key="export_2/password_requirement_label_text">※パスワードは最低12文字必要です。</sys:String>
+    <sys:String x:Key="export_2/disable_encryption_radio_button_text">暗号化しない</sys:String>
+
+    <!-- エクスポートページ3 -->
+    <sys:String x:Key="export_3/screen_title">設定のエクスポート - 作成するファイルの設定</sys:String>
+    <sys:String x:Key="export_3/instruction_comment">作成するファイルの情報を入力してください。</sys:String>
+    <sys:String x:Key="export_3/file_path_text_box_label_text">ファイルパス</sys:String>
+    <sys:String x:Key="export_3/file_browse_button_text">参照</sys:String>
+
+    <!-- エクスポートページ4 -->
+    <sys:String x:Key="export_4/screen_title">設定のエクスポート - ファイル作成完了</sys:String>
+    <sys:String x:Key="export_4/instruction_comment">設定ファイルの作成が完了しました。
+※認証情報をエクスポートした場合はファイルの取り扱いに注意してください。</sys:String>
+
+    <!-- 製品情報ウィンドウ -->
+    <sys:String x:Key="product_information/window_title">この製品について</sys:String>
+    <sys:String x:Key="product_information/version_label_text">Version {0}</sys:String>
+    <sys:String x:Key="product_information/copyright_label_text">{0}</sys:String>
+    <sys:String x:Key="product_information/third_party_notification_label_text">サードパーティに関する通知</sys:String>
+    <sys:String x:Key="product_information/terms_label_text">ライセンス条項</sys:String>
+    <sys:String x:Key="product_information/close_button_text">OK</sys:String>
+
+    <!-- 入出力ダイアログ -->
+    <sys:String x:Key="file_dialog/load_image_title">画像ファイルを開く</sys:String>
+    <sys:String x:Key="file_dialog/load_image_filter">ビットマップ ファイル (*.bmp;*.dib)|*.bmp;*.dib|GIF (*.gif)|*.gif|JPEG (*.jpg;*.jpeg;*.jpe;*.jfif)|*.jpg;*.jpeg;*.jpe;*.jfif|PNG (*.png)|*.png|TIFF (*.tif;*.tiff)|*.tif;*.tiff|すべてのファイル (*.*)|*.*</sys:String>
+    <sys:String x:Key="file_dialog/load_setting_file_title">設定ファイルを選択</sys:String>
+    <sys:String x:Key="file_dialog/load_setting_file_filter">設定ファイル|*.costf</sys:String>
+    <sys:String x:Key="file_dialog/save_setting_file_title">設定ファイルを保存</sys:String>
+    <sys:String x:Key="file_dialog/save_setting_file_filter">設定ファイル|*.costf</sys:String>
+    <sys:String x:Key="file_dialog/save_setting_file_default_file_name">{0} 設定</sys:String>
+    <sys:String x:Key="file_dialog/file_not_found_error_message">ファイルが見つかりませんでした。</sys:String>
+    <sys:String x:Key="file_dialog/file_not_found_error_title">エラー</sys:String>
+    <sys:String x:Key="file_dialog/data_compatibility_error_message">このファイルは現在のバージョンのアプリケーションでは開くことができません。</sys:String>
+    <sys:String x:Key="file_dialog/data_compatibility_error_title">エラー</sys:String>
+    <sys:String x:Key="file_dialog/file_type_error_message">対応していないファイルです。</sys:String>
+    <sys:String x:Key="file_dialog/file_type_error_title">エラー</sys:String>
+
+    <!-- タスクトレイアイコン -->
+    <sys:String x:Key="task_tray_icon/help_message">画面上の文字を読み取る</sys:String>
+    <sys:String x:Key="task_tray_icon/read_from_clipboard_image_text">クリップボードの画像から読み取る</sys:String>
+    <sys:String x:Key="task_tray_icon/read_from_image_file_text">画像ファイルから読み取る</sys:String>
+    <sys:String x:Key="task_tray_icon/settings_text">設定</sys:String>
+    <sys:String x:Key="task_tray_icon/product_information_text">この製品について</sys:String>
+    <sys:String x:Key="task_tray_icon/exit_text">終了</sys:String>
+
+    <!-- 結果ウィンドウ -->
+    <sys:String x:Key="result/window_title">読み取り結果</sys:String>
+    <sys:String x:Key="result/no_data_message">(何も読み取られませんでした)</sys:String>
+    <sys:String x:Key="result/clipboard_image_acquisition_error_message">クリップボードから画像を取得できませんでした。</sys:String>
+    <sys:String x:Key="result/clipboard_image_acquisition_error_title">エラー</sys:String>
+    <sys:String x:Key="result/clipboard_copy_error_message">クリップボードにコピーすることができませんでした。</sys:String>
+    <sys:String x:Key="result/clipboard_copy_error_title">エラー</sys:String>
+    <sys:String x:Key="result/save_result_title">結果をファイルに保存</sys:String>
+    <sys:String x:Key="result/save_result_filter">テキストドキュメント (*.txt)|*.txt|すべてのファイル (*.*)|*.*</sys:String>
+    <sys:String x:Key="result/save_result_default_file_name">文字読み取り結果</sys:String>
+    <sys:String x:Key="result/command_bar_label_text">コマンド</sys:String>
+    <sys:String x:Key="result/command_bar_retry_button_text">再試行</sys:String>
+    <sys:String x:Key="result/command_bar_remove_newlines_button_text">選択範囲の各行を結合</sys:String>
+    <sys:String x:Key="result/command_bar_copy_button_text">すべてコピー</sys:String>
+    <sys:String x:Key="result/command_bar_copy_button_text_copy_complete">すべてコピー(完了)</sys:String>
+    <sys:String x:Key="result/command_bar_save_button_text">ファイルに保存</sys:String>
+    <sys:String x:Key="result/command_bar_web_search_button_text">ウェブ検索</sys:String>
+    <sys:String x:Key="result/command_bar_data_selection_setting_checkbox_text">編集したテキストを使用する</sys:String>
+
+    <!-- その他 -->
+    <sys:String x:Key="other/multiple_startup_error_message">このアプリケーションは既に起動しています。</sys:String>
+    <sys:String x:Key="other/multiple_startup_error_title">エラー</sys:String>
+
+    <!-- 文字読み取りサービス：Google Cloud Vision API -->
+    <sys:String x:Key="google_cloud_vision_api/explanation">Google Cloud Vision APIはGoogle LLCが提供するクラウド画像認識サービスです。
+・Google アカウントが必要です
+・使用量に応じて課金されます（毎月の無料利用枠あり）</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting/window_title">Google Cloud Vision APIの設定</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting/cancel_button_text">キャンセル</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_1/screen_title">Google Cloud Vision API - このサービスについて</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_1/service_description">**このサービスについて**  
+Google Cloud Vision APIはGoogle LLCが提供するクラウド画像認識サービスです。  
+・Google アカウントが必要です  
+・使用量に応じて課金されます（毎月の無料利用枠あり）  
+**請求される可能性がある料金**  
+毎月、  
+　1～1000回目：無料  
+　1001回目～：1000回につき$1.50請求（利用回数が1000で割り切れない場合は1000の桁に繰り上げて請求）  
+例：2500回 → $0 [1000回] + $3.00 [2000回（1500回から繰り上げ）] = $3.00  
+上記の情報は2021年12月時点のものです。利用を開始する前に必ず[サービスサイト](https://cloud.google.com/vision/pricing)で最新の情報を確認してください。  
+※この説明でのドルはアメリカ合衆国ドルを意味します。  
+※この説明は現在の端末でこのアプリケーションだけがサービスを使用することを前提としています。  
+※開発者は上記の情報について正確性を保証しません。  
+**プライバシー保護**  
+データの取り扱いについては[Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice)をご覧ください。</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_1/next_button_text">次へ</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/screen_title">Google Cloud Vision API - サービス アカウントの登録</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/setup_guide">サービス アカウントをアプリケーションに登録します。  
+このアプリケーションはサービス アカウント キー(JSON キーファイル)を使用してGoogle Cloud Vision APIにアクセスするので、下部のメニューからキーファイルを登録してください。  
+**Google アカウントを持っていない場合**  
+Google アカウントの作成が必要です。詳しくは以下のGoogle アカウント 公式ガイドをご覧ください。  
+[Google アカウントの作成](https://support.google.com/accounts/answer/27441)  
+**初めてGoogle Cloud Vision APIを使用する場合(使用するアカウントが変更になった場合も含む)**  
+APIを使用するための準備を行った後、サービス アカウント キーを発行してください。詳しくは以下のGoogle Cloud 公式ガイドをご覧ください。  
+[クイックスタート: Vision API を設定する](https://cloud.google.com/vision/docs/setup)  
+**以前にGoogle Cloud Vision APIを使用したことがある場合(キーファイルがない場合のみ)**  
+サービス アカウント キーをもう一度発行してください(セキュリティ上の理由で以前のキーを無効化することをおすすめします)。詳しくは以下のGoogle Cloud 公式ガイドをご覧ください。  
+[サービス アカウントを作成し、秘密鍵ファイルをダウンロードする](https://cloud.google.com/vision/docs/setup#sa-create)  
+  
+※プロジェクト名等の名前は任意のものを入力してください。  
+※作成するキーのタイプは「JSON」を選んでください。</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/file_path_text_box_label_text">キーファイル</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/file_browse_button_text">参照</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/load_key_file_title">キーファイルを選択</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/load_key_file_filter">JSON キーファイル (*.json)|*.json</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/register_button_text">登録</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_2/back_button_text">戻る</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/screen_title">Google Cloud Vision API - サービス アカウント設定</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/instruction_comment">サービスアカウントの登録が完了しました。  
+※セキュリティ維持のため、登録に使用したキーファイルは削除することをおすすめします（以降必要ありません）。</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_description">**キーのエクスポート設定**  
+キーのエクスポートを許可すると、設定をファイルに書き出す際にサービスアカウントのキーを含めることができます。この設定は後から変更できません。</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_checkbox_text">このキーのエクスポートを許可する</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/complete_button_text">完了</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/close_button_text">保存して閉じる</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/option_setting_button">保存してオプション設定を表示</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_notification_message_allow">キーのエクスポートを許可する設定で保存しました。</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_notification_title_allow">情報</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_notification_message_disallow">キーのエクスポートを許可しない設定で保存しました。</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_notification_title_disallow">情報</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/screen_title">Google Cloud Vision API - オプション設定</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/language_hint_setting_label_text">言語ヒント</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/language_hint_add_button">追加</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/language_hint_delete_button">削除</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/language_hint_setting_reference_information">※ほとんどの場合、指定せずに読み取るのが最適です。  
+参考：[OCR 言語のサポート](https://cloud.google.com/vision/docs/languages)</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_setting_label_text">API エンドポイント</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_text_box_placeholder_text">(デフォルト設定)</sys:String>
+<sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_setting_reference_information">デフォルト設定はグローバルAPIエンドポイントです。  
+参考：[マルチリージョンのサポート](https://cloud.google.com/vision/docs/ocr#regionalization)</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/save_button_text">OK</sys:String>
+
+    <!-- ――――― 言語データエリア ――――― -->
+</ResourceDictionary>
