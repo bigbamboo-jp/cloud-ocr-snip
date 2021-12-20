@@ -3,8 +3,8 @@
 
 #define MyAppName "Cloud OCR Snip"
 #define MyAppNameForFile "Cloud-OCR-Snip"
-#define MyAppVersion "1.0.0.0"                   
-#define MyAppVersionForFile "1-0-0-0"
+#define MyAppVersion "1.0.1.0"                   
+#define MyAppVersionForFile "1-0-1-0"
 #define MyAppPublisher "Takuma Otake"
 #define MyAppExeName "CloudOCRSnip.exe"
 #define CurrentYear GetDateTimeString('yyyy', '', '')
@@ -93,7 +93,7 @@ Source: "{#SourcePath}\windowsdesktop-runtime-6.0.1-win-x64.exe"; DestDir: "{tmp
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 
 [Registry]
-Root: "HKCU"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "{#MyAppName}"; ValueData: """{app}\{#MyAppExeName}"""; Flags: uninsdeletevalue
+Root: "HKCU"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "{#MyAppName}"; ValueData: """{app}\{#MyAppExeName}"" --startup_mode"; Flags: uninsdeletevalue
 
 [Run]
 Filename: "{tmp}\{#dotNETInstallerExeName}"; Parameters: "-install -quiet"

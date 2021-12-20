@@ -1,6 +1,7 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Input;
@@ -19,12 +20,21 @@ namespace Cloud_OCR_Snip
         {
             InitializeComponent();
 
-            // 初期設定が済んでいない場合に初期設定画面を表示する
             if ((string)Functions.GetUserSettings()["transcription_service"] == string.Empty)
             {
-                new InitialSetting().Show();
-                notify_icon = new System.Windows.Forms.NotifyIcon();
-                return;
+                // 初期設定が済んでいない場合
+                if (Environment.GetCommandLineArgs().Contains("--startup_mode") == true)
+                {
+                    // スタートアップから起動した場合、アプリケーションを終了する
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    // 通常の方法で起動した場合、初期設定画面を表示する
+                    new InitialSetting().Show();
+                    notify_icon = new System.Windows.Forms.NotifyIcon();
+                    return;
+                }
             }
 
             Assembly executing_assembly = Assembly.GetExecutingAssembly();
