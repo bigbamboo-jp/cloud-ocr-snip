@@ -64,7 +64,6 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Cloud OCR Snip.exe"; DestDir: "{app}"; DestName: "CloudOCRSnip.exe"; Flags: ignoreversion
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Cloud OCR Snip.deps.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Cloud OCR Snip.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Cloud OCR Snip.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Cloud OCR Snip.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Google.Api.CommonProtos.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Google.Api.Gax.dll"; DestDir: "{app}"; Flags: ignoreversion
