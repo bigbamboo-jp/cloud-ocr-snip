@@ -10,7 +10,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Cloud_OCR_Snip.Encryption
+namespace Encryption
 {
     public static class AESThenHMAC
     {

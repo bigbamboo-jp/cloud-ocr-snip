@@ -3,8 +3,8 @@
 
 #define MyAppName "Cloud OCR Snip"
 #define MyAppNameForFile "Cloud-OCR-Snip"
-#define MyAppVersion "1.0.1.0"                   
-#define MyAppVersionForFile "1-0-1-0"
+#define MyAppVersion "1.1.0.0"                   
+#define MyAppVersionForFile "1-1-0-0"
 #define MyAppPublisher "Takuma Otake"
 #define MyAppExeName "CloudOCRSnip.exe"
 #define CurrentYear GetDateTimeString('yyyy', '', '')
@@ -64,6 +64,7 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Cloud OCR Snip.exe"; DestDir: "{app}"; DestName: "CloudOCRSnip.exe"; Flags: ignoreversion
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Cloud OCR Snip.deps.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Cloud OCR Snip.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Cloud OCR Snip.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Cloud OCR Snip.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Google.Api.CommonProtos.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Google.Api.Gax.dll"; DestDir: "{app}"; Flags: ignoreversion
@@ -93,7 +94,7 @@ Source: "{#SourcePath}\windowsdesktop-runtime-6.0.1-win-x64.exe"; DestDir: "{tmp
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 
 [Registry]
-Root: "HKCU"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "{#MyAppName}"; ValueData: """{app}\{#MyAppExeName}"" --startup_mode"; Flags: uninsdeletevalue
+Root: "HKLM"; Subkey: "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"; ValueType: string; ValueName: "{#MyAppName}"; ValueData: """{app}\{#MyAppExeName}"" --startup_mode"; Flags: uninsdeletevalue
 
 [Run]
 Filename: "{tmp}\{#dotNETInstallerExeName}"; Parameters: "-install -quiet"
@@ -102,7 +103,7 @@ Filename: "{tmp}\{#dotNETInstallerExeName}"; Parameters: "-install -quiet"
 Filename: "PowerShell"; Parameters: "-Command ""Start-Process -FilePath 'powershell' -Argument '-command taskkill -f -t -im ''{#MyAppExeName}''' -Verb RunAs; Start-Sleep -Seconds 3"""; Flags: runhidden
 
 [UninstallDelete]
-Type: files; Name: "{app}\config.json"
+Type: files; Name: "{app}\additional_data.json"
 
 [Code]
 var ErrorCode: Integer;

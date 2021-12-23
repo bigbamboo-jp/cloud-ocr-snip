@@ -199,6 +199,9 @@ Make sure the password is correct.</sys:String>
     <!-- Others -->
     <sys:String x:Key="other/multiple_startup_error_message">This application is already running.</sys:String>
     <sys:String x:Key="other/multiple_startup_error_title">Error</sys:String>
+    <sys:String x:Key="other/transcription_error_message">Transcription failed.
+Please check your Internet connection, transcription service settings and service status, and try again.</sys:String>
+    <sys:String x:Key="other/transcription_error_title">Error</sys:String>
 
     <!-- Transcription Service: Google Cloud Vision API -->
     <sys:String x:Key="google_cloud_vision_api/explanation">Google Cloud Vision API is a cloud image recognition service provided by Google LLC.

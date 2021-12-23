@@ -20,7 +20,7 @@ namespace Cloud_OCR_Snip
         {
             InitializeComponent();
 
-            // 設定データ（アプリ設定）からユーザー設定を取り出す
+            // 設定データ（アプリケーション設定）からユーザー設定を取り出す
             setting = setting_data;
             Dictionary<string, object> user_settings = setting;
             List<string> splitted_user_setting_section_keys = Functions.USER_SETTING_SECTION_KEY.Split(":").ToList();
@@ -65,7 +65,7 @@ namespace Cloud_OCR_Snip
         /// </summary>
         private void Next_button_Click(object sender, RoutedEventArgs e)
         {
-            // 設定データ（アプリ設定）からユーザー設定を取り出す
+            // 設定データ（アプリケーション設定）からユーザー設定を取り出す
             Dictionary<string, object> user_settings = setting;
             List<string> splitted_user_setting_section_keys = Functions.USER_SETTING_SECTION_KEY.Split(":").ToList();
             foreach (string key in splitted_user_setting_section_keys)

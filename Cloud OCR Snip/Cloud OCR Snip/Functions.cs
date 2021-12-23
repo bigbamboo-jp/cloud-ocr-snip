@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -41,7 +42,7 @@ namespace Cloud_OCR_Snip
         /// <summary>
         /// クリップボードから画像を取得してその画像で文字読み取りをするメソッド
         /// </summary>
-        public static bool DetectScreenshotText()
+        public static async Task<bool> DetectScreenshotText()
         {
             bool live_capture_mode = (bool)GetUserSettings()["live_capture_mode"];
 
@@ -96,7 +97,7 @@ namespace Cloud_OCR_Snip
 
             if (shot == true)
             {
-                Result_Show(screen_shooting_window.image, data_source: 1);
+                await Result_Show(screen_shooting_window.image, data_source: 1);
             }
             return shot == false;
         }
@@ -112,9 +113,9 @@ namespace Cloud_OCR_Snip
         }
 
         /// <summary>
-        /// 指定されたサービスで文字読み取りをして、その結果を返すメソッド
+        /// 指定されたサービスで画像内の文字を読み取って、その結果を返すメソッド
         /// </summary>
-        public static string DetectText(TranscriptionService.Service service, System.Drawing.Bitmap image)
+        public static async Task<string> DetectText(TranscriptionService.Service service, System.Drawing.Bitmap image)
         {
             string transcription_service_credential = GetTranscriptionServiceCredential();
             if (transcription_service_credential == string.Empty)
@@ -123,10 +124,36 @@ namespace Cloud_OCR_Snip
                 Settings_Show(show_transcription_settings: true);
                 return null;
             }
-            return service.DetectText(image, transcription_service_credential);
+            // 画像内の文字を読み取る
+            string result = null;
+            try
+            {
+                result = await service.DetectText(image, transcription_service_credential);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show((string)Application.Current.FindResource("other/transcription_error_message"), (string)Application.Current.FindResource("other/transcription_error_title"));
+            }
+            return result;
         }
 
-        public const string CONFIG_FILE_PATH = "config.json"; // 設定ファイルのパス
+        // 設定ファイルのパス
+        public static string config_file_path
+        {
+            get
+            {
+                if (Directory.Exists(Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "AppData")) == true)
+                {
+                    // プログラムフォルダ内に「AppData」フォルダがある場合
+                    return Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "AppData", "config.json");
+                }
+                else
+                {
+                    // プログラムフォルダ内に「AppData」フォルダがない場合
+                    return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), Assembly.GetExecutingAssembly().GetName().Name, "config.json");
+                }
+            }
+        }
         public const string CONFIG_FILE_FILE_TYPE = "Cloud OCR Snip Configuration File (Format Version 1)"; // 設定ファイルのファイルタイプ [製品名を含む]
         public const string USER_SETTING_SECTION_KEY = "data:user_settings"; // 設定データ内でユーザー設定セクションの場所を表すキー
 
@@ -159,22 +186,14 @@ namespace Cloud_OCR_Snip
         /// <summary>
         /// アプリケーション設定を読み込むメソッド
         /// </summary>
-        public static Dictionary<string, object> GetAppSettings(string section_key = "")
+        public static Dictionary<string, object> GetAppSettings(string file_path, string section_key = "")
         {
-            string config_file_path = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), CONFIG_FILE_PATH);
-            if (File.Exists(config_file_path) == false)
-            {
-                // 設定ファイルが存在しない場合は新しく作成する
-                Dictionary<string, object> configuration_data = new Dictionary<string, object>(INITIAL_CONFIGURATION_DATA);
-                ((Dictionary<string, object>)((Dictionary<string, object>)configuration_data["data"])["user_settings"])["search_service_url"] = Convert.ToBase64String(Protect(Encoding.UTF8.GetBytes(DEFAULT_SEARCH_SERVICE_URL)));
-                SetAppSettings(configuration_data);
-            }
             // 設定ファイルを読み込む
-            string config_file_data = File.ReadAllText(config_file_path);
+            string config_file_data = File.ReadAllText(file_path);
             object app_settings = JsonConvert_DeserializeObject(JToken.Parse(config_file_data));
             if (app_settings.GetType().IsGenericType == true)
             {
-                // デシリアライズしたデータがリスト・ディクショナリの場合
+                // デシリアライズしたデータがジェネリックタイプの場合
                 if (app_settings.GetType().GetGenericTypeDefinition() != typeof(Dictionary<,>))
                 {
                     // デシリアライズしたデータがディクショナリ以外の場合
@@ -183,7 +202,7 @@ namespace Cloud_OCR_Snip
             }
             else
             {
-                // デシリアライズしたデータがリスト・ディクショナリ以外の場合
+                // デシリアライズしたデータがジェネリックタイプ以外の場合
                 return null;
             }
             if (section_key != string.Empty)
@@ -235,40 +254,32 @@ namespace Cloud_OCR_Snip
         /// <summary>
         /// アプリケーション設定を保存するメソッド
         /// </summary>
-        public static void SetAppSettings(object setting_value, string section_key = "")
+        public static void SetAppSettings(object setting_value, string file_path, string section_key = "")
         {
-            try
+            Dictionary<string, object> app_settings;
+            if (section_key == string.Empty)
             {
-                Dictionary<string, object> app_settings;
-                if (section_key == string.Empty)
-                {
-                    // 更新する設定セクションが指定されていない場合
-                    app_settings = (Dictionary<string, object>)setting_value;
-                }
-                else
-                {
-                    // 更新する設定セクションが指定されている場合
-                    app_settings = GetAppSettings();
-                    Dictionary<string, object> current_section = app_settings;
-                    List<string> keys = section_key.Split(":").ToList();
-                    foreach (string key in keys.GetRange(0, keys.Count - 1))
-                    {
-                        // 指定された設定セクションの親セクションを取り出す
-                        current_section = (Dictionary<string, object>)current_section[key];
-                    }
-                    // 指定されたセクションにデータを入れ込む
-                    current_section[keys[keys.Count - 1]] = setting_value;
-                }
-                string config_file_path = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), CONFIG_FILE_PATH);
-                // 設定データをシリアライズして保存する
-                string config_file_data = JsonConvert.SerializeObject(app_settings, Formatting.Indented);
-                File.WriteAllText(config_file_path, config_file_data);
+                // 更新する設定セクションが指定されていない場合
+                app_settings = (Dictionary<string, object>)setting_value;
             }
-            catch (Exception)
+            else
             {
-                // 設定ファイルに書き込めなかった場合
-                throw new Exception("Failed to save the configuration.");
+                // 更新する設定セクションが指定されている場合
+                app_settings = GetAppSettings(file_path);
+                Dictionary<string, object> current_section = app_settings;
+                List<string> keys = section_key.Split(":").ToList();
+                foreach (string key in keys.GetRange(0, keys.Count - 1))
+                {
+                    // 指定された設定セクションの親セクションを取り出す
+                    current_section = (Dictionary<string, object>)current_section[key];
+                }
+                // 指定されたセクションにデータを入れ込む
+                current_section[keys[keys.Count - 1]] = setting_value;
             }
+            // 設定データをシリアライズして保存する
+            string config_file_data = JsonConvert.SerializeObject(app_settings, Formatting.Indented);
+            Directory.CreateDirectory(Path.GetDirectoryName(file_path));
+            File.WriteAllText(file_path, config_file_data);
         }
 
         /// <summary>
@@ -281,7 +292,14 @@ namespace Cloud_OCR_Snip
                 // 設定セクションが指定されている場合
                 sub_section_key = ":" + sub_section_key;
             }
-            return GetAppSettings(USER_SETTING_SECTION_KEY + sub_section_key);
+            if (File.Exists(config_file_path) == false)
+            {
+                // 設定ファイルが存在しない場合は新しく作成する
+                Dictionary<string, object> configuration_data = new Dictionary<string, object>(INITIAL_CONFIGURATION_DATA);
+                ((Dictionary<string, object>)((Dictionary<string, object>)configuration_data["data"])["user_settings"])["search_service_url"] = Convert.ToBase64String(Protect(Encoding.UTF8.GetBytes(DEFAULT_SEARCH_SERVICE_URL)));
+                SetAppSettings(configuration_data, config_file_path);
+            }
+            return GetAppSettings(config_file_path, USER_SETTING_SECTION_KEY + sub_section_key);
         }
 
         /// <summary>
@@ -294,7 +312,14 @@ namespace Cloud_OCR_Snip
                 // 設定セクションが指定されている場合
                 sub_section_key = ":" + sub_section_key;
             }
-            SetAppSettings(setting_value, USER_SETTING_SECTION_KEY + sub_section_key);
+            if (File.Exists(config_file_path) == false)
+            {
+                // 設定ファイルが存在しない場合は新しく作成する
+                Dictionary<string, object> configuration_data = new Dictionary<string, object>(INITIAL_CONFIGURATION_DATA);
+                ((Dictionary<string, object>)((Dictionary<string, object>)configuration_data["data"])["user_settings"])["search_service_url"] = Convert.ToBase64String(Protect(Encoding.UTF8.GetBytes(DEFAULT_SEARCH_SERVICE_URL)));
+                SetAppSettings(configuration_data, config_file_path);
+            }
+            SetAppSettings(setting_value, config_file_path, USER_SETTING_SECTION_KEY + sub_section_key);
         }
 
         public const string DEFAULT_SEARCH_SERVICE_URL = "https://www.google.com/search?q={0}"; // ウェブ検索サービスのURLのデフォルト設定
@@ -394,14 +419,13 @@ namespace Cloud_OCR_Snip
 
         /// <summary>
         /// データ保護API（DPAPI）でデータを暗号化するメソッド
-        /// ソース：https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.protecteddata.protect
+        /// ソース：https://docs.microsoft.com/dotnet/api/system.security.cryptography.protecteddata.protect
         /// </summary>
         public static byte[] Protect(byte[] data)
         {
             try
             {
-                byte[] s_additionalEntropy = Encoding.UTF8.GetBytes(Assembly.GetExecutingAssembly().GetName().Name);
-                return ProtectedData.Protect(data, s_additionalEntropy, DataProtectionScope.CurrentUser);
+                return ProtectedData.Protect(data, GetAdditionalData(), DataProtectionScope.CurrentUser);
             }
             catch (CryptographicException)
             {
@@ -411,19 +435,38 @@ namespace Cloud_OCR_Snip
 
         /// <summary>
         /// データ保護API（DPAPI）でデータを復号するメソッド
-        /// ソース：https://docs.microsoft.com/en-us/dotnet/api/system.security.cryptography.protecteddata.unprotect
+        /// ソース：https://docs.microsoft.com/dotnet/api/system.security.cryptography.protecteddata.unprotect
         /// </summary>
         public static byte[] Unprotect(byte[] data)
         {
             try
             {
-                byte[] s_additionalEntropy = Encoding.UTF8.GetBytes(Assembly.GetExecutingAssembly().GetName().Name);
-                return ProtectedData.Unprotect(data, s_additionalEntropy, DataProtectionScope.CurrentUser);
+                return ProtectedData.Unprotect(data, GetAdditionalData(), DataProtectionScope.CurrentUser);
             }
             catch (CryptographicException)
             {
                 return null;
             }
+        }
+
+        public static string additional_data_file_path = Path.Combine(Path.GetDirectoryName(Environment.ProcessPath), "additional_data.json"); // 付加データファイルのパス
+
+        /// <summary>
+        /// データを暗号化する際に付加するデータを返すメソッド
+        /// </summary>
+        public static byte[] GetAdditionalData()
+        {
+            if (File.Exists(additional_data_file_path) == false)
+            {
+                // 付加データファイルが存在しない場合は新しく作成する
+                Dictionary<string, object> additional_data_dictionary = new Dictionary<string, object>
+                {
+                    { "data", Convert.ToBase64String(Encryption.AESThenHMAC.NewKey()) }
+                };
+                SetAppSettings(additional_data_dictionary, additional_data_file_path);
+            }
+            // ファイルから付加データを読み込んで返す
+            return Convert.FromBase64String((string)GetAppSettings(additional_data_file_path)["data"]);
         }
 
         public const int WM_HOTKEY = 0x0312; // ショートカットキーに関するメッセージのID
@@ -503,7 +546,7 @@ namespace Cloud_OCR_Snip
         /// <summary>
         /// 画像から読み取った文字を結果ウィンドウで表示するメソッド
         /// </summary>
-        public static void Result_Show(System.Drawing.Bitmap image, int data_source = 0)
+        public static async Task Result_Show(System.Drawing.Bitmap image, int data_source = 0)
         {
             object transcription_service_bytes = Unprotect(Convert.FromBase64String((string)GetUserSettings()["transcription_service"]));
             if (transcription_service_bytes != null)
@@ -513,7 +556,7 @@ namespace Cloud_OCR_Snip
             TranscriptionService.Service transcription_service = GetTranscriptionService((string)transcription_service_bytes);
             if (image != null)
             {
-                new Result(DetectText(transcription_service, image), data_source).Show();
+                new Result(await DetectText(transcription_service, image), data_source).Show();
             }
         }
 
