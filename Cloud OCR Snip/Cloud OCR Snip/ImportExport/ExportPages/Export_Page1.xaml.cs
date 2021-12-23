@@ -117,8 +117,8 @@ namespace Cloud_OCR_Snip
                 TranscriptionService.Service transcription_service = Functions.GetTranscriptionService((string)user_settings["transcription_service"]);
                 user_settings.Add("transcription_service_settings", transcription_service.Settings);
             }
-            // ユーザー設定をアプリ設定の中に入れる
-            Dictionary<string, object> app_settings = Functions.GetAppSettings();
+            // ユーザー設定をアプリケーション設定に変換する
+            Dictionary<string, object> app_settings = Functions.INITIAL_CONFIGURATION_DATA;
             Dictionary<string, object> user_settings_storage = app_settings;
             List<string> splitted_user_setting_section_keys = Functions.USER_SETTING_SECTION_KEY.Split(":").ToList();
             foreach (string key in splitted_user_setting_section_keys.GetRange(0, splitted_user_setting_section_keys.Count - 1))

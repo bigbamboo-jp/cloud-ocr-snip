@@ -32,7 +32,6 @@ namespace Cloud_OCR_Snip
                 {
                     // 通常の方法で起動した場合、初期設定画面を表示する
                     new InitialSetting().Show();
-                    notify_icon = new System.Windows.Forms.NotifyIcon();
                     return;
                 }
             }
@@ -151,7 +150,9 @@ namespace Cloud_OCR_Snip
                 // 「画面を撮影して文字を読み取る場合のショートカットキー」が押された場合
                 if (Functions.displaying_shoot == false)
                 {
+#pragma warning disable CS4014 // この呼び出しは待機されなかったため、現在のメソッドの実行は呼び出しの完了を待たずに続行されます
                     Functions.DetectScreenshotText();
+#pragma warning restore CS4014 // この呼び出しは待機されなかったため、現在のメソッドの実行は呼び出しの完了を待たずに続行されます
                 }
             }
             else if (hotkey_id == Functions.HOTKEY_ID[01])
@@ -170,20 +171,23 @@ namespace Cloud_OCR_Snip
             Disable_hotkey();
             ComponentDispatcher.ThreadPreprocessMessage -= Window_KeyDown;
             // タスクトレイアイコンを非表示にする
-            notify_icon.Dispose();
+            if (notify_icon != null)
+            {
+                notify_icon.Dispose();
+            }
         }
 
         /// <summary>
         /// タスクトレイアイコンがクリックされた際の処理
         /// </summary>
-        private void Notify_icon_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
+        private async void Notify_icon_MouseClick(object sender, System.Windows.Forms.MouseEventArgs e)
         {
             if (e.Button == System.Windows.Forms.MouseButtons.Left)
             {
                 // スクリーンショットを撮影後その画像から文字を読み取る
                 if (Functions.displaying_shoot == false)
                 {
-                    Functions.DetectScreenshotText();
+                    await Functions.DetectScreenshotText();
                 }
             }
         }
@@ -191,21 +195,21 @@ namespace Cloud_OCR_Snip
         /// <summary>
         /// タスクトレイアイコンの「クリップボードの画像から読み取る」アイテムがクリックされた際の処理
         /// </summary>
-        private void Read_from_clipboard_image_item_Click(object sender, EventArgs e)
+        private async void Read_from_clipboard_image_item_Click(object sender, EventArgs e)
         {
             // クリップボードから画像を取得してその画像から文字を読み取る
             IDataObject cb = Clipboard.GetDataObject();
             System.Drawing.Bitmap image = (System.Drawing.Bitmap)cb.GetData(typeof(System.Drawing.Bitmap));
             if (image != null)
             {
-                Functions.Result_Show(image, data_source: 2);
+                await Functions.Result_Show(image, data_source: 2);
             }
         }
 
         /// <summary>
         /// タスクトレイアイコンの「画像ファイルから読み取る」アイテムがクリックされた際の処理
         /// </summary>
-        private void Read_from_image_file_item_Click(object sender, EventArgs e)
+        private async void Read_from_image_file_item_Click(object sender, EventArgs e)
         {
             // ユーザーが選択した画像ファイルを読み込んでその画像から文字を読み取る
             System.Windows.Forms.OpenFileDialog ofd = new System.Windows.Forms.OpenFileDialog
@@ -227,7 +231,7 @@ namespace Cloud_OCR_Snip
                     // 読み込んだファイルが画像ファイルでない場合
                     return;
                 }
-                Functions.Result_Show(image, data_source: 3);
+                await Functions.Result_Show(image, data_source: 3);
             }
         }
 

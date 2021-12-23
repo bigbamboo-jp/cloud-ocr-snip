@@ -199,6 +199,9 @@
     <!-- その他 -->
     <sys:String x:Key="other/multiple_startup_error_message">このアプリケーションは既に起動しています。</sys:String>
     <sys:String x:Key="other/multiple_startup_error_title">エラー</sys:String>
+    <sys:String x:Key="other/transcription_error_message">文字の読み取りに失敗しました。
+インターネット接続、文字読み取りサービスの設定・サービスステータス等を確認して再試行してください。</sys:String>
+    <sys:String x:Key="other/transcription_error_title">エラー</sys:String>
 
     <!-- 文字読み取りサービス：Google Cloud Vision API -->
     <sys:String x:Key="google_cloud_vision_api/explanation">Google Cloud Vision APIはGoogle LLCが提供するクラウド画像認識サービスです。

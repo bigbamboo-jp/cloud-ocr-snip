@@ -83,7 +83,7 @@ namespace Cloud_OCR_Snip
                         WindowState = WindowState.Minimized;
                         // ウィンドウの最小化が完了するまで待機する
                         await Task.Delay(200);
-                        if (Functions.DetectScreenshotText() == true)
+                        if (await Functions.DetectScreenshotText() == true)
                         {
                             WindowState = previous_WindowState;
                         }
@@ -106,7 +106,7 @@ namespace Cloud_OCR_Snip
                     {
                         // クリップボードから画像を取得できた場合
                         Close();
-                        Functions.Result_Show(clipboard_image, data_source: 2);
+                        await Functions.Result_Show(clipboard_image, data_source: 2);
                     }
                     break;
                 case 3:
@@ -131,7 +131,7 @@ namespace Cloud_OCR_Snip
                             return;
                         }
                         Close();
-                        Functions.Result_Show(file_image, data_source: 3);
+                        await Functions.Result_Show(file_image, data_source: 3);
                     }
                     break;
             }

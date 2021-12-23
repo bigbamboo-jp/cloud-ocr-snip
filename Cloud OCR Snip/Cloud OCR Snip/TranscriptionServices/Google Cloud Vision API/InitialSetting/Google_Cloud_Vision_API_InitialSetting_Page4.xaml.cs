@@ -140,16 +140,25 @@ namespace TranscriptionService
             language_hints = new ObservableCollection<string>(language_hints_section);
             language_hint_list_view.DataContext = language_hints;
             // APIエンドポイント
-            byte[] api_endpoint_bytes = Functions.Unprotect(Convert.FromBase64String((string)settings["api_endpoint"]));
-            if (api_endpoint_bytes == null)
+            if ((string)settings["api_endpoint"] == string.Empty)
             {
-                // APIエンドポイントが設定されていないか設定データが破損している場合
+                // 設定されていない場合
                 api_endpoint_text_box.Text = string.Empty;
             }
             else
             {
-                // APIエンドポイントが設定されている場合
-                api_endpoint_text_box.Text = Encoding.UTF8.GetString(api_endpoint_bytes);
+                // 設定されている場合
+                byte[] api_endpoint_bytes = Functions.Unprotect(Convert.FromBase64String((string)settings["api_endpoint"]));
+                if (api_endpoint_bytes == null)
+                {
+                    // 設定データが破損している場合
+                    api_endpoint_text_box.Text = ".googleapis.com";
+                }
+                else
+                {
+                    // 設定データが破損していない場合
+                    api_endpoint_text_box.Text = Encoding.UTF8.GetString(api_endpoint_bytes);
+                }
             }
         }
 
