@@ -43,8 +43,10 @@
     <sys:String x:Key="settings/transcription_service_settings_clear_confirmation_title">確認</sys:String>
     <sys:String x:Key="settings/web_search_service_url_empty_message">検索エンジンのURLを入力してください。</sys:String>
     <sys:String x:Key="settings/web_search_service_url_empty_title">エラー</sys:String>
-    <sys:String x:Key="settings/web_search_service_url_incomplete_message">検索エンジンのURLに"{0}"が含まれていません。</sys:String>
-    <sys:String x:Key="settings/web_search_service_url_incomplete_title">エラー</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_protocol_error_message">URLは「http://」または「https://」で始まっている必要があります。</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_protocol_error_title">エラー</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_search_word_uninserted_message">検索エンジンのURLに"{0}"が含まれていません。</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_search_word_uninserted_title">エラー</sys:String>
     <sys:String x:Key="settings/general_tab_header_text">全般設定</sys:String>
     <sys:String x:Key="settings/general_tab_language_setting_title">言語</sys:String>
     <sys:String x:Key="settings/general_tab_data_selection_setting_title">読み取り結果を変更した場合に使用するデータの設定（デフォルト設定）</sys:String>
@@ -199,6 +201,9 @@
     <!-- その他 -->
     <sys:String x:Key="other/multiple_startup_error_message">このアプリケーションは既に起動しています。</sys:String>
     <sys:String x:Key="other/multiple_startup_error_title">エラー</sys:String>
+    <sys:String x:Key="other/file_write_permission_error_message">権限がないためファイルに書き込めません。
+管理者権限で再起動しますか？</sys:String>
+    <sys:String x:Key="other/file_write_permission_error_title">エラー</sys:String>
     <sys:String x:Key="other/transcription_error_message">文字の読み取りに失敗しました。
 インターネット接続、文字読み取りサービスの設定・サービスステータス等を確認して再試行してください。</sys:String>
     <sys:String x:Key="other/transcription_error_title">エラー</sys:String>

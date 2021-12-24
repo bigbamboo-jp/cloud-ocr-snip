@@ -43,8 +43,10 @@ Do you really want to change it?</sys:String>
     <sys:String x:Key="settings/transcription_service_settings_clear_confirmation_title">Confirmation</sys:String>
     <sys:String x:Key="settings/web_search_service_url_empty_message">Please enter the URL of the search engine.</sys:String>
     <sys:String x:Key="settings/web_search_service_url_empty_title">Error</sys:String>
-    <sys:String x:Key="settings/web_search_service_url_incomplete_message">The search engine URL does not contain "{0}".</sys:String>
-    <sys:String x:Key="settings/web_search_service_url_incomplete_title">Error</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_protocol_error_message">The URL must start with "http: //" or "https: //".</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_protocol_error_title">Error</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_search_word_uninserted_message">The search engine URL does not contain "{0}".</sys:String>
+    <sys:String x:Key="settings/web_search_service_url_search_word_uninserted_title">Error</sys:String>
     <sys:String x:Key="settings/general_tab_header_text">General</sys:String>
     <sys:String x:Key="settings/general_tab_language_setting_title">Language</sys:String>
     <sys:String x:Key="settings/general_tab_data_selection_setting_title">Settings when editing the transcription result (default setting)</sys:String>
@@ -199,6 +201,9 @@ Make sure the password is correct.</sys:String>
     <!-- Others -->
     <sys:String x:Key="other/multiple_startup_error_message">This application is already running.</sys:String>
     <sys:String x:Key="other/multiple_startup_error_title">Error</sys:String>
+    <sys:String x:Key="other/file_write_permission_error_message">Cannot write to a file because the application does not have permissions.
+Do you want to restart the application with administrative privileges?</sys:String>
+    <sys:String x:Key="other/file_write_permission_error_title">Error</sys:String>
     <sys:String x:Key="other/transcription_error_message">Transcription failed.
 Please check your Internet connection, transcription service settings and service status, and try again.</sys:String>
     <sys:String x:Key="other/transcription_error_title">Error</sys:String>

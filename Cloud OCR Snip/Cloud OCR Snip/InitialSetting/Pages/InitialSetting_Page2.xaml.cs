@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,16 +48,10 @@ namespace Cloud_OCR_Snip
                     Page next_page = transcription_service.GetCredentialSettingsPage(initial_setting: true);
                     new TranscriptionService.TranscriptionServiceSettingHost(next_page, initial_setting: true).ShowDialog();
                 }
-                // アプリケーションを再起動する
-                string cmd = string.Join("\" \"", Environment.GetCommandLineArgs().Skip(1));
-                if (cmd != "")
-                {
-                    cmd = "\"" + cmd + "\"";
-                }
-                Process.Start(Environment.ProcessPath, cmd);
-                // 終了前の処理が呼び出されるまで待機する
+                // ウィンドウが閉じられた際の処理が始まるまで待機する
                 await Task.Delay(10);
-                Application.Current.Shutdown();
+                // アプリケーションを再起動する
+                Functions.RestartApplication();
             }
             else
             {
@@ -85,16 +77,10 @@ namespace Cloud_OCR_Snip
                 Page next_page = transcription_service.GetInitialSettingPage();
                 new TranscriptionService.TranscriptionServiceSettingHost(next_page, initial_setting: true).ShowDialog();
             }
-            // アプリケーションを再起動する
-            string cmd = string.Join("\" \"", Environment.GetCommandLineArgs().Skip(1));
-            if (cmd != "")
-            {
-                cmd = "\"" + cmd + "\"";
-            }
-            Process.Start(Environment.ProcessPath, cmd);
-            // 終了前の処理が呼び出されるまで待機する
+            // ウィンドウが閉じられた際の処理が始まるまで待機する
             await Task.Delay(10);
-            Application.Current.Shutdown();
+            // アプリケーションを再起動する
+            Functions.RestartApplication();
         }
 
         /// <summary>

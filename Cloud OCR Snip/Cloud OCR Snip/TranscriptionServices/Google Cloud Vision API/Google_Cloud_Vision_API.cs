@@ -58,7 +58,6 @@ namespace TranscriptionService
                         }
                         else
                         {
-                            // APIエンドポイントの設定データが破損していない場合
                             settings["api_endpoint"] = Encoding.UTF8.GetString(api_endpoint_bytes);
                         }
                     }
@@ -143,7 +142,6 @@ namespace TranscriptionService
                 }
                 else
                 {
-                    // APIエンドポイントの設定データが破損していない場合
                     builder.Endpoint = Encoding.UTF8.GetString(api_endpoint_bytes);
                 }
             }
