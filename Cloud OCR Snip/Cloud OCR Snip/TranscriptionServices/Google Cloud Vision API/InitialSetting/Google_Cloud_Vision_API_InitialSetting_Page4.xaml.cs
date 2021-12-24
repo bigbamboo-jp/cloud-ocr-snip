@@ -156,7 +156,6 @@ namespace TranscriptionService
                 }
                 else
                 {
-                    // 設定データが破損していない場合
                     api_endpoint_text_box.Text = Encoding.UTF8.GetString(api_endpoint_bytes);
                 }
             }

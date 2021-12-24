@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Reflection;
@@ -206,9 +205,7 @@ namespace Cloud_OCR_Snip
             if (search_service_url_bytes == null)
             {
                 // 設定データが破損している場合
-                string search_service_url = Functions.DEFAULT_SEARCH_SERVICE_URL;
-                Functions.SetUserSettings(Convert.ToBase64String(Functions.Protect(Encoding.UTF8.GetBytes(search_service_url))), "search_service_url");
-                web_search_service_url_text_box.Text = search_service_url;
+                web_search_service_url_text_box.Text = "https://_/search?q={0}";
             }
             else
             {
@@ -219,9 +216,7 @@ namespace Cloud_OCR_Snip
             if (transcription_service_bytes == null)
             {
                 // 設定データが破損している場合
-                string transcription_service = transcription_service_combobox.ItemsSource.Cast<string>().First();
-                Functions.SetUserSettings(Convert.ToBase64String(Functions.Protect(Encoding.UTF8.GetBytes(transcription_service))), "transcription_service");
-                Load_transcription_service_settings(transcription_service);
+                Load_transcription_service_settings(null);
             }
             else
             {
@@ -235,6 +230,16 @@ namespace Cloud_OCR_Snip
         private void Load_transcription_service_settings(string transcription_service_name)
         {
             transcription_service_combobox.SelectedItem = transcription_service_name;
+            if (transcription_service_name == null)
+            {
+                // 使用する文字読み取りサービスが選択されていない場合
+                transcription_service_configure_button.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                // 使用する文字読み取りサービスが選択されている場合
+                transcription_service_configure_button.Visibility = Visibility.Visible;
+            }
             if (Functions.GetTranscriptionServiceCredential() == string.Empty)
             {
                 // 文字読み取りサービスの初期設定が済んでいない場合
@@ -272,36 +277,37 @@ namespace Cloud_OCR_Snip
                 MessageBox.Show((string)FindResource("settings/web_search_service_url_empty_message"), (string)FindResource("settings/web_search_service_url_empty_title"));
                 return;
             }
-            else if (web_search_service_url_text_box.Text.Contains("{0}") == false)
+            else if (web_search_service_url_text_box.Text.StartsWith("http://") == false && web_search_service_url_text_box.Text.StartsWith("https://") == false)
             {
-                MessageBox.Show((string)FindResource("settings/web_search_service_url_incomplete_message"), (string)FindResource("settings/web_search_service_url_incomplete_title"));
+                MessageBox.Show((string)FindResource("web_search_service_url_protocol_error_message"), (string)FindResource("web_search_service_url_protocol_error_title"));
                 return;
             }
-            bool reboot_required = false;
+            else if (web_search_service_url_text_box.Text.Contains("{0}") == false)
+            {
+                MessageBox.Show((string)FindResource("settings/web_search_service_url_search_word_uninserted_message"), (string)FindResource("settings/web_search_service_url_search_word_uninserted_title"));
+                return;
+            }
+            bool restart_required = false;
             // 現在の設定と異なる言語が選ばれている場合、本当に言語を変更するか確認する
             if (((KeyValuePair<string, string>)language_combobox.SelectedItem).Key != (string)Functions.GetUserSettings()["language"])
             {
-                if (MessageBox.Show((string)FindResource("settings/language_change_confirmation_message"), (string)FindResource("settings/language_change_confirmation_title"), MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+                if (MessageBox.Show((string)FindResource("settings/language_change_confirmation_message"), (string)FindResource("settings/language_change_confirmation_title"), MessageBoxButton.YesNo) == MessageBoxResult.No)
                 {
                     return;
                 }
-                reboot_required = true;
+                restart_required = true;
             }
             Close();
             Save_settings();
             // 言語が変更された場合にアプリケーションを再起動する
-            if (reboot_required == true)
+            if (restart_required == true)
             {
-                string cmd = string.Join("\" \"", Environment.GetCommandLineArgs().Skip(1));
-                if (cmd != "")
-                {
-                    cmd = "\"" + cmd + "\"";
-                }
-                Process.Start(Environment.ProcessPath, cmd);
-                Application.Current.Shutdown();
-                return;
+                Functions.RestartApplication();
             }
-            MainWindow.Set_up_hotkey(reset: true);
+            else
+            {
+                MainWindow.Set_up_hotkey(reset: true);
+            }
         }
 
         /// <summary>
@@ -323,9 +329,14 @@ namespace Cloud_OCR_Snip
                 MessageBox.Show((string)FindResource("settings/web_search_service_url_empty_message"), (string)FindResource("settings/web_search_service_url_empty_title"));
                 return;
             }
+            else if (web_search_service_url_text_box.Text.StartsWith("http://") == false && web_search_service_url_text_box.Text.StartsWith("https://") == false)
+            {
+                MessageBox.Show((string)FindResource("web_search_service_url_protocol_error_message"), (string)FindResource("web_search_service_url_protocol_error_title"));
+                return;
+            }
             else if (web_search_service_url_text_box.Text.Contains("{0}") == false)
             {
-                MessageBox.Show((string)FindResource("settings/web_search_service_url_incomplete_message"), (string)FindResource("settings/web_search_service_url_incomplete_title"));
+                MessageBox.Show((string)FindResource("settings/web_search_service_url_search_word_uninserted_message"), (string)FindResource("settings/web_search_service_url_search_word_uninserted_title"));
                 return;
             }
             // 入力されたURLでウェブ検索をテストする
@@ -401,7 +412,7 @@ namespace Cloud_OCR_Snip
         private void Transcription_service_clear_settings_button_Click(object sender, RoutedEventArgs e)
         {
             // 本当に文字読み取りサービスの設定を消去するか確認する
-            if (MessageBox.Show((string)FindResource("settings/transcription_service_settings_clear_confirmation_message"), (string)FindResource("settings/transcription_service_settings_clear_confirmation_title"), MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+            if (MessageBox.Show((string)FindResource("settings/transcription_service_settings_clear_confirmation_message"), (string)FindResource("settings/transcription_service_settings_clear_confirmation_title"), MessageBoxButton.YesNo) == MessageBoxResult.No)
             {
                 return;
             }
@@ -415,21 +426,30 @@ namespace Cloud_OCR_Snip
         /// </summary>
         private void Transcription_service_combobox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (transcription_service_combobox.Text == string.Empty)
+            if ((string)transcription_service_configure_button.Content == null)
             {
                 // 初期化時に呼び出された場合
                 return;
             }
-            if (transcription_service_combobox.Text != (string)transcription_service_combobox.SelectedItem)
+            if (transcription_service_combobox.Text != (string)transcription_service_combobox.SelectedItem && (string)transcription_service_combobox.SelectedItem != null)
             {
                 // 本当に文字読み取りサービスを変更するか確認する
-                if (MessageBox.Show((string)FindResource("settings/transcription_service_change_confirmation_message"), (string)FindResource("settings/transcription_service_change_confirmation_title"), MessageBoxButton.OKCancel) == MessageBoxResult.Cancel)
+                if (MessageBox.Show((string)FindResource("settings/transcription_service_change_confirmation_message"), (string)FindResource("settings/transcription_service_change_confirmation_title"), MessageBoxButton.YesNo) == MessageBoxResult.No)
                 {
-                    transcription_service_combobox.SelectedItem = transcription_service_combobox.Text;
+                    if (transcription_service_combobox.Text == string.Empty)
+                    {
+                        // 変更される前に何も選択されていなかった場合
+                        transcription_service_combobox.SelectedItem = null;
+                    }
+                    else
+                    {
+                        transcription_service_combobox.SelectedItem = transcription_service_combobox.Text;
+                    }
                     return;
                 }
                 // 文字読み取りサービスを変更する
                 Functions.SetUserSettings(Convert.ToBase64String(Functions.Protect(Encoding.UTF8.GetBytes((string)transcription_service_combobox.SelectedItem))), "transcription_service");
+                Load_transcription_service_settings((string)transcription_service_combobox.SelectedItem);
             }
         }
 
@@ -444,13 +464,7 @@ namespace Cloud_OCR_Snip
             {
                 // インポートが行われた場合にアプリケーションを再起動する
                 Close();
-                string cmd = string.Join("\" \"", Environment.GetCommandLineArgs().Skip(1));
-                if (cmd != "")
-                {
-                    cmd = "\"" + cmd + "\"";
-                }
-                Process.Start(Environment.ProcessPath, cmd);
-                Application.Current.Shutdown();
+                Functions.RestartApplication();
             }
             else
             {

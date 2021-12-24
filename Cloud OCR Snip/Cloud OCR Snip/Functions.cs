@@ -278,8 +278,21 @@ namespace Cloud_OCR_Snip
             }
             // 設定データをシリアライズして保存する
             string config_file_data = JsonConvert.SerializeObject(app_settings, Formatting.Indented);
-            Directory.CreateDirectory(Path.GetDirectoryName(file_path));
-            File.WriteAllText(file_path, config_file_data);
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(file_path));
+                File.WriteAllText(file_path, config_file_data);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                // 書き込み権限がない場合
+                if (MessageBox.Show((string)Application.Current.FindResource("other/file_write_permission_error_message"), (string)Application.Current.FindResource("other/file_write_permission_error_title"), MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    // ユーザーが指示した場合に管理者権限で再起動する
+                    RestartApplication(run_as: true);
+                }
+                Environment.Exit(0);
+            }
         }
 
         /// <summary>
@@ -618,6 +631,37 @@ namespace Cloud_OCR_Snip
                 // デフォルト言語のデータをユーザーが設定した言語のデータで置き換える（双方に存在するリソースのみ）
                 Application.Current.Resources.MergedDictionaries.Add(language_resource_dictionary);
             }
+        }
+
+        /// <summary>
+        /// アプリケーションを再起動するメソッド
+        /// </summary>
+        public static void RestartApplication(bool run_as = false)
+        {
+            // 移行先のアプリケーションを起動する
+            string args = string.Join("\" \"", Environment.GetCommandLineArgs().Skip(1));
+            if (args != string.Empty)
+            {
+                args = "\"" + args + "\"";
+            }
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = Environment.ProcessPath,
+                Arguments = args,
+                UseShellExecute = true
+            };
+            if (run_as == true)
+            {
+                // 指定された場合に管理者権限で起動する
+                psi.Verb = "RunAs";
+            }
+            try
+            {
+                Process.Start(psi);
+            }
+            catch (System.ComponentModel.Win32Exception) { }
+            // 移行元のアプリケーションを終了する（移行先を起動できなかった場合でも行う）
+            Application.Current.Shutdown();
         }
 
         /// <summary>

@@ -224,7 +224,7 @@ namespace Cloud_OCR_Snip
         private void Web_search_button_Click(object sender, RoutedEventArgs e)
         {
             // データ選択チェックボックスに状態に応じて使用するデータを変える
-            string text;
+            string text, search_service_url;
             if (data_selection_setting_checkbox.IsChecked == true && (string)result_textbox.Tag != string.Empty)
             {
                 // 編集されたデータ
@@ -239,9 +239,14 @@ namespace Cloud_OCR_Snip
             byte[] search_service_url_bytes = Functions.Unprotect(Convert.FromBase64String((string)Functions.GetUserSettings()["search_service_url"]));
             if (search_service_url_bytes == null)
             {
-                return;
+                // 設定データが破損している場合
+                search_service_url = "https://_/search?q={0}";
             }
-            string url = string.Format(Encoding.UTF8.GetString(search_service_url_bytes), WebUtility.UrlEncode(text.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", " ")));
+            else
+            {
+                search_service_url = Encoding.UTF8.GetString(search_service_url_bytes);
+            }
+            string url = string.Format(search_service_url, WebUtility.UrlEncode(text.Replace("\r\n", "\n").Replace("\r", "\n").Replace("\n", " ")));
             Functions.AccessWebsite(url);
         }
 
