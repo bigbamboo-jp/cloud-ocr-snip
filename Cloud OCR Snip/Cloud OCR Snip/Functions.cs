@@ -102,7 +102,7 @@ namespace Cloud_OCR_Snip
             return shot == false;
         }
 
-        public static readonly string[] TRANSCRIPTION_SERVICES = TranscriptionService.Functions.TRANSCRIPTION_SERVICES; // 文字読み取りサービスのリスト
+        public static readonly string[] transcription_services = TranscriptionService.Functions.transcription_services; // 文字読み取りサービスのリスト
 
         /// <summary>
         /// サービス名から文字読み取りサービスを検索して、そのインスタンスを返すメソッド
@@ -158,7 +158,7 @@ namespace Cloud_OCR_Snip
         public const string USER_SETTING_SECTION_KEY = "data:user_settings"; // 設定データ内でユーザー設定セクションの場所を表すキー
 
         // 初期状態の設定データ
-        public static readonly Dictionary<string, object> INITIAL_CONFIGURATION_DATA = new Dictionary<string, object>
+        public static readonly Dictionary<string, object> initial_configuration_data = new Dictionary<string, object>
         {
             {
                 "file_type", CONFIG_FILE_FILE_TYPE
@@ -286,7 +286,8 @@ namespace Cloud_OCR_Snip
             catch (UnauthorizedAccessException)
             {
                 // 書き込み権限がない場合
-                if (MessageBox.Show((string)Application.Current.FindResource("other/file_write_permission_error_message"), (string)Application.Current.FindResource("other/file_write_permission_error_title"), MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                Assembly executing_assembly = Assembly.GetExecutingAssembly();
+                if (MessageBox.Show((string)Application.Current.FindResource("other/file_write_permission_error_message"), (string)Application.Current.FindResource("other/file_write_permission_error_title") + " - " + executing_assembly.GetName().Name, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     // ユーザーが指示した場合に管理者権限で再起動する
                     RestartApplication(run_as: true);
@@ -308,7 +309,7 @@ namespace Cloud_OCR_Snip
             if (File.Exists(config_file_path) == false)
             {
                 // 設定ファイルが存在しない場合は新しく作成する
-                Dictionary<string, object> configuration_data = new Dictionary<string, object>(INITIAL_CONFIGURATION_DATA);
+                Dictionary<string, object> configuration_data = new Dictionary<string, object>(initial_configuration_data);
                 ((Dictionary<string, object>)((Dictionary<string, object>)configuration_data["data"])["user_settings"])["search_service_url"] = Convert.ToBase64String(Protect(Encoding.UTF8.GetBytes(DEFAULT_SEARCH_SERVICE_URL)));
                 SetAppSettings(configuration_data, config_file_path);
             }
@@ -328,7 +329,7 @@ namespace Cloud_OCR_Snip
             if (File.Exists(config_file_path) == false)
             {
                 // 設定ファイルが存在しない場合は新しく作成する
-                Dictionary<string, object> configuration_data = new Dictionary<string, object>(INITIAL_CONFIGURATION_DATA);
+                Dictionary<string, object> configuration_data = new Dictionary<string, object>(initial_configuration_data);
                 ((Dictionary<string, object>)((Dictionary<string, object>)configuration_data["data"])["user_settings"])["search_service_url"] = Convert.ToBase64String(Protect(Encoding.UTF8.GetBytes(DEFAULT_SEARCH_SERVICE_URL)));
                 SetAppSettings(configuration_data, config_file_path);
             }
@@ -474,7 +475,9 @@ namespace Cloud_OCR_Snip
                 // 付加データファイルが存在しない場合は新しく作成する
                 Dictionary<string, object> additional_data_dictionary = new Dictionary<string, object>
                 {
+
                     { "data", Convert.ToBase64String(Encryption.AESThenHMAC.NewKey()) }
+
                 };
                 SetAppSettings(additional_data_dictionary, additional_data_file_path);
             }
@@ -592,18 +595,31 @@ namespace Cloud_OCR_Snip
         /// </summary>
         public static void LoadLanguageData()
         {
+            // 言語情報を読み込む
             ResourceDictionary language_information_resource_dictionary = new ResourceDictionary
             {
                 Source = new Uri(LANGUAGE_INFORMATION_FILE_PATH, UriKind.Relative)
             };
             Application.Current.Resources.MergedDictionaries.Add(language_information_resource_dictionary);
-            const string DEFAULT_LANGUAGE = "en-US"; // ユーザーが設定した言語と共に読み込む言語（ユーザーが設定した言語のデータに不足があった場合に表示される）
+            const string DEFAULT_LANGUAGE = "en-US"; // ユーザーが設定した言語と共に読み込む言語（ユーザーが設定した言語のデータに不足があった場合に使用される）
+            // デフォルト言語のデータを読み込む
             ResourceDictionary default_language_resource_dictionary = new ResourceDictionary
             {
                 Source = new Uri(string.Format(LANGUAGE_DATA_FILE_PATH, DEFAULT_LANGUAGE), UriKind.Relative)
             };
             Application.Current.Resources.MergedDictionaries.Add(default_language_resource_dictionary);
-            string application_language_setting = (string)GetUserSettings()["language"];
+            string application_language_setting;
+            if (File.Exists(config_file_path) == true)
+            {
+                // 設定ファイルが存在する場合
+                application_language_setting = (string)GetUserSettings()["language"];
+            }
+            else
+            {
+                // 設定ファイルが存在しない場合
+                application_language_setting = string.Empty;
+            }
+            bool change_application_language_setting = false;
             if (application_language_setting == string.Empty)
             {
                 // アプリケーションで使用する言語が設定されていない場合
@@ -619,7 +635,7 @@ namespace Cloud_OCR_Snip
                     // システムの言語がアプリケーションの言語として選択できない場合
                     application_language_setting = DEFAULT_LANGUAGE_SETTINGS;
                 }
-                SetUserSettings(application_language_setting, "language");
+                change_application_language_setting = true;
             }
             if (application_language_setting != DEFAULT_LANGUAGE)
             {
@@ -630,6 +646,11 @@ namespace Cloud_OCR_Snip
                 };
                 // デフォルト言語のデータをユーザーが設定した言語のデータで置き換える（双方に存在するリソースのみ）
                 Application.Current.Resources.MergedDictionaries.Add(language_resource_dictionary);
+            }
+            if (change_application_language_setting == true)
+            {
+                // アプリケーションで使用する言語が変更された場合
+                SetUserSettings(application_language_setting, "language");
             }
         }
 

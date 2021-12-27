@@ -201,8 +201,8 @@
     <!-- その他 -->
     <sys:String x:Key="other/multiple_startup_error_message">このアプリケーションは既に起動しています。</sys:String>
     <sys:String x:Key="other/multiple_startup_error_title">エラー</sys:String>
-    <sys:String x:Key="other/file_write_permission_error_message">権限がないためファイルに書き込めません。
-管理者権限で再起動しますか？</sys:String>
+    <sys:String x:Key="other/file_write_permission_error_message">権限がないためファイルシステムにアクセスできません。
+管理者権限でアプリケーションを再起動しますか？</sys:String>
     <sys:String x:Key="other/file_write_permission_error_title">エラー</sys:String>
     <sys:String x:Key="other/transcription_error_message">文字の読み取りに失敗しました。
 インターネット接続、文字読み取りサービスの設定・サービスステータス等を確認して再試行してください。</sys:String>
