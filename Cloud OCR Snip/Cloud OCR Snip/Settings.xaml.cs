@@ -30,7 +30,7 @@ namespace Cloud_OCR_Snip
             Title = (string)FindResource("settings/window_title") + " - " + executing_assembly.GetName().Name;
             product_name_label.Content = executing_assembly.GetName().Name;
             language_combobox.ItemsSource = Functions.GetAvailableLanguages();
-            transcription_service_combobox.ItemsSource = Functions.TRANSCRIPTION_SERVICES;
+            transcription_service_combobox.ItemsSource = Functions.transcription_services;
             // ショートカットキーとして利用できるキーを取得する
             List<Key> hotkey_mainkeys = new List<Key>();
             foreach (Key mainkey in Enum.GetValues(typeof(Key)))
