@@ -118,7 +118,7 @@ namespace Cloud_OCR_Snip
                 user_settings.Add("transcription_service_settings", transcription_service.Settings);
             }
             // ユーザー設定をアプリケーション設定に変換する
-            Dictionary<string, object> app_settings = Functions.INITIAL_CONFIGURATION_DATA;
+            Dictionary<string, object> app_settings = Functions.initial_configuration_data;
             Dictionary<string, object> user_settings_storage = app_settings;
             List<string> splitted_user_setting_section_keys = Functions.USER_SETTING_SECTION_KEY.Split(":").ToList();
             foreach (string key in splitted_user_setting_section_keys.GetRange(0, splitted_user_setting_section_keys.Count - 1))

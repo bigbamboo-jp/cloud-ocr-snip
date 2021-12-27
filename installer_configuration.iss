@@ -3,8 +3,8 @@
 
 #define MyAppName "Cloud OCR Snip"
 #define MyAppNameForFile "Cloud-OCR-Snip"
-#define MyAppVersion "1.2.0.0"                   
-#define MyAppVersionForFile "1-2-0-0"
+#define MyAppVersion "1.2.0.1"                   
+#define MyAppVersionForFile "1-2-0-1"
 #define MyAppPublisher "Takuma Otake"
 #define MyAppExeName "CloudOCRSnip.exe"
 #define CurrentYear GetDateTimeString('yyyy', '', '')
