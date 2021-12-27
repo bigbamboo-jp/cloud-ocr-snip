@@ -201,7 +201,7 @@ Make sure the password is correct.</sys:String>
     <!-- Others -->
     <sys:String x:Key="other/multiple_startup_error_message">This application is already running.</sys:String>
     <sys:String x:Key="other/multiple_startup_error_title">Error</sys:String>
-    <sys:String x:Key="other/file_write_permission_error_message">Cannot access the file system due to lack of permissions.
+    <sys:String x:Key="other/file_write_permission_error_message">Cannot write to a file because the application does not have permissions.
 Do you want to restart the application with administrative privileges?</sys:String>
     <sys:String x:Key="other/file_write_permission_error_title">Error</sys:String>
     <sys:String x:Key="other/transcription_error_message">Transcription failed.

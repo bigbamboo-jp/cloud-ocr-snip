@@ -22,7 +22,7 @@ namespace Cloud_OCR_Snip
             Assembly executing_assembly = Assembly.GetExecutingAssembly();
             WindowTitle = (string)FindResource("initial_setting/window_title") + " - " + executing_assembly.GetName().Name;
             product_name_label.Content = executing_assembly.GetName().Name;
-            transcription_service_combobox.ItemsSource = Functions.transcription_services;
+            transcription_service_combobox.ItemsSource = Functions.TRANSCRIPTION_SERVICES;
         }
 
         /// <summary>

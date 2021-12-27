@@ -20,29 +20,17 @@ namespace Cloud_OCR_Snip
         {
             InitializeComponent();
 
-            if (Environment.GetCommandLineArgs().Contains("--startup_mode") == true)
+            if ((string)Functions.GetUserSettings()["transcription_service"] == string.Empty)
             {
-                // スタートアップから起動した場合
-                if (File.Exists(Functions.config_file_path) == true)
+                // 初期設定が済んでいない場合
+                if (Environment.GetCommandLineArgs().Contains("--startup_mode") == true)
                 {
-                    if ((string)Functions.GetUserSettings()["transcription_service"] == string.Empty)
-                    {
-                        // 設定ファイルが存在していて、初期設定が済んでいない場合
-                        Environment.Exit(0);
-                    }
+                    // スタートアップから起動した場合、アプリケーションを終了する
+                    Environment.Exit(0);
                 }
                 else
                 {
-                    // 設定ファイルが存在しない場合
-                    Environment.Exit(0);
-                }
-            }
-            else
-            {
-                // 通常の方法で起動した場合
-                if ((string)Functions.GetUserSettings()["transcription_service"] == string.Empty)
-                {
-                    // 初期設定が済んでいない場合
+                    // 通常の方法で起動した場合、初期設定画面を表示する
                     new InitialSetting().Show();
                     return;
                 }

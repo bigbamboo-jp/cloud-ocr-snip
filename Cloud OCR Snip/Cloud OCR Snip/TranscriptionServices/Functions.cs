@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -7,7 +8,7 @@ namespace TranscriptionService
 {
     public class Functions
     {
-        public static readonly string[] transcription_services = { "Google Cloud Vision API" }; // 利用できる文字読み取りサービスのリスト
+        public static readonly string[] TRANSCRIPTION_SERVICES = { "Google Cloud Vision API" }; // 利用できる文字読み取りサービスのリスト
 
         /// <summary>
         /// サービス名から文字読み取りサービスを検索して、そのインスタンスを返すメソッド
