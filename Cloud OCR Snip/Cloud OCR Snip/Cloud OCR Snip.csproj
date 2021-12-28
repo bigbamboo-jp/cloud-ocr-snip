@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -10,7 +10,7 @@
     <UseWindowsForms>True</UseWindowsForms>
     <Copyright>Copyright © 2021 Takuma Otake</Copyright>
     <ApplicationIcon>Icons/BlackIcon.ico</ApplicationIcon>
-    <Version>1.2.0.1</Version>
+    <Version>1.2.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

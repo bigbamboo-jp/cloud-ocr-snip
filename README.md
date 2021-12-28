@@ -6,6 +6,8 @@ Accurately read text from screen shots using cloud services.
 * Customizable keyboard shortcuts.
 * Similar in feel to the standard Windows application "Snip & Sketch".
 * Easily add available languages and transcription services (rebuild required).
+## Operating environment
+Windows 8.1, 10, 11 (64bit)
 ## Currently available languages
 English, Japanese(日本語)  
 \* This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/About-contribution) for details.
