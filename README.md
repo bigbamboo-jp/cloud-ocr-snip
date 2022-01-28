@@ -1,5 +1,8 @@
 # Cloud OCR Snip
 Accurately read text from screen shots using cloud services.
+
+<img src="https://user-images.githubusercontent.com/96374682/151562571-ce91f572-7eaf-4963-a746-c3594e434be8.gif" width="750">
+
 ## Features
 * Ultra-high precision transcription is possible with cloud services.
 * In addition to screen shots, it is possible to transcribe from image files and images on the clipboard.
@@ -13,8 +16,7 @@ English, Japanese(日本語)
 \* This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/About-contribution) for details.
 ## Currently supported transcription services
 * Google Cloud Vision API ([service website](https://cloud.google.com/vision))  
-  It's free up to 1000 times a month, after which you'll be charged $ 1.50 for every 1000 times (as of December 19, 2021).  
-
+  It's free up to 1000 times a month, after which you'll be charged $ 1.50 for every 1000 times (as of December 19, 2021).    
 \* This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/About-contribution) for details.
 ## Start using
 First of all, install the application. Download the latest version of the installer from the releases page.  
