@@ -359,7 +359,7 @@ namespace Cloud_OCR_Snip
         private void Hotkey_enable_checkbox_Click(object sender, RoutedEventArgs e)
         {
             // チェックボックスの状態に応じてショートカットキーの設定項目を有効化/無効化する
-            int hotkey_number = int.Parse(((CheckBox)sender).Name[2..((CheckBox)sender).Name.IndexOf("_")]);
+            int hotkey_number = int.Parse(((CheckBox)sender).Name.Substring(2, ((CheckBox)sender).Name.IndexOf("_") - 2));
             CheckBox hotkey_modifierkey_checkbox_win = FindName("hk" + hotkey_number.ToString() + "_hotkey_modifierkey_checkbox_win") as CheckBox;
             hotkey_modifierkey_checkbox_win.IsEnabled = (bool)((CheckBox)sender).IsChecked;
             CheckBox hotkey_modifierkey_checkbox_shift = FindName("hk" + hotkey_number.ToString() + "_hotkey_modifierkey_checkbox_shift") as CheckBox;

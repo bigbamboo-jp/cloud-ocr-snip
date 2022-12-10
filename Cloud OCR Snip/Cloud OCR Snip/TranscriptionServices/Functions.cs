@@ -5,6 +5,9 @@ using System.IO;
 
 namespace TranscriptionService
 {
+    /// <summary>
+    /// 文字読み取りサービスが使用する機能を集約したクラス
+    /// </summary>
     public class Functions
     {
         public static readonly string[] transcription_services = { "Google Cloud Vision API" }; // 利用できる文字読み取りサービスのリスト

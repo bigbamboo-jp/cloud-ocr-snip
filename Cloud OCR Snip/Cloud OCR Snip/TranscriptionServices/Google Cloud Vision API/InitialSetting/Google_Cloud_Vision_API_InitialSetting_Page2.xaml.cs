@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -22,6 +23,8 @@ namespace TranscriptionService
             InitializeComponent();
 
             initialization = initial_setting;
+            Assembly executing_assembly = Assembly.GetExecutingAssembly();
+            WindowTitle = (string)FindResource("google_cloud_vision_api/initial_setting/window_title") + " - " + executing_assembly.GetName().Name;
             // リッチテキストボックスにセットアップガイドを表示する
             FlowDocument setup_guide = Markdown.ToFlowDocument((string)FindResource("google_cloud_vision_api/initial_setting_2/setup_guide"));
             setup_guide.FontSize = 20.0;

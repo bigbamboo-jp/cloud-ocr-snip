@@ -62,7 +62,7 @@ Do you really want to change it?</sys:String>
     <sys:String x:Key="settings/transcription_tab_configure_button_text_in_configured">Reconfigure</sys:String>
     <sys:String x:Key="settings/transcription_tab_option_settings_button_text">Option settings</sys:String>
     <sys:String x:Key="settings/transcription_tab_clear_settings_button_text">Clear settings</sys:String>
-    <sys:String x:Key="settings/transcription_tab_help_label1_text">*To change the transcription service, clear the current service settings.</sys:String>
+    <sys:String x:Key="settings/transcription_tab_help_label1_text">* To change the transcription service, clear the current service settings.</sys:String>
     <sys:String x:Key="settings/web_search_tab_header_text">Web Search</sys:String>
     <sys:String x:Key="settings/web_search_tab_web_search_service_url_settings_title">URL of the search engine (please put "{0}" in the search keyword part)</sys:String>
     <sys:String x:Key="settings/web_search_tab_test_button_text">Test</sys:String>
@@ -217,19 +217,20 @@ Please check your Internet connection, transcription service settings and servic
     <sys:String x:Key="google_cloud_vision_api/initial_setting_1/screen_title">Google Cloud Vision API - About this service</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_1/service_description">**About this service**  
 Google Cloud Vision API is a cloud image recognition service provided by Google LLC.  
-・ A Google Account is required  
-・ You will be charged according to the amount used (there is a monthly free usage limit).  
+・Google account required  
+・You will be charged according to the amount of usage (there is a monthly free usage limit)  
 **Fees that may be charged**  
 monthly,  
-1st to 1000th: Free  
-From 1001st time: $ 1.50 billing per 1000 times (if the number of uses is not divisible by 1000, billing will be carried up to 1000 digits)  
-Example: 2500 times → $ 0 [1000 times] + $ 3.00 [2000 times (advanced from 1500 times)] = $ 3.00  
-The above information is current as of December 2021. Please be sure to check the latest information on the [service site](https://cloud.google.com/vision/pricing) before you start using it.  
-\* The dollar in this explanation means the United States dollar.  
-\* This explanation assumes that only this application uses the service on the current terminal.  
+  1st to 1000th: Free  
+  From the 1001st time: $1.50 charged per 1000 times (If the number of times of use is not divisible by 1000, it will be rounded up to the nearest 1000 and charged)  
+Example: 2500 times → $0 [1000 times] + $3.00 [2000 times (rounded up from 1500 times)] = $3.00  
+If you use more than 5 million times in a month, you will get a $0.40 discount on the excess.  
+Note: The above information is correct at the time of application release. Be sure to check the latest information on [service site](https://cloud.google.com/vision/pricing) before starting to use the service.  
+\* This explanation assumes that only this application uses the service on the current device.  
+\* Dollars in this description mean US dollars.  
 \* The developer does not guarantee the accuracy of the above information.  
 **Privacy protection**  
-See the [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice) for data handling.</sys:String>
+Please see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice) for data handling.</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_1/next_button_text">Next</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_2/screen_title">Google Cloud Vision API - Service account registration</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_2/setup_guide">Register the service account with the application.  

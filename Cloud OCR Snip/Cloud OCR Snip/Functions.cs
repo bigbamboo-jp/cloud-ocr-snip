@@ -75,7 +75,7 @@ namespace Cloud_OCR_Snip
             {
                 // スクリーンショットを撮影する
                 System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.FromControl(new System.Windows.Forms.Form());
-                System.Drawing.Bitmap image = new System.Drawing.Bitmap(screen.Bounds.Width, screen.Bounds.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+                System.Drawing.Bitmap image = new System.Drawing.Bitmap(screen.Bounds.Width, screen.Bounds.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
                 // BitmapSourceに変換する
                 using System.Drawing.Graphics graph = System.Drawing.Graphics.FromImage(image);
                 graph.CopyFromScreen(new System.Drawing.Point(), new System.Drawing.Point(), image.Size);
@@ -132,7 +132,8 @@ namespace Cloud_OCR_Snip
             }
             catch (Exception)
             {
-                MessageBox.Show((string)Application.Current.FindResource("other/transcription_error_message"), (string)Application.Current.FindResource("other/transcription_error_title"));
+                Assembly executing_assembly = Assembly.GetExecutingAssembly();
+                MessageBox.Show((string)Application.Current.FindResource("other/transcription_error_message"), (string)Application.Current.FindResource("other/transcription_error_title") + " - " + executing_assembly.GetName().Name);
             }
             return result;
         }

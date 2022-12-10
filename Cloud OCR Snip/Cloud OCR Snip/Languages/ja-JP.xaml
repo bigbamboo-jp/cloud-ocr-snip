@@ -219,17 +219,18 @@
 Google Cloud Vision APIはGoogle LLCが提供するクラウド画像認識サービスです。  
 ・Google アカウントが必要です  
 ・使用量に応じて課金されます（毎月の無料利用枠あり）  
-**請求される可能性がある料金**  
+**請求される場合がある料金**  
 毎月、  
-　1～1000回目：無料  
-　1001回目～：1000回につき$1.50請求（利用回数が1000で割り切れない場合は1000の桁に繰り上げて請求）  
+  1～1000回目：無料  
+  1001回目～：1000回につき$1.50請求（利用回数が1000で割り切れない場合は1000の桁に繰り上げて請求）  
 例：2500回 → $0 [1000回] + $3.00 [2000回（1500回から繰り上げ）] = $3.00  
-上記の情報は2021年12月時点のものです。利用を開始する前に必ず[サービスサイト](https://cloud.google.com/vision/pricing)で最新の情報を確認してください。  
-※この説明でのドルはアメリカ合衆国ドルを意味します。  
+なお、1ヶ月の間に500万回を超えて使用した場合はその超過分について$0.40の割引が適用されます。  
+注意：上記の情報はアプリケーションリリース時のものです。利用を開始する前に必ず[サービスサイト](https://cloud.google.com/vision/pricing)で最新の情報を確認してください。  
 ※この説明は現在の端末でこのアプリケーションだけがサービスを使用することを前提としています。  
+※この説明でのドルはアメリカ合衆国ドルを意味します。  
 ※開発者は上記の情報について正確性を保証しません。  
 **プライバシー保護**  
-データの取り扱いについては[Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice)をご覧ください。</sys:String>
+データの取り扱いについては[Google Cloud のプライバシーに関するお知らせ](https://cloud.google.com/terms/cloud-privacy-notice)を確認してください。</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_1/next_button_text">次へ</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_2/screen_title">Google Cloud Vision API - サービス アカウントの登録</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_2/setup_guide">サービス アカウントをアプリケーションに登録します。  

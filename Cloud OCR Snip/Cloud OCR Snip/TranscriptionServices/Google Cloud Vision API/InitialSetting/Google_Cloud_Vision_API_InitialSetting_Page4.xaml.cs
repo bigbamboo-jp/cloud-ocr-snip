@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,6 +30,8 @@ namespace TranscriptionService
                 cancel_button.Visibility = Visibility.Hidden;
                 save_button.Margin = cancel_button.Margin;
             }
+            Assembly executing_assembly = Assembly.GetExecutingAssembly();
+            WindowTitle = (string)FindResource("google_cloud_vision_api/initial_setting/window_title") + " - " + executing_assembly.GetName().Name;
             // リッチテキストボックスに言語ヒント設定の参考情報を表示する
             FlowDocument language_hint_setting_reference_information = Markdown.ToFlowDocument((string)FindResource("google_cloud_vision_api/initial_setting_4/language_hint_setting_reference_information"));
             language_hint_setting_reference_information.FontSize = 20.0;

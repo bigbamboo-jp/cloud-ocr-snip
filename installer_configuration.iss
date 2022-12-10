@@ -3,8 +3,8 @@
 
 #define MyAppName "Cloud OCR Snip"
 #define MyAppNameForFile "Cloud-OCR-Snip"
-#define MyAppVersion "1.2.1.0"                   
-#define MyAppVersionForFile "1-2-1-0"
+#define MyAppVersion "1.3.0.0"                   
+#define MyAppVersionForFile "1-3-0-0"
 #define MyAppPublisher "Takuma Otake"
 #define MyAppExeName "CloudOCRSnip.exe"
 #define CurrentYear GetDateTimeString('yyyy', '', '')
@@ -83,7 +83,6 @@ Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Markdig.Wpf.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Microsoft.Bcl.AsyncInterfaces.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\ref\*"; DestDir: "{app}\ref"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\runtimes\*"; DestDir: "{app}\runtimes"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "{#SourcePath}\windowsdesktop-runtime-6.0.1-win-x64.exe"; DestDir: "{tmp}"; DestName: "{#dotNETInstallerExeName}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files

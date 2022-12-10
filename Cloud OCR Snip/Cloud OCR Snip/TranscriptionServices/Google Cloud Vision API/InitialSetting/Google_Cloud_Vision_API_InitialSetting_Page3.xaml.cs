@@ -1,4 +1,5 @@
 ﻿using Markdig.Wpf;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -18,12 +19,14 @@ namespace TranscriptionService
             InitializeComponent();
 
             initialization = initial_setting;
-            service_account_key_data = service_account_key;
             if (initialization == false)
             {
                 // 初期設定でない場合、オプション設定ボタンを非表示にする
                 option_setting_button.Visibility = Visibility.Hidden;
             }
+            Assembly executing_assembly = Assembly.GetExecutingAssembly();
+            WindowTitle = (string)FindResource("google_cloud_vision_api/initial_setting/window_title") + " - " + executing_assembly.GetName().Name;
+            service_account_key_data = service_account_key;
             // リッチテキストボックスにコメントを表示する
             FlowDocument instruction_comment = Markdown.ToFlowDocument((string)FindResource("google_cloud_vision_api/initial_setting_3/instruction_comment"));
             instruction_comment.FontSize = 20.0;

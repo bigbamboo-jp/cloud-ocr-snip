@@ -148,7 +148,14 @@ namespace TranscriptionService
             Google.Cloud.Vision.V1.ImageAnnotatorClient client = builder.Build();
             // 画像内の文字を読み取る
             Google.Cloud.Vision.V1.TextAnnotation result = await client.DetectDocumentTextAsync(image_, context, call_settings);
-            return result.Text;
+            if (result == null)
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return result.Text;
+            }
         }
     }
 }
