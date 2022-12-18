@@ -90,10 +90,7 @@ namespace Cloud_OCR_Snip
             displaying_shoot = false;
 
             // フォーカス確保用のウィンドウを閉じる（表示した場合）
-            if (window != null)
-            {
-                window.Close();
-            }
+            window?.Close();
 
             if (shot == true)
             {
@@ -168,6 +165,7 @@ namespace Cloud_OCR_Snip
                 "data", new Dictionary<string, object>
                 {{"user_settings", new Dictionary<string, object>
                     {
+                        { "additional_data_hash", "" },
                         { "hotkey1_mainkey", 62 },
                         { "hotkey1_modifierkey", 5 },
                         { "hotkey2_mainkey", 47 },
@@ -288,7 +286,7 @@ namespace Cloud_OCR_Snip
             {
                 // 書き込み権限がない場合
                 Assembly executing_assembly = Assembly.GetExecutingAssembly();
-                if (MessageBox.Show((string)Application.Current.FindResource("other/file_write_permission_error_message"), (string)Application.Current.FindResource("other/file_write_permission_error_title") + " - " + executing_assembly.GetName().Name, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                if (MessageBox.Show((string)Application.Current.FindResource("other/file_access_permission_error_message"), (string)Application.Current.FindResource("other/file_access_permission_error_title") + " - " + executing_assembly.GetName().Name, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     // ユーザーが指示した場合に管理者権限で再起動する
                     RestartApplication(run_as: true);
@@ -311,6 +309,7 @@ namespace Cloud_OCR_Snip
             {
                 // 設定ファイルが存在しない場合は新しく作成する
                 Dictionary<string, object> configuration_data = new Dictionary<string, object>(initial_configuration_data);
+                ((Dictionary<string, object>)((Dictionary<string, object>)configuration_data["data"])["user_settings"])["additional_data_hash"] = ComputeAdditionalDataHash();
                 ((Dictionary<string, object>)((Dictionary<string, object>)configuration_data["data"])["user_settings"])["search_service_url"] = Convert.ToBase64String(Protect(Encoding.UTF8.GetBytes(DEFAULT_SEARCH_SERVICE_URL)));
                 SetAppSettings(configuration_data, config_file_path);
             }
@@ -331,6 +330,7 @@ namespace Cloud_OCR_Snip
             {
                 // 設定ファイルが存在しない場合は新しく作成する
                 Dictionary<string, object> configuration_data = new Dictionary<string, object>(initial_configuration_data);
+                ((Dictionary<string, object>)((Dictionary<string, object>)configuration_data["data"])["user_settings"])["additional_data_hash"] = ComputeAdditionalDataHash();
                 ((Dictionary<string, object>)((Dictionary<string, object>)configuration_data["data"])["user_settings"])["search_service_url"] = Convert.ToBase64String(Protect(Encoding.UTF8.GetBytes(DEFAULT_SEARCH_SERVICE_URL)));
                 SetAppSettings(configuration_data, config_file_path);
             }
@@ -486,6 +486,23 @@ namespace Cloud_OCR_Snip
             return Convert.FromBase64String((string)GetAppSettings(additional_data_file_path)["data"]);
         }
 
+        /// <summary>
+        /// 付加データのハッシュ値を計算して返すメソッド
+        /// </summary>
+        public static string ComputeAdditionalDataHash()
+        {
+            // 付加データを取得する
+            byte[] additional_data = GetAdditionalData();
+            // ハッシュ値を計算する
+            byte[] hash_bytes = SHA256.Create().ComputeHash(additional_data);
+            var hash = new StringBuilder();
+            foreach (byte hash_byte in hash_bytes)
+            {
+                hash.Append(hash_byte.ToString("x2"));
+            }
+            return hash.ToString();
+        }
+
         public const int WM_HOTKEY = 0x0312; // ショートカットキーに関するメッセージのID
         public static readonly Dictionary<int, int> HOTKEY_ID = new Dictionary<int, int>() // 各ショートカットキー固有のID（範囲：0x0000～0xbfff）
         {
@@ -506,8 +523,15 @@ namespace Cloud_OCR_Snip
         /// </summary>
         public static bool DisableHotkey(IntPtr window_handle, int hotkey_id)
         {
-            bool result = UnregisterHotKey(window_handle, hotkey_id);
-            return result == false;
+            try
+            {
+                bool result = UnregisterHotKey(window_handle, hotkey_id);
+                return result == false;
+            }
+            catch (Exception)
+            {
+                return true;
+            }
         }
 
         public static Window product_information_window; // 製品情報ウィンドウのインスタンス

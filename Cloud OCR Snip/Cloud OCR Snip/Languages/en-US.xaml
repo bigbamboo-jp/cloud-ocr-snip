@@ -36,10 +36,10 @@
 Do you really want to change it?</sys:String>
     <sys:String x:Key="settings/language_change_confirmation_title">Confirmation</sys:String>
     <sys:String x:Key="settings/transcription_service_change_confirmation_message">Do you really want to change the transcription service?
-* This operation cannot be undone.</sys:String>
+*This operation cannot be undone.</sys:String>
     <sys:String x:Key="settings/transcription_service_change_confirmation_title">Confirmation</sys:String>
     <sys:String x:Key="settings/transcription_service_settings_clear_confirmation_message">Do you really want to clear the transcription service settings?
-* This operation cannot be undone.</sys:String>
+*This operation cannot be undone.</sys:String>
     <sys:String x:Key="settings/transcription_service_settings_clear_confirmation_title">Confirmation</sys:String>
     <sys:String x:Key="settings/web_search_service_url_empty_message">Please enter the URL of the search engine.</sys:String>
     <sys:String x:Key="settings/web_search_service_url_empty_title">Error</sys:String>
@@ -53,16 +53,16 @@ Do you really want to change it?</sys:String>
     <sys:String x:Key="settings/screen_shooting_tab_header_text">Screen Shooting</sys:String>
     <sys:String x:Key="settings/screen_shooting_tab_method_setting_title">Screen Shooting Method</sys:String>
     <sys:String x:Key="settings/screen_shooting_tab_crop_method_radio_button_text">Cutting Method</sys:String>
-    <sys:String x:Key="settings/screen_shooting_tab_crop_method_description">First capture the screen and then crop the image (same as Snip &amp; Sketch)</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_crop_method_description">Capture the screen first, and then crop the image.</sys:String>
     <sys:String x:Key="settings/screen_shooting_tab_live_capture_method_radio_button_text">Live Capture Method</sys:String>
-    <sys:String x:Key="settings/screen_shooting_tab_live_capture_method_description">Capture the screen after determining the area to crop (best for moving screens)</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_live_capture_method_description">Capture the screen after deciding the area to be cropped.</sys:String>
     <sys:String x:Key="settings/transcription_tab_header_text">Transcription</sys:String>
     <sys:String x:Key="settings/transcription_tab_service_settings_title">Transcription Service</sys:String>
     <sys:String x:Key="settings/transcription_tab_configure_button_text_in_unset">Configure</sys:String>
     <sys:String x:Key="settings/transcription_tab_configure_button_text_in_configured">Reconfigure</sys:String>
     <sys:String x:Key="settings/transcription_tab_option_settings_button_text">Option settings</sys:String>
     <sys:String x:Key="settings/transcription_tab_clear_settings_button_text">Clear settings</sys:String>
-    <sys:String x:Key="settings/transcription_tab_help_label1_text">* To change the transcription service, clear the current service settings.</sys:String>
+    <sys:String x:Key="settings/transcription_tab_help_label1_text">*To change the transcription service, clear the current service settings.</sys:String>
     <sys:String x:Key="settings/web_search_tab_header_text">Web Search</sys:String>
     <sys:String x:Key="settings/web_search_tab_web_search_service_url_settings_title">URL of the search engine (please put "{0}" in the search keyword part)</sys:String>
     <sys:String x:Key="settings/web_search_tab_test_button_text">Test</sys:String>
@@ -96,7 +96,7 @@ Do you really want to change it?</sys:String>
     <sys:String x:Key="import_2/screen_title">Import Settings - Enter password</sys:String>
     <sys:String x:Key="import_2/instruction_comment">This file is encrypted with a password.
 Please enter the password.
-* If this file is provided by your organization, please check with your system administrator.</sys:String>
+*If this file is provided by your organization, please check with your system administrator.</sys:String>
     <sys:String x:Key="import_2/password_box_label_text">Password</sys:String>
     <sys:String x:Key="import_2/password_error_error_message">The file could not be decrypted.
 Make sure the password is correct.</sys:String>
@@ -112,7 +112,7 @@ Make sure the password is correct.</sys:String>
     <!-- Import page 4 -->
     <sys:String x:Key="import_4/screen_title">Import Settings - Completion of inheritance</sys:String>
     <sys:String x:Key="import_4/instruction_comment">The setting inheritance has been completed successfully.
-* The settings that were not inherited have not been changed. Change the settings from each menu as needed.</sys:String>
+*The settings that were not inherited have not been changed. Change the settings from each menu as needed.</sys:String>
 
     <!-- Export window -->
     <sys:String x:Key="export/window_title">Export Settings</sys:String>
@@ -134,7 +134,7 @@ Make sure the password is correct.</sys:String>
     <sys:String x:Key="export_2/instruction_comment">Do you want to encrypt the configuration file?</sys:String>
     <sys:String x:Key="export_2/enable_encryption_radio_button_text">Encrypt</sys:String>
     <sys:String x:Key="export_2/password_box_label_text">Password</sys:String>
-    <sys:String x:Key="export_2/password_requirement_label_text">* The password must be at least 12 characters.</sys:String>
+    <sys:String x:Key="export_2/password_requirement_label_text">*The password must be at least 12 characters.</sys:String>
     <sys:String x:Key="export_2/disable_encryption_radio_button_text">Do not encrypt</sys:String>
 
     <!-- Export page 3 -->
@@ -146,7 +146,7 @@ Make sure the password is correct.</sys:String>
     <!-- Export page 4 -->
     <sys:String x:Key="export_4/screen_title">Export Settings - File creation completed</sys:String>
     <sys:String x:Key="export_4/instruction_comment">The creation of the configuration file is complete.
-* If you have exported the credential, please be careful with the file.</sys:String>
+*If you have exported the credential, please be careful with the file.</sys:String>
 
     <!-- Product information window -->
     <sys:String x:Key="product_information/window_title">About This Product</sys:String>
@@ -201,9 +201,13 @@ Make sure the password is correct.</sys:String>
     <!-- Others -->
     <sys:String x:Key="other/multiple_startup_error_message">This application is already running.</sys:String>
     <sys:String x:Key="other/multiple_startup_error_title">Error</sys:String>
-    <sys:String x:Key="other/file_write_permission_error_message">Cannot access the file system due to lack of permissions.
+    <sys:String x:Key="other/file_access_permission_error_message">Cannot access the file system due to lack of permissions.
 Do you want to restart the application with administrative privileges?</sys:String>
-    <sys:String x:Key="other/file_write_permission_error_title">Error</sys:String>
+    <sys:String x:Key="other/file_access_permission_error_title">Error</sys:String>
+    <sys:String x:Key="other/additional_data_hash_mismatch_error_message">The setting data cannot be read because the decryption key of the setting file has been changed due to reinstallation of the application.
+Do you want to recreate the setting file (initialize setting data)?
+*If you restore the previous decryption key (additional_data.json) from a backup, etc., you can continue to use the current setting file.</sys:String>
+    <sys:String x:Key="other/additional_data_hash_mismatch_error_title">Error</sys:String>
     <sys:String x:Key="other/transcription_error_message">Transcription failed.
 Please check your Internet connection, transcription service settings and service status, and try again.</sys:String>
     <sys:String x:Key="other/transcription_error_title">Error</sys:String>
@@ -226,9 +230,9 @@ monthly,
 Example: 2500 times → $0 [1000 times] + $3.00 [2000 times (rounded up from 1500 times)] = $3.00  
 If you use more than 5 million times in a month, you will get a $0.40 discount on the excess.  
 Note: The above information is correct at the time of application release. Be sure to check the latest information on [service site](https://cloud.google.com/vision/pricing) before starting to use the service.  
-\* This explanation assumes that only this application uses the service on the current device.  
-\* Dollars in this description mean US dollars.  
-\* The developer does not guarantee the accuracy of the above information.  
+\*This explanation assumes that only this application uses the service on the current device.  
+\*Dollars in this description mean US dollars.  
+\*The developer does not guarantee the accuracy of the above information.  
 **Privacy protection**  
 Please see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice) for data handling.</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_1/next_button_text">Next</sys:String>
@@ -245,8 +249,8 @@ Issue the service account key after preparing to use the API. For details, see t
 Please issue the service account key again (for security reasons, we recommend that you revoke the old key). For details, see the official Google Cloud guide below.  
 [Create a service account and download the private key file](https://cloud.google.com/vision/docs/setup#sa-create)  
   
-\* Enter any name such as the project name.  
-\* Select "JSON" as the type of key to create.</sys:String>
+\*Enter any name such as the project name.  
+\*Select "JSON" as the type of key to create.</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_2/file_path_text_box_label_text">Key file</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_2/file_browse_button_text">Browse</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_2/load_key_file_title">Select Key File</sys:String>
@@ -255,7 +259,7 @@ Please issue the service account key again (for security reasons, we recommend t
     <sys:String x:Key="google_cloud_vision_api/initial_setting_2/back_button_text">Back</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_3/screen_title">Google Cloud Vision API - Service account settings</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_3/instruction_comment">Service account registration is complete.  
-\* To maintain security, it is recommended to delete the key file used for registration (it is not necessary after that).</sys:String>
+\*To maintain security, it is recommended to delete the key file used for registration (it is not necessary after that).</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_description">**Key Export Settings**  
 Allowing key export allows you to include the service account key when exporting the settings to a file. This setting cannot be changed later.</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_checkbox_text">Allow exporting this key</sys:String>
@@ -270,7 +274,7 @@ Allowing key export allows you to include the service account key when exporting
     <sys:String x:Key="google_cloud_vision_api/initial_setting_4/language_hint_setting_label_text">Language hints</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_4/language_hint_add_button">Add</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_4/language_hint_delete_button">Delete</sys:String>
-    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/language_hint_setting_reference_information">\* In most cases, it is best to read without specifying.  
+    <sys:String x:Key="google_cloud_vision_api/initial_setting_4/language_hint_setting_reference_information">\*In most cases, it is best to read without specifying.  
 Reference: [OCR Language Support](https://cloud.google.com/vision/docs/languages)</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_setting_label_text">API endpoint</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_text_box_placeholder_text">(Default setting)</sys:String>

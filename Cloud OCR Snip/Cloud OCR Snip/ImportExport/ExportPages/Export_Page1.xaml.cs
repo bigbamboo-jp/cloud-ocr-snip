@@ -77,6 +77,7 @@ namespace Cloud_OCR_Snip
                 {
                     user_settings["search_service_url"] = Encoding.UTF8.GetString(search_service_url_bytes);
                 }
+                user_settings.Remove("additional_data_hash");
                 user_settings.Remove("transcription_service");
                 user_settings.Remove("transcription_service_credential");
                 user_settings.Remove("transcription_service_settings");

@@ -89,6 +89,7 @@ namespace Cloud_OCR_Snip
                 // この処理で引き継がない設定のリスト
                 List<string> exclusion_list = new List<string>
                 {
+                    "additional_data_hash",
                     "search_service_url",
                     "transcription_service",
                     "transcription_service_credential",

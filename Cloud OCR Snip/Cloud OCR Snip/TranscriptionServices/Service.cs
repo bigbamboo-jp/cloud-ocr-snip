@@ -59,11 +59,9 @@ namespace TranscriptionService
         /// <summary>
         /// 指定された画像内の文字を読み取るメソッド
         /// </summary>
-#pragma warning disable CS1998 // 非同期メソッドは、'await' 演算子がないため、同期的に実行されます
         internal virtual async Task<string> DetectText(System.Drawing.Bitmap image, string service_credential)
-#pragma warning restore CS1998 // 非同期メソッドは、'await' 演算子がないため、同期的に実行されます
         {
-            return null;
+            return await Task.Run(() => { return (string)null; });
         }
     }
 }

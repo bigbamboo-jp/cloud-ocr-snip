@@ -22,24 +22,30 @@ namespace Cloud_OCR_Snip
 
             if (Environment.GetCommandLineArgs().Contains("--startup_mode") == true)
             {
-                // スタートアップから起動した場合
+                // スタートアップ機能で起動した場合
                 if (File.Exists(Functions.config_file_path) == true)
                 {
+                    // 設定ファイルが存在している場合
                     if ((string)Functions.GetUserSettings()["transcription_service"] == string.Empty)
                     {
-                        // 設定ファイルが存在していて、初期設定が済んでいない場合
+                        // 初期設定が済んでいない場合
+                        Environment.Exit(0);
+                    }
+                    else if ((string)Functions.GetUserSettings()["additional_data_hash"] != Functions.ComputeAdditionalDataHash())
+                    {
+                        // 現在使用している付加データと設定データの暗号化に使用された付加データが異なる場合
                         Environment.Exit(0);
                     }
                 }
                 else
                 {
-                    // 設定ファイルが存在しない場合
+                    // 設定ファイルが存在していない場合
                     Environment.Exit(0);
                 }
             }
             else
             {
-                // 通常の方法で起動した場合
+                // ユーザーによる操作で起動した場合
                 if ((string)Functions.GetUserSettings()["transcription_service"] == string.Empty)
                 {
                     // 初期設定が済んでいない場合
@@ -50,6 +56,34 @@ namespace Cloud_OCR_Snip
 
             Assembly executing_assembly = Assembly.GetExecutingAssembly();
             Title = executing_assembly.GetName().Name;
+
+            if (Functions.GetUserSettings().ContainsKey("additional_data_hash") == true)
+            {
+                // 設定ファイルに付加データのハッシュ値が記録されている場合（1.3.0.0以降のバージョンで作成されたファイルである場合）
+                if ((string)Functions.GetUserSettings()["additional_data_hash"] != Functions.ComputeAdditionalDataHash())
+                {
+                    // 現在使用している付加データと設定データの暗号化に使用された付加データが異なる場合
+                    if (MessageBox.Show((string)FindResource("other/additional_data_hash_mismatch_error_message"), (string)Application.Current.FindResource("other/additional_data_hash_mismatch_error_title") + " - " + executing_assembly.GetName().Name, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                    {
+                        // ユーザーが指示した場合に設定ファイルを削除して再起動する
+                        try
+                        {
+                            File.Delete(Functions.config_file_path);
+                            Functions.RestartApplication();
+                        }
+                        catch (UnauthorizedAccessException)
+                        {
+                            // 書き込み権限がない場合
+                            if (MessageBox.Show((string)Application.Current.FindResource("other/file_access_permission_error_message"), (string)Application.Current.FindResource("other/file_access_permission_error_title") + " - " + executing_assembly.GetName().Name, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                            {
+                                // ユーザーが指示した場合に管理者権限で再起動する
+                                Functions.RestartApplication(run_as: true);
+                            }
+                            Environment.Exit(0);
+                        }
+                    }
+                }
+            }
 
             // タスクトレイアイコンを表示する
             System.Windows.Forms.ContextMenuStrip menu_strip = new System.Windows.Forms.ContextMenuStrip();
@@ -183,10 +217,7 @@ namespace Cloud_OCR_Snip
             Disable_hotkey();
             ComponentDispatcher.ThreadPreprocessMessage -= Window_KeyDown;
             // タスクトレイアイコンを非表示にする
-            if (notify_icon != null)
-            {
-                notify_icon.Dispose();
-            }
+            notify_icon?.Dispose();
         }
 
         /// <summary>

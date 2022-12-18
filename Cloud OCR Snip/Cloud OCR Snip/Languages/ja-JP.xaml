@@ -51,11 +51,11 @@
     <sys:String x:Key="settings/general_tab_language_setting_title">言語</sys:String>
     <sys:String x:Key="settings/general_tab_data_selection_setting_title">読み取り結果を変更した場合に使用するデータの設定（デフォルト設定）</sys:String>
     <sys:String x:Key="settings/screen_shooting_tab_header_text">画面撮影</sys:String>
-    <sys:String x:Key="settings/screen_shooting_tab_method_setting_title">画面撮影の方法</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_method_setting_title">画面撮影の方式</sys:String>
     <sys:String x:Key="settings/screen_shooting_tab_crop_method_radio_button_text">切り取り方式</sys:String>
-    <sys:String x:Key="settings/screen_shooting_tab_crop_method_description">最初に画面をキャプチャして、その画像を切り抜く方式(切り取り&amp;スケッチ と同じ)</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_crop_method_description">最初に画面をキャプチャーして、その画像を切り抜く方式（Snipping Toolと同じ）</sys:String>
     <sys:String x:Key="settings/screen_shooting_tab_live_capture_method_radio_button_text">ライブ撮影方式</sys:String>
-    <sys:String x:Key="settings/screen_shooting_tab_live_capture_method_description">切り抜く範囲を決めてから画面をキャプチャする方式(動きのある画面に最適)</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_live_capture_method_description">切り抜く範囲を決めてから画面をキャプチャする方式（動きのある画面に最適）</sys:String>
     <sys:String x:Key="settings/transcription_tab_header_text">文字読み取り</sys:String>
     <sys:String x:Key="settings/transcription_tab_service_settings_title">文字読み取りサービス</sys:String>
     <sys:String x:Key="settings/transcription_tab_configure_button_text_in_unset">設定を開始</sys:String>
@@ -201,9 +201,13 @@
     <!-- その他 -->
     <sys:String x:Key="other/multiple_startup_error_message">このアプリケーションは既に起動しています。</sys:String>
     <sys:String x:Key="other/multiple_startup_error_title">エラー</sys:String>
-    <sys:String x:Key="other/file_write_permission_error_message">権限がないためファイルシステムにアクセスできません。
+    <sys:String x:Key="other/file_access_permission_error_message">権限がないためファイルシステムにアクセスできません。
 管理者権限でアプリケーションを再起動しますか？</sys:String>
-    <sys:String x:Key="other/file_write_permission_error_title">エラー</sys:String>
+    <sys:String x:Key="other/file_access_permission_error_title">エラー</sys:String>
+    <sys:String x:Key="other/additional_data_hash_mismatch_error_message">アプリケーションの再インストール等によって設定ファイルの復号キーが変更されているため、設定データを読み込むことができません。
+設定ファイルの作り直し（設定データの初期化）を行いますか？
+※バックアップ等から以前の復号キー（additional_data.json）を復元すれば、現在の設定ファイルを引き続き使用することができます。</sys:String>
+    <sys:String x:Key="other/additional_data_hash_mismatch_error_title">エラー</sys:String>
     <sys:String x:Key="other/transcription_error_message">文字の読み取りに失敗しました。
 インターネット接続、文字読み取りサービスの設定・サービスステータス等を確認して再試行してください。</sys:String>
     <sys:String x:Key="other/transcription_error_title">エラー</sys:String>

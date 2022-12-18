@@ -23,9 +23,10 @@ namespace Cloud_OCR_Snip
             // [多重起動チェック]
             // ミューテックスを作成する
             Assembly executing_assembly = Assembly.GetExecutingAssembly();
-            var mutex = new Mutex(false, executing_assembly.GetName().Name);
+            Mutex mutex = new Mutex(false, executing_assembly.GetName().Name);
             // ミューテックスの所有権を要求する
-            if (!mutex.WaitOne(0, false))
+            Thread.Sleep(0);
+            if (mutex.WaitOne(0, false) == false)
             {
                 // 既に同じプログラムが起動している場合にアプリケーションを終了する
                 MessageBox.Show((string)FindResource("other/multiple_startup_error_message"), (string)FindResource("other/multiple_startup_error_title") + " - " + executing_assembly.GetName().Name);
