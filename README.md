@@ -1,5 +1,5 @@
 # Cloud OCR Snip
-Accurately read text from screen shots using cloud services.
+Accurately read text from screenshots using cloud services.
 
 <img src="demonstration.gif" width="720">
 
@@ -13,12 +13,12 @@ Accurately read text from screen shots using cloud services.
 Windows 10, 11 (64bit only)
 ## Currently available languages
 English, Japanese(日本語)  
-\*This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/About-contribution) for details.
+\*This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/Contribution) for details.
 ## Currently supported transcription services
 * Google Cloud Vision API ([service website](https://cloud.google.com/vision))  
   It's free up to 1000 times a month, after which you'll be charged $ 1.50 for every 1000 times (as of December 30, 2022).
 
-\*This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/About-contribution) for details.
+\*This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/Contribution) for details.
 ## Start using
 First of all, install the application. Download the latest version of the installer from the releases page.  
 Releases: [https://github.com/bigbamboo-jp/cloud-ocr-snip/releases](https://github.com/bigbamboo-jp/cloud-ocr-snip/releases)  
@@ -29,7 +29,7 @@ In most cases, each service has an official guide, but if the service you are us
 * Google Cloud Vision API  
   Try searching the web with "How to Create Google API JSON Credential" etc.
 ## Contribution
-Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/About-contribution).
+Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/Contribution).
 ## Licence
 Please see the [license file](LICENSE.txt).
 ### About developers
