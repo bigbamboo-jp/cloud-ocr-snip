@@ -4,10 +4,12 @@
 
 using Google.Api.Gax;
 using Google.Api.Gax.Grpc;
+using Grpc.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -42,24 +44,20 @@ namespace TranscriptionService
                 Dictionary<string, object> settings = Functions.GetTranscriptionServiceSettings();
                 if (settings == null)
                 {
-                    // 文字読み取りサービスの設定データがない場合
+                    // エクスポートする設定データがnullである場合
                     return null;
                 }
                 else
                 {
-                    if ((string)settings["api_endpoint"] != string.Empty)
+                    byte[] api_endpoint_bytes = Functions.Unprotect(Convert.FromBase64String((string)settings["api_endpoint"]));
+                    if (api_endpoint_bytes == null)
                     {
-                        // APIエンドポイントが設定されている場合
-                        byte[] api_endpoint_bytes = Functions.Unprotect(Convert.FromBase64String((string)settings["api_endpoint"]));
-                        if (api_endpoint_bytes == null)
-                        {
-                            // APIエンドポイントの設定データが破損している場合
-                            settings["api_endpoint"] = ".googleapis.com";
-                        }
-                        else
-                        {
-                            settings["api_endpoint"] = Encoding.UTF8.GetString(api_endpoint_bytes);
-                        }
+                        // APIエンドポイントの設定データが破損している場合
+                        settings["api_endpoint"] = ".googleapis.com";
+                    }
+                    else
+                    {
+                        settings["api_endpoint"] = Encoding.UTF8.GetString(api_endpoint_bytes);
                     }
                     return settings;
                 }
@@ -68,11 +66,8 @@ namespace TranscriptionService
             {
                 if (value != null)
                 {
-                    if ((string)value["api_endpoint"] != string.Empty)
-                    {
-                        // 設定データにAPIエンドポイントの設定データが含まれている場合
-                        value["api_endpoint"] = Convert.ToBase64String(Functions.Protect(Encoding.UTF8.GetBytes((string)value["api_endpoint"])));
-                    }
+                    // null以外の設定データがインポートされた場合
+                    value["api_endpoint"] = Convert.ToBase64String(Functions.Protect(Encoding.UTF8.GetBytes((string)value["api_endpoint"])));
                 }
                 Functions.SetTranscriptionServiceSettings(value);
             }
@@ -113,15 +108,12 @@ namespace TranscriptionService
             // 必要であればコンテキストを準備する
             Google.Cloud.Vision.V1.ImageContext context = null;
             Dictionary<string, object> settings = Functions.GetTranscriptionServiceSettings();
-            if (settings != null)
+            string[] language_hints = ((List<object>)settings["language_hints"]).OfType<string>().ToList().ToArray();
+            if (language_hints != Array.Empty<string>())
             {
-                string[] language_hints = ((List<object>)settings["language_hints"]).OfType<string>().ToList().ToArray();
-                if (language_hints != Array.Empty<string>())
-                {
-                    // 言語ヒントが設定されている場合
-                    context = new Google.Cloud.Vision.V1.ImageContext();
-                    context.LanguageHints.Add(language_hints);
-                }
+                // 言語ヒントが設定されている場合
+                context = new Google.Cloud.Vision.V1.ImageContext();
+                context.LanguageHints.Add(language_hints);
             }
             // 呼び出し設定を準備する
             const int timeout_seconds = 10;
@@ -131,30 +123,62 @@ namespace TranscriptionService
             {
                 JsonCredentials = service_credential
             };
-            if ((string)settings["api_endpoint"] != string.Empty)
+            byte[] api_endpoint_bytes = Functions.Unprotect(Convert.FromBase64String((string)settings["api_endpoint"]));
+            if (api_endpoint_bytes == null)
             {
-                // APIエンドポイントが設定されている場合
-                byte[] api_endpoint_bytes = Functions.Unprotect(Convert.FromBase64String((string)settings["api_endpoint"]));
-                if (api_endpoint_bytes == null)
+                // APIエンドポイントの設定データが破損している場合
+                builder.Endpoint = ".googleapis.com";
+            }
+            else
+            {
+                string api_endpoint = Encoding.UTF8.GetString(api_endpoint_bytes);
+                if (api_endpoint != string.Empty)
                 {
-                    // APIエンドポイントの設定データが破損している場合
-                    builder.Endpoint = ".googleapis.com";
-                }
-                else
-                {
-                    builder.Endpoint = Encoding.UTF8.GetString(api_endpoint_bytes);
+                    // 接続するAPIエンドポイントがユーザーによって設定されている場合
+                    builder.Endpoint = api_endpoint;
                 }
             }
             Google.Cloud.Vision.V1.ImageAnnotatorClient client = builder.Build();
             // 画像内の文字を読み取る
-            Google.Cloud.Vision.V1.TextAnnotation result = await client.DetectDocumentTextAsync(image_, context, call_settings);
-            if (result == null)
+            try
             {
-                return string.Empty;
+                Google.Cloud.Vision.V1.TextAnnotation result = await client.DetectDocumentTextAsync(image_, context, call_settings);
+                if (result == null)
+                {
+                    // 何も読み取られなかった場合
+                    return string.Empty;
+                }
+                else
+                {
+                    // 何かが読み取られた場合
+                    return result.Text;
+                }
             }
-            else
+            catch (RpcException ex)
             {
-                return result.Text;
+                // 読み取り処理に失敗した場合
+                Assembly executing_assembly = Assembly.GetExecutingAssembly();
+                if (ex.StatusCode == StatusCode.Unavailable)
+                {
+                    MessageBox.Show((string)Application.Current.FindResource("google_cloud_vision_api/other/transcription_error_message_due_to_unavailable"), (string)Application.Current.FindResource("google_cloud_vision_api/other/transcription_error_title_due_to_unavailable") + " - " + executing_assembly.GetName().Name);
+                }
+                else if (ex.StatusCode == StatusCode.Unauthenticated)
+                {
+                    MessageBox.Show((string)Application.Current.FindResource("google_cloud_vision_api/other/transcription_error_message_due_to_unauthenticated"), (string)Application.Current.FindResource("google_cloud_vision_api/other/transcription_error_title_due_to_unauthenticated") + " - " + executing_assembly.GetName().Name);
+                }
+                else if (ex.StatusCode == StatusCode.PermissionDenied)
+                {
+                    MessageBox.Show((string)Application.Current.FindResource("google_cloud_vision_api/other/transcription_error_message_due_to_permissiondenied"), (string)Application.Current.FindResource("google_cloud_vision_api/other/transcription_error_title_due_to_permissiondenied") + " - " + executing_assembly.GetName().Name);
+                }
+                else if (ex.StatusCode == StatusCode.Unimplemented)
+                {
+                    MessageBox.Show((string)Application.Current.FindResource("google_cloud_vision_api/other/transcription_error_message_due_to_unimplemented"), (string)Application.Current.FindResource("google_cloud_vision_api/other/transcription_error_title_due_to_unimplemented") + " - " + executing_assembly.GetName().Name);
+                }
+                else
+                {
+                    throw ex;
+                }
+                return null;
             }
         }
     }

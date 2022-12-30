@@ -1,27 +1,27 @@
 # Cloud OCR Snip
 Accurately read text from screen shots using cloud services.
 
-<img src="https://user-images.githubusercontent.com/96374682/151562571-ce91f572-7eaf-4963-a746-c3594e434be8.gif" width="750">
+<img src="demonstration.gif" width="720">
 
 ## Features
 * Ultra-high precision transcription is possible with cloud services.
 * In addition to screen shots, it is possible to transcribe from image files and images on the clipboard.
 * Customizable keyboard shortcuts.
-* Similar in feel to the standard Windows application "Snip & Sketch".
+* Similar in feel to the standard Windows application "Snipping Tool".
 * Easily add available languages and transcription services (rebuild required).
 ## Operating environment
-Windows 8.1, 10, 11 (64bit)
+Windows 10, 11 (64bit only)
 ## Currently available languages
 English, Japanese(日本語)  
 \* This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/About-contribution) for details.
 ## Currently supported transcription services
 * Google Cloud Vision API ([service website](https://cloud.google.com/vision))  
-  It's free up to 1000 times a month, after which you'll be charged $ 1.50 for every 1000 times (as of December 19, 2021).
+  It's free up to 1000 times a month, after which you'll be charged $ 1.50 for every 1000 times (as of December 30, 2022).
 
 \* This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/About-contribution) for details.
 ## Start using
 First of all, install the application. Download the latest version of the installer from the releases page.  
-Releases: https://github.com/bigbamboo-jp/cloud-ocr-snip/releases  
+Releases: [https://github.com/bigbamboo-jp/cloud-ocr-snip/releases](https://github.com/bigbamboo-jp/cloud-ocr-snip/releases)  
 Then run the installer and follow the on-screen instructions to install. When the installation is completed, the initial setting screen will be displayed automatically.
 ## How to register for the transcription service
 During the initial setup, you may be asked for the credentials (service account key, etc.) required to access the transcription service.  

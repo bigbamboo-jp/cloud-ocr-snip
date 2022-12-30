@@ -59,7 +59,7 @@ namespace Cloud_OCR_Snip
 
             if (Functions.GetUserSettings().ContainsKey("additional_data_hash") == true)
             {
-                // 設定ファイルに付加データのハッシュ値が記録されている場合（1.3.0.0以降のバージョンで作成されたファイルである場合）
+                // 設定ファイルに付加データのハッシュ値が記録されている場合（1.3.0.0以降のバージョンで作成されたファイルの場合）
                 if ((string)Functions.GetUserSettings()["additional_data_hash"] != Functions.ComputeAdditionalDataHash())
                 {
                     // 現在使用している付加データと設定データの暗号化に使用された付加データが異なる場合

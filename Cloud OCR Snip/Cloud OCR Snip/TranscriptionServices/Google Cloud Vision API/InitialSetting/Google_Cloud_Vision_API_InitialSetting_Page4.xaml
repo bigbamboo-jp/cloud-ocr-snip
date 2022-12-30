@@ -46,9 +46,9 @@
     <Grid>
         <Label x:Name="screen_title_label" Content="{StaticResource google_cloud_vision_api/initial_setting_4/screen_title}" ContentStringFormat="｜{0}" Margin="10,20,0,0" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label Content="{StaticResource google_cloud_vision_api/initial_setting_4/language_hint_setting_label_text}" HorizontalAlignment="Left" Margin="40,80,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox x:Name="language_hint_additional_text_box" Margin="137,84,0,0" FontSize="20" HorizontalAlignment="Left" Width="556" Height="29" VerticalAlignment="Top"/>
-        <Button x:Name="language_hint_add_button" Content="{StaticResource google_cloud_vision_api/initial_setting_4/language_hint_add_button}" HorizontalAlignment="Left" Margin="693,84,0,0" VerticalAlignment="Top" FontSize="20" Height="29" Width="44" Click="Language_hint_add_button_Click"/>
-        <ListView ItemsSource="{Binding}" x:Name="language_hint_list_view" Margin="137,113,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Left" Width="600" Height="125" VerticalAlignment="Top">
+        <TextBox x:Name="language_hint_additional_text_box" Margin="137,84,0,0" FontSize="20" HorizontalAlignment="Left" Width="557" Height="29" VerticalAlignment="Top"/>
+        <Button x:Name="language_hint_add_button" Content="{StaticResource google_cloud_vision_api/initial_setting_4/language_hint_add_button}" HorizontalAlignment="Left" Margin="693,84,0,0" VerticalAlignment="Top" BorderBrush="#FFABADB3" FontSize="20" Height="29" Width="44" Click="Language_hint_add_button_Click"/>
+        <ListView ItemsSource="{Binding}" x:Name="language_hint_list_view" Margin="137,112,0,0" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalAlignment="Left" Width="600" Height="125" VerticalAlignment="Top" BorderBrush="#FFABADB3">
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}">
                     <GridViewColumn>

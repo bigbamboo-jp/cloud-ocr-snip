@@ -36,10 +36,10 @@
 本当に変更しますか？</sys:String>
     <sys:String x:Key="settings/language_change_confirmation_title">確認</sys:String>
     <sys:String x:Key="settings/transcription_service_change_confirmation_message">本当に文字読み取りサービスを変更しますか？
-※この操作は取り消すことができません。</sys:String>
+※この操作は取り消せません。</sys:String>
     <sys:String x:Key="settings/transcription_service_change_confirmation_title">確認</sys:String>
     <sys:String x:Key="settings/transcription_service_settings_clear_confirmation_message">本当に文字読み取りサービスの設定を消去しますか？
-※この操作は取り消すことができません。</sys:String>
+※この操作は取り消せません。</sys:String>
     <sys:String x:Key="settings/transcription_service_settings_clear_confirmation_title">確認</sys:String>
     <sys:String x:Key="settings/web_search_service_url_empty_message">検索エンジンのURLを入力してください。</sys:String>
     <sys:String x:Key="settings/web_search_service_url_empty_title">エラー</sys:String>
@@ -246,7 +246,7 @@ Google アカウントの作成が必要です。詳しくは以下のGoogle ア
 APIを使用するための準備を行った後、サービス アカウント キーを発行してください。詳しくは以下のGoogle Cloud 公式ガイドをご覧ください。  
 [クイックスタート: Vision API を設定する](https://cloud.google.com/vision/docs/setup)  
 **以前にGoogle Cloud Vision APIを使用したことがある場合(キーファイルがない場合のみ)**  
-サービス アカウント キーをもう一度発行してください(セキュリティ上の理由で以前のキーを無効化することをおすすめします)。詳しくは以下のGoogle Cloud 公式ガイドをご覧ください。  
+サービス アカウント キーをもう一度発行してください(セキュリティ上の理由から以前のキーを無効化することをおすすめします)。詳しくは以下のGoogle Cloud 公式ガイドをご覧ください。  
 [サービス アカウントを作成し、秘密鍵ファイルをダウンロードする](https://cloud.google.com/vision/docs/setup#sa-create)  
   
 ※プロジェクト名等の名前は任意のものを入力してください。  
@@ -278,9 +278,17 @@ APIを使用するための準備を行った後、サービス アカウント 
 参考：[OCR 言語のサポート](https://cloud.google.com/vision/docs/languages)</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_setting_label_text">API エンドポイント</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_text_box_placeholder_text">(デフォルト設定)</sys:String>
-<sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_setting_reference_information">デフォルト設定はグローバルAPIエンドポイントです。  
+<sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_setting_reference_information">デフォルト設定はグローバル API エンドポイントです。  
 参考：[マルチリージョンのサポート](https://cloud.google.com/vision/docs/ocr#regionalization)</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_4/save_button_text">OK</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_message_due_to_unavailable">サーバーに接続できないため、文字を読み取ることができません。</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_title_due_to_unavailable">エラー (Google Cloud Vision API)</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_message_due_to_unauthenticated">サービス アカウント キーが無効であるため、文字を読み取ることができません。</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_title_due_to_unauthenticated">エラー (Google Cloud Vision API)</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_message_due_to_permissiondenied">アカウントで課金が無効になっているか、Cloud Vision APIが有効化されていないため、文字を読み取ることができません。</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_title_due_to_permissiondenied">エラー (Google Cloud Vision API)</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_message_due_to_unimplemented">API エンドポイントの設定値が誤っているため、文字を読み取ることができません。</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_title_due_to_unimplemented">エラー (Google Cloud Vision API)</sys:String>
 
     <!-- ――――― 言語データエリア ――――― -->
 </ResourceDictionary>

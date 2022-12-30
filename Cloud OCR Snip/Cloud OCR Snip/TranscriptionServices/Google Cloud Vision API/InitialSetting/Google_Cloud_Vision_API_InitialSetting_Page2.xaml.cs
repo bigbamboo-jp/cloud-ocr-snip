@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -86,7 +87,7 @@ namespace TranscriptionService
         private void Register_button_Click(object sender, RoutedEventArgs e)
         {
             string key_file_path = key_file_path_text_box.Text;
-            // ファイルが存在するか確認する
+            // ファイルが存在するかチェックする
             if (File.Exists(key_file_path) == false)
             {
                 MessageBox.Show((string)FindResource("file_dialog/file_not_found_error_message"), (string)FindResource("file_dialog/file_not_found_error_title"));
@@ -98,10 +99,19 @@ namespace TranscriptionService
                 MessageBox.Show((string)FindResource("file_dialog/file_type_error_message"), (string)FindResource("file_dialog/file_type_error_title"));
                 return;
             }
-            // サービス設定をデフォルト設定で保存する
-            Functions.SetTranscriptionServiceSettings(new Dictionary<string, object> { { "language_hints", Array.Empty<string>() }, { "api_endpoint", string.Empty } });
-            // サービスアカウントキーを読み込んで保存する（仮でエクスポート不可に設定）
+            // ファイルを読み込んで、データがあるかチェックする
             string service_account_key = File.ReadAllText(key_file_path);
+            if (service_account_key == string.Empty)
+            {
+                MessageBox.Show((string)FindResource("file_dialog/file_type_error_message"), (string)FindResource("file_dialog/file_type_error_title"));
+                return;
+            }
+            // 設定データが残っていない場合にサービス設定をデフォルト値に設定する
+            if (Functions.GetTranscriptionServiceSettings() == null)
+            {
+                Functions.SetTranscriptionServiceSettings(new Dictionary<string, object> { { "language_hints", Array.Empty<string>() }, { "api_endpoint", Convert.ToBase64String(Functions.Protect(Encoding.UTF8.GetBytes(string.Empty))) } });
+            }
+            // サービスアカウントキーを保存する（仮でエクスポート不可に設定）
             Functions.SetTranscriptionServiceCredential(service_account_key, false);
             // 次のページに進む
             NavigationService.Navigate(new Google_Cloud_Vision_API_InitialSetting_Page3(initialization, service_account_key));

@@ -279,7 +279,7 @@ namespace Cloud_OCR_Snip
             }
             else if (web_search_service_url_text_box.Text.StartsWith("http://") == false && web_search_service_url_text_box.Text.StartsWith("https://") == false)
             {
-                MessageBox.Show((string)FindResource("web_search_service_url_protocol_error_message"), (string)FindResource("web_search_service_url_protocol_error_title"));
+                MessageBox.Show((string)FindResource("settings/web_search_service_url_protocol_error_message"), (string)FindResource("settings/web_search_service_url_protocol_error_title"));
                 return;
             }
             else if (web_search_service_url_text_box.Text.Contains("{0}") == false)
@@ -447,6 +447,8 @@ namespace Cloud_OCR_Snip
                     }
                     return;
                 }
+                // 文字読み取りサービスの設定を消去する
+                Functions.ClearTranscriptionServiceSettings();
                 // 文字読み取りサービスを変更する
                 Functions.SetUserSettings(Convert.ToBase64String(Functions.Protect(Encoding.UTF8.GetBytes((string)transcription_service_combobox.SelectedItem))), "transcription_service");
                 Load_transcription_service_settings((string)transcription_service_combobox.SelectedItem);

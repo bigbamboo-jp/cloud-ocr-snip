@@ -281,6 +281,14 @@ Reference: [OCR Language Support](https://cloud.google.com/vision/docs/languages
 <sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_setting_reference_information">The default setting is the global API endpoint.  
 Reference: [Multi-regional support](https://cloud.google.com/vision/docs/ocr#regionalization)</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_4/save_button_text">OK</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_message_due_to_unavailable">Unable to connect to the server and therefore unable to transcribe.</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_title_due_to_unavailable">Error (Google Cloud Vision API)</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_message_due_to_unauthenticated">Transcription cannot be performed because the service account key is invalid.</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_title_due_to_unauthenticated">Error (Google Cloud Vision API)</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_message_due_to_permissiondenied">Transcription is not possible because billing has been disabled in your account or the Cloud Vision API has not been activated.</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_title_due_to_permissiondenied">Error (Google Cloud Vision API)</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_message_due_to_unimplemented">Transcription cannot be performed because the API endpoint is incorrectly configured.</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_title_due_to_unimplemented">Error (Google Cloud Vision API)</sys:String>
 
     <!-- ――――― Language Data Area ――――― -->
 </ResourceDictionary>
