@@ -568,7 +568,7 @@ namespace Cloud_OCR_Snip
                 {
                     if (show_transcription_settings == true)
                     {
-                        // オプションが有効である場合に、表示するタブを文字読み取りタブに変更する
+                        // オプションが有効になっている場合に、表示するタブを文字読み取りタブに変更する
                         Settings.static_transcription_settings_tabitem.IsSelected = true;
                     }
                     settings_window.Activate();
@@ -578,7 +578,7 @@ namespace Cloud_OCR_Snip
             settings_window = new Settings();
             if (show_transcription_settings == true)
             {
-                // オプションが有効である場合に、表示するタブを文字読み取りタブに変更する
+                // オプションが有効になっている場合に、表示するタブを文字読み取りタブに変更する
                 Settings.static_transcription_settings_tabitem.IsSelected = true;
             }
             settings_window.Show();

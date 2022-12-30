@@ -44,7 +44,7 @@ namespace TranscriptionService
                 Dictionary<string, object> settings = Functions.GetTranscriptionServiceSettings();
                 if (settings == null)
                 {
-                    // エクスポートする設定データがnullである場合
+                    // エクスポートする設定データがnullの場合
                     return null;
                 }
                 else

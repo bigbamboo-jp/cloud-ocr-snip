@@ -43,16 +43,6 @@ namespace Cloud_OCR_Snip
                     Environment.Exit(0);
                 }
             }
-            else
-            {
-                // ユーザーによる操作で起動した場合
-                if ((string)Functions.GetUserSettings()["transcription_service"] == string.Empty)
-                {
-                    // 初期設定が済んでいない場合
-                    new InitialSetting().Show();
-                    return;
-                }
-            }
 
             Assembly executing_assembly = Assembly.GetExecutingAssembly();
             Title = executing_assembly.GetName().Name;
@@ -85,6 +75,14 @@ namespace Cloud_OCR_Snip
                 }
             }
 
+            // ユーザーによる操作で起動した場合の初期設定完了チェック
+            if ((string)Functions.GetUserSettings()["transcription_service"] == string.Empty)
+            {
+                // 初期設定が済んでいない場合
+                new InitialSetting().Show();
+                return;
+            }
+
             // タスクトレイアイコンを表示する
             System.Windows.Forms.ContextMenuStrip menu_strip = new System.Windows.Forms.ContextMenuStrip();
             using Stream icon_stream = Application.GetResourceStream(new Uri("pack://application:,,,/Icons/WhiteIcon.ico")).Stream;
@@ -100,7 +98,7 @@ namespace Cloud_OCR_Snip
             {
                 Text = (string)FindResource("task_tray_icon/read_from_clipboard_image_text")
             };
-            // クリップボードに画像が含まれているかに応じてアイテムの有効・無効を切り替える
+            // クリップボード上に画像が含まれているかに応じてアイテムの有効・無効を切り替えるメソッド
             void Read_from_clipboard_image_item_Paint(object sender, EventArgs e)
             {
                 ((System.Windows.Forms.ToolStripMenuItem)sender).Enabled = Clipboard.ContainsImage();
