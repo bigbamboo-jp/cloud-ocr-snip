@@ -31,11 +31,23 @@ namespace Cloud_OCR_Snip
                 setting_inheritance_option_checkbox_transcription_service_credential.IsChecked = false;
                 setting_inheritance_option_checkbox_transcription_service_credential.IsEnabled = false;
             }
-            if (Functions.ExportTranscriptionServiceCredential() == string.Empty)
+            else
+            {
+                // 文字読み取りサービスの認証情報をエクスポートできる場合
+                inherit_setting_selection_checkbox_transcription_service_settings.IsChecked = true;
+                inherit_setting_selection_checkbox_transcription_service_settings.IsEnabled = false;
+            }
+            if (Functions.GetUserSettings()["transcription_service_settings"] == null)
             {
                 // 文字読み取りサービスのオプション設定のデータが無い場合
+                inherit_setting_selection_checkbox_transcription_service_settings.Tag = false;
                 inherit_setting_selection_checkbox_transcription_service_settings.IsChecked = false;
                 inherit_setting_selection_checkbox_transcription_service_settings.IsEnabled = false;
+            }
+            else
+            {
+                // 文字読み取りサービスのオプション設定のデータがある場合
+                inherit_setting_selection_checkbox_transcription_service_settings.Tag = true;
             }
         }
 
@@ -47,11 +59,20 @@ namespace Cloud_OCR_Snip
             if (inherit_setting_selection_checkbox_transcription_service_credential.IsChecked == true)
             {
                 setting_inheritance_option_checkbox_transcription_service_credential.IsEnabled = true;
+                if ((bool)inherit_setting_selection_checkbox_transcription_service_settings.Tag == true)
+                {
+                    inherit_setting_selection_checkbox_transcription_service_settings.IsChecked = true;
+                    inherit_setting_selection_checkbox_transcription_service_settings.IsEnabled = false;
+                }
             }
             else
             {
                 setting_inheritance_option_checkbox_transcription_service_credential.IsChecked = false;
                 setting_inheritance_option_checkbox_transcription_service_credential.IsEnabled = false;
+                if ((bool)inherit_setting_selection_checkbox_transcription_service_settings.Tag == true)
+                {
+                    inherit_setting_selection_checkbox_transcription_service_settings.IsEnabled = true;
+                }
             }
             next_button.IsEnabled = inherit_setting_selection_checkbox_application_setting.IsChecked == true || inherit_setting_selection_checkbox_transcription_service_credential.IsChecked == true || inherit_setting_selection_checkbox_transcription_service_settings.IsChecked == true;
         }
@@ -77,6 +98,7 @@ namespace Cloud_OCR_Snip
                 {
                     user_settings["search_service_url"] = Encoding.UTF8.GetString(search_service_url_bytes);
                 }
+                user_settings.Remove("additional_data_hash");
                 user_settings.Remove("transcription_service");
                 user_settings.Remove("transcription_service_credential");
                 user_settings.Remove("transcription_service_settings");

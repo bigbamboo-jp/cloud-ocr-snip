@@ -172,7 +172,7 @@ namespace Cloud_OCR_Snip
                 return;
 
             // スクリーンイメージの取得
-            image = new System.Drawing.Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+            image = new System.Drawing.Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             using (var graph = System.Drawing.Graphics.FromImage(image)) {
                 // 画面をコピーする
                 graph.CopyFromScreen(new System.Drawing.Point(x, y), new System.Drawing.Point(), image.Size);

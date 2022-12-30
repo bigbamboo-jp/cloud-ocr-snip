@@ -36,10 +36,10 @@
 本当に変更しますか？</sys:String>
     <sys:String x:Key="settings/language_change_confirmation_title">確認</sys:String>
     <sys:String x:Key="settings/transcription_service_change_confirmation_message">本当に文字読み取りサービスを変更しますか？
-※この操作は取り消すことができません。</sys:String>
+※この操作は取り消せません。</sys:String>
     <sys:String x:Key="settings/transcription_service_change_confirmation_title">確認</sys:String>
     <sys:String x:Key="settings/transcription_service_settings_clear_confirmation_message">本当に文字読み取りサービスの設定を消去しますか？
-※この操作は取り消すことができません。</sys:String>
+※この操作は取り消せません。</sys:String>
     <sys:String x:Key="settings/transcription_service_settings_clear_confirmation_title">確認</sys:String>
     <sys:String x:Key="settings/web_search_service_url_empty_message">検索エンジンのURLを入力してください。</sys:String>
     <sys:String x:Key="settings/web_search_service_url_empty_title">エラー</sys:String>
@@ -51,11 +51,11 @@
     <sys:String x:Key="settings/general_tab_language_setting_title">言語</sys:String>
     <sys:String x:Key="settings/general_tab_data_selection_setting_title">読み取り結果を変更した場合に使用するデータの設定（デフォルト設定）</sys:String>
     <sys:String x:Key="settings/screen_shooting_tab_header_text">画面撮影</sys:String>
-    <sys:String x:Key="settings/screen_shooting_tab_method_setting_title">画面撮影の方法</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_method_setting_title">画面撮影の方式</sys:String>
     <sys:String x:Key="settings/screen_shooting_tab_crop_method_radio_button_text">切り取り方式</sys:String>
-    <sys:String x:Key="settings/screen_shooting_tab_crop_method_description">最初に画面をキャプチャして、その画像を切り抜く方式(切り取り&amp;スケッチ と同じ)</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_crop_method_description">最初に画面をキャプチャーして、その画像を切り抜く方式（Snipping Toolと同じ）</sys:String>
     <sys:String x:Key="settings/screen_shooting_tab_live_capture_method_radio_button_text">ライブ撮影方式</sys:String>
-    <sys:String x:Key="settings/screen_shooting_tab_live_capture_method_description">切り抜く範囲を決めてから画面をキャプチャする方式(動きのある画面に最適)</sys:String>
+    <sys:String x:Key="settings/screen_shooting_tab_live_capture_method_description">切り抜く範囲を決めてから画面をキャプチャする方式（動きのある画面に最適）</sys:String>
     <sys:String x:Key="settings/transcription_tab_header_text">文字読み取り</sys:String>
     <sys:String x:Key="settings/transcription_tab_service_settings_title">文字読み取りサービス</sys:String>
     <sys:String x:Key="settings/transcription_tab_configure_button_text_in_unset">設定を開始</sys:String>
@@ -201,9 +201,13 @@
     <!-- その他 -->
     <sys:String x:Key="other/multiple_startup_error_message">このアプリケーションは既に起動しています。</sys:String>
     <sys:String x:Key="other/multiple_startup_error_title">エラー</sys:String>
-    <sys:String x:Key="other/file_write_permission_error_message">権限がないためファイルシステムにアクセスできません。
+    <sys:String x:Key="other/file_access_permission_error_message">権限がないためファイルシステムにアクセスできません。
 管理者権限でアプリケーションを再起動しますか？</sys:String>
-    <sys:String x:Key="other/file_write_permission_error_title">エラー</sys:String>
+    <sys:String x:Key="other/file_access_permission_error_title">エラー</sys:String>
+    <sys:String x:Key="other/additional_data_hash_mismatch_error_message">アプリケーションの再インストール等によって設定ファイルの復号キーが変更されているため、設定データを読み込むことができません。
+設定ファイルの作り直し（設定データの初期化）を行いますか？
+※バックアップ等から以前の復号キー（additional_data.json）を復元すれば、現在の設定ファイルを引き続き使用することができます。</sys:String>
+    <sys:String x:Key="other/additional_data_hash_mismatch_error_title">エラー</sys:String>
     <sys:String x:Key="other/transcription_error_message">文字の読み取りに失敗しました。
 インターネット接続、文字読み取りサービスの設定・サービスステータス等を確認して再試行してください。</sys:String>
     <sys:String x:Key="other/transcription_error_title">エラー</sys:String>
@@ -219,17 +223,18 @@
 Google Cloud Vision APIはGoogle LLCが提供するクラウド画像認識サービスです。  
 ・Google アカウントが必要です  
 ・使用量に応じて課金されます（毎月の無料利用枠あり）  
-**請求される可能性がある料金**  
+**請求される場合がある料金**  
 毎月、  
-　1～1000回目：無料  
-　1001回目～：1000回につき$1.50請求（利用回数が1000で割り切れない場合は1000の桁に繰り上げて請求）  
+  1～1000回目：無料  
+  1001回目～：1000回につき$1.50請求（利用回数が1000で割り切れない場合は1000の桁に繰り上げて請求）  
 例：2500回 → $0 [1000回] + $3.00 [2000回（1500回から繰り上げ）] = $3.00  
-上記の情報は2021年12月時点のものです。利用を開始する前に必ず[サービスサイト](https://cloud.google.com/vision/pricing)で最新の情報を確認してください。  
-※この説明でのドルはアメリカ合衆国ドルを意味します。  
+なお、1ヶ月の間に500万回を超えて使用した場合はその超過分について$0.40の割引が適用されます。  
+注意：上記の情報はアプリケーションリリース時のものです。利用を開始する前に必ず[サービスサイト](https://cloud.google.com/vision/pricing)で最新の情報を確認してください。  
 ※この説明は現在の端末でこのアプリケーションだけがサービスを使用することを前提としています。  
+※この説明でのドルはアメリカ合衆国ドルを意味します。  
 ※開発者は上記の情報について正確性を保証しません。  
 **プライバシー保護**  
-データの取り扱いについては[Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-privacy-notice)をご覧ください。</sys:String>
+データの取り扱いについては[Google Cloud のプライバシーに関するお知らせ](https://cloud.google.com/terms/cloud-privacy-notice)を確認してください。</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_1/next_button_text">次へ</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_2/screen_title">Google Cloud Vision API - サービス アカウントの登録</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_2/setup_guide">サービス アカウントをアプリケーションに登録します。  
@@ -241,7 +246,7 @@ Google アカウントの作成が必要です。詳しくは以下のGoogle ア
 APIを使用するための準備を行った後、サービス アカウント キーを発行してください。詳しくは以下のGoogle Cloud 公式ガイドをご覧ください。  
 [クイックスタート: Vision API を設定する](https://cloud.google.com/vision/docs/setup)  
 **以前にGoogle Cloud Vision APIを使用したことがある場合(キーファイルがない場合のみ)**  
-サービス アカウント キーをもう一度発行してください(セキュリティ上の理由で以前のキーを無効化することをおすすめします)。詳しくは以下のGoogle Cloud 公式ガイドをご覧ください。  
+サービス アカウント キーをもう一度発行してください(セキュリティ上の理由から以前のキーを無効化することをおすすめします)。詳しくは以下のGoogle Cloud 公式ガイドをご覧ください。  
 [サービス アカウントを作成し、秘密鍵ファイルをダウンロードする](https://cloud.google.com/vision/docs/setup#sa-create)  
   
 ※プロジェクト名等の名前は任意のものを入力してください。  
@@ -273,9 +278,17 @@ APIを使用するための準備を行った後、サービス アカウント 
 参考：[OCR 言語のサポート](https://cloud.google.com/vision/docs/languages)</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_setting_label_text">API エンドポイント</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_text_box_placeholder_text">(デフォルト設定)</sys:String>
-<sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_setting_reference_information">デフォルト設定はグローバルAPIエンドポイントです。  
+<sys:String x:Key="google_cloud_vision_api/initial_setting_4/api_endpoint_setting_reference_information">デフォルト設定はグローバル API エンドポイントです。  
 参考：[マルチリージョンのサポート](https://cloud.google.com/vision/docs/ocr#regionalization)</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_4/save_button_text">OK</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_message_due_to_unavailable">サーバーに接続できないため、文字を読み取ることができません。</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_title_due_to_unavailable">エラー (Google Cloud Vision API)</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_message_due_to_unauthenticated">サービス アカウント キーが無効であるため、文字を読み取ることができません。</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_title_due_to_unauthenticated">エラー (Google Cloud Vision API)</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_message_due_to_permissiondenied">アカウントで課金が無効になっているか、Cloud Vision APIが有効化されていないため、文字を読み取ることができません。</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_title_due_to_permissiondenied">エラー (Google Cloud Vision API)</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_message_due_to_unimplemented">API エンドポイントの設定値が誤っているため、文字を読み取ることができません。</sys:String>
+    <sys:String x:Key="google_cloud_vision_api/other/transcription_error_title_due_to_unimplemented">エラー (Google Cloud Vision API)</sys:String>
 
     <!-- ――――― 言語データエリア ――――― -->
 </ResourceDictionary>

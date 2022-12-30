@@ -1,4 +1,4 @@
-﻿/*
+/*
  * This work (Modern Encryption of a String C#, by James Tuley), 
  * identified by James Tuley, is free of known copyright restrictions.
  * https://gist.github.com/4336842

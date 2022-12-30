@@ -89,6 +89,7 @@ namespace Cloud_OCR_Snip
                 // この処理で引き継がない設定のリスト
                 List<string> exclusion_list = new List<string>
                 {
+                    "additional_data_hash",
                     "search_service_url",
                     "transcription_service",
                     "transcription_service_credential",
@@ -115,8 +116,16 @@ namespace Cloud_OCR_Snip
             // 文字読み取りサービスの認証情報
             if (inherit_setting_selection_checkbox_transcription_service_credential.IsChecked == true)
             {
-                // #OK# → エクスポート可能にする、#NG# → エクスポート不可にする
-                Functions.SetTranscriptionServiceCredential(((string)user_settings["transcription_service_credential"]).Substring("#OO#".Length), ((string)user_settings["transcription_service_credential"]).Substring(0, "#OO#".Length) == "#OK#");
+                // 認証情報データが空でないかチェックする
+                if (((string)user_settings["transcription_service_credential"]).Substring("#OO#".Length) == string.Empty)
+                {
+                    Functions.SetTranscriptionServiceCredential(" ", false);
+                }
+                else
+                {
+                    // #OK# → エクスポート可能にする、#NG# → エクスポート不可にする
+                    Functions.SetTranscriptionServiceCredential(((string)user_settings["transcription_service_credential"]).Substring("#OO#".Length), ((string)user_settings["transcription_service_credential"]).Substring(0, "#OO#".Length) == "#OK#");
+                }
             }
             // 文字読み取りサービスのオプション設定
             if (inherit_setting_selection_checkbox_transcription_service_settings.IsChecked == true)

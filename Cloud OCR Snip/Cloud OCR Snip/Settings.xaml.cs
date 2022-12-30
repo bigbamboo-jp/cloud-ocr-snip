@@ -279,7 +279,7 @@ namespace Cloud_OCR_Snip
             }
             else if (web_search_service_url_text_box.Text.StartsWith("http://") == false && web_search_service_url_text_box.Text.StartsWith("https://") == false)
             {
-                MessageBox.Show((string)FindResource("web_search_service_url_protocol_error_message"), (string)FindResource("web_search_service_url_protocol_error_title"));
+                MessageBox.Show((string)FindResource("settings/web_search_service_url_protocol_error_message"), (string)FindResource("settings/web_search_service_url_protocol_error_title"));
                 return;
             }
             else if (web_search_service_url_text_box.Text.Contains("{0}") == false)
@@ -359,7 +359,7 @@ namespace Cloud_OCR_Snip
         private void Hotkey_enable_checkbox_Click(object sender, RoutedEventArgs e)
         {
             // チェックボックスの状態に応じてショートカットキーの設定項目を有効化/無効化する
-            int hotkey_number = int.Parse(((CheckBox)sender).Name[2..((CheckBox)sender).Name.IndexOf("_")]);
+            int hotkey_number = int.Parse(((CheckBox)sender).Name.Substring(2, ((CheckBox)sender).Name.IndexOf("_") - 2));
             CheckBox hotkey_modifierkey_checkbox_win = FindName("hk" + hotkey_number.ToString() + "_hotkey_modifierkey_checkbox_win") as CheckBox;
             hotkey_modifierkey_checkbox_win.IsEnabled = (bool)((CheckBox)sender).IsChecked;
             CheckBox hotkey_modifierkey_checkbox_shift = FindName("hk" + hotkey_number.ToString() + "_hotkey_modifierkey_checkbox_shift") as CheckBox;
@@ -447,6 +447,8 @@ namespace Cloud_OCR_Snip
                     }
                     return;
                 }
+                // 文字読み取りサービスの設定を消去する
+                Functions.ClearTranscriptionServiceSettings();
                 // 文字読み取りサービスを変更する
                 Functions.SetUserSettings(Convert.ToBase64String(Functions.Protect(Encoding.UTF8.GetBytes((string)transcription_service_combobox.SelectedItem))), "transcription_service");
                 Load_transcription_service_settings((string)transcription_service_combobox.SelectedItem);

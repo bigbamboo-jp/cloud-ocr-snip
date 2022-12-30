@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,6 +30,8 @@ namespace TranscriptionService
                 cancel_button.Visibility = Visibility.Hidden;
                 save_button.Margin = cancel_button.Margin;
             }
+            Assembly executing_assembly = Assembly.GetExecutingAssembly();
+            WindowTitle = (string)FindResource("google_cloud_vision_api/initial_setting/window_title") + " - " + executing_assembly.GetName().Name;
             // リッチテキストボックスに言語ヒント設定の参考情報を表示する
             FlowDocument language_hint_setting_reference_information = Markdown.ToFlowDocument((string)FindResource("google_cloud_vision_api/initial_setting_4/language_hint_setting_reference_information"));
             language_hint_setting_reference_information.FontSize = 20.0;
@@ -46,7 +49,7 @@ namespace TranscriptionService
 
         private bool initialization; // 初期設定かどうかのフラグ
 
-        private ObservableCollection<string> language_hints; // ユーザーが入力した言語ヒント
+        private ObservableCollection<string> language_hints; // ユーザーが入力した言語ヒントのコレクション
 
         /// <summary>
         /// 言語ヒント追加ボタンがクリックされた際の処理
@@ -104,22 +107,10 @@ namespace TranscriptionService
         /// </summary>
         private void Save_settings()
         {
-            // APIエンドポイント
-            string api_endpoint_setting_value;
-            if (api_endpoint_text_box.Text == string.Empty)
-            {
-                // APIエンドポイントが入力されていない場合
-                api_endpoint_setting_value = string.Empty;
-            }
-            else
-            {
-                // APIエンドポイントが入力された場合
-                api_endpoint_setting_value = Convert.ToBase64String(Functions.Protect(Encoding.UTF8.GetBytes(api_endpoint_text_box.Text)));
-            }
             Dictionary<string, object> settings = new Dictionary<string, object>
             {
                 { "language_hints", language_hints.ToArray() }, // 言語ヒント
-                { "api_endpoint", api_endpoint_setting_value }
+                { "api_endpoint", Convert.ToBase64String(Functions.Protect(Encoding.UTF8.GetBytes(api_endpoint_text_box.Text))) } // APIエンドポイント
             };
             Functions.SetTranscriptionServiceSettings(settings);
         }
@@ -140,24 +131,15 @@ namespace TranscriptionService
             language_hints = new ObservableCollection<string>(language_hints_section);
             language_hint_list_view.DataContext = language_hints;
             // APIエンドポイント
-            if ((string)settings["api_endpoint"] == string.Empty)
+            byte[] api_endpoint_bytes = Functions.Unprotect(Convert.FromBase64String((string)settings["api_endpoint"]));
+            if (api_endpoint_bytes == null)
             {
-                // 設定されていない場合
-                api_endpoint_text_box.Text = string.Empty;
+                // 設定データが破損している場合
+                api_endpoint_text_box.Text = ".googleapis.com";
             }
             else
             {
-                // 設定されている場合
-                byte[] api_endpoint_bytes = Functions.Unprotect(Convert.FromBase64String((string)settings["api_endpoint"]));
-                if (api_endpoint_bytes == null)
-                {
-                    // 設定データが破損している場合
-                    api_endpoint_text_box.Text = ".googleapis.com";
-                }
-                else
-                {
-                    api_endpoint_text_box.Text = Encoding.UTF8.GetString(api_endpoint_bytes);
-                }
+                api_endpoint_text_box.Text = Encoding.UTF8.GetString(api_endpoint_bytes);
             }
         }
 
