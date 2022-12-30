@@ -13,12 +13,12 @@ Accurately read text from screen shots using cloud services.
 Windows 10, 11 (64bit only)
 ## Currently available languages
 English, Japanese(日本語)  
-\* This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/About-contribution) for details.
+\*This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/About-contribution) for details.
 ## Currently supported transcription services
 * Google Cloud Vision API ([service website](https://cloud.google.com/vision))  
   It's free up to 1000 times a month, after which you'll be charged $ 1.50 for every 1000 times (as of December 30, 2022).
 
-\* This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/About-contribution) for details.
+\*This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/About-contribution) for details.
 ## Start using
 First of all, install the application. Download the latest version of the installer from the releases page.  
 Releases: [https://github.com/bigbamboo-jp/cloud-ocr-snip/releases](https://github.com/bigbamboo-jp/cloud-ocr-snip/releases)  
