@@ -331,7 +331,7 @@ namespace Cloud_OCR_Snip
             }
             else if (web_search_service_url_text_box.Text.StartsWith("http://") == false && web_search_service_url_text_box.Text.StartsWith("https://") == false)
             {
-                MessageBox.Show((string)FindResource("web_search_service_url_protocol_error_message"), (string)FindResource("web_search_service_url_protocol_error_title"));
+                MessageBox.Show((string)FindResource("settings/web_search_service_url_protocol_error_message"), (string)FindResource("settings/web_search_service_url_protocol_error_title"));
                 return;
             }
             else if (web_search_service_url_text_box.Text.Contains("{0}") == false)
