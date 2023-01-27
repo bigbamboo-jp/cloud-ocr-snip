@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using MetroRadiance.Platform;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
@@ -85,14 +86,25 @@ namespace Cloud_OCR_Snip
 
             // タスクトレイアイコンを表示する
             System.Windows.Forms.ContextMenuStrip menu_strip = new System.Windows.Forms.ContextMenuStrip();
-            using Stream icon_stream = Application.GetResourceStream(new Uri("pack://application:,,,/Icons/WhiteIcon.ico")).Stream;
             notify_icon = new System.Windows.Forms.NotifyIcon
             {
                 Text = (string)FindResource("task_tray_icon/help_message"),
-                Icon = new System.Drawing.Icon(icon_stream),
                 Visible = true,
                 ContextMenuStrip = menu_strip
             };
+            void Windows_theme_changed(object sender, Theme e)
+            {
+                if (e == Theme.Dark)
+                {
+                    notify_icon.Icon = new System.Drawing.Icon(Application.GetResourceStream(new Uri("pack://application:,,,/Icons/WhiteIcon.ico")).Stream);
+                }
+                else
+                {
+                    notify_icon.Icon = new System.Drawing.Icon(Application.GetResourceStream(new Uri("pack://application:,,,/Icons/BlackIcon.ico")).Stream);
+                }
+            }
+            WindowsTheme.Theme.Changed += new EventHandler<Theme>(Windows_theme_changed);
+            Windows_theme_changed(null, WindowsTheme.Theme.Current);
             notify_icon.MouseClick += new System.Windows.Forms.MouseEventHandler(Notify_icon_MouseClick);
             System.Windows.Forms.ToolStripMenuItem read_from_clipboard_image_item = new System.Windows.Forms.ToolStripMenuItem
             {
