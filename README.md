@@ -16,7 +16,7 @@ English, Japanese(日本語)
 \*This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/Contribution) for details.
 ## Currently supported transcription services
 * Google Cloud Vision API ([service website](https://cloud.google.com/vision))  
-  It's free up to 1000 times a month, after which you'll be charged $ 1.50 for every 1000 times (as of January 27, 2023).
+  It's free up to 1000 times a month, after which you'll be charged $ 1.50 for every 1000 times (as of January 28, 2023).
 
 \*This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/Contribution) for details.
 ## Start using
@@ -31,7 +31,7 @@ In most cases, each service has an official guide, but if the service you are us
 ## Contribution
 Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/Contribution).
 ## Licence
-Please see the [license file](LICENSE.txt).
+Please see the [license file](LICENSE).
 ### About developers
 All development up to the first edition is done by Takuma Otake (excluding those by third parties).  
 The development of the parts added and changed after the release was done by Takuma Otake and his contributors.
