@@ -186,9 +186,9 @@ Make sure the password is correct.</sys:String>
     <sys:String x:Key="result/clipboard_image_acquisition_error_title">Error</sys:String>
     <sys:String x:Key="result/clipboard_copy_error_message">Failed to copy to clipboard.</sys:String>
     <sys:String x:Key="result/clipboard_copy_error_title">Error</sys:String>
-    <sys:String x:Key="result/save_result_title">Save Results to File</sys:String>
+    <sys:String x:Key="result/save_result_title">Save Result to File</sys:String>
     <sys:String x:Key="result/save_result_filter">Text Documents (*.txt)|*.txt|All Files (*.*)|*.*</sys:String>
-    <sys:String x:Key="result/save_result_default_file_name">Transcription Result</sys:String>
+    <sys:String x:Key="result/save_result_default_file_name">Read Result</sys:String>
     <sys:String x:Key="result/command_bar_label_text">Commands</sys:String>
     <sys:String x:Key="result/command_bar_retry_button_text">Retry</sys:String>
     <sys:String x:Key="result/command_bar_remove_newlines_button_text">Remove Newlines</sys:String>
@@ -196,7 +196,12 @@ Make sure the password is correct.</sys:String>
     <sys:String x:Key="result/command_bar_copy_button_text_copy_complete">Copy All (Completed)</sys:String>
     <sys:String x:Key="result/command_bar_save_button_text">Save to File</sys:String>
     <sys:String x:Key="result/command_bar_web_search_button_text">Web Search</sys:String>
-    <sys:String x:Key="result/command_bar_data_selection_setting_checkbox_text">Use edited text</sys:String>
+    <sys:String x:Key="result/command_bar_data_selection_setting_checkbox_text">Use edited text for commands</sys:String>
+    <sys:String x:Key="result/command_bar_data_selection_setting_checkbox_tooltip_title">Tips</sys:String>
+    <sys:String x:Key="result/command_bar_data_selection_setting_checkbox_tooltip_message">This setting applies only to the following commands:
+・Copy All
+・Save to File
+・Web Search</sys:String>
 
     <!-- Others -->
     <sys:String x:Key="other/multiple_startup_error_message">This application is already running.</sys:String>
@@ -240,13 +245,13 @@ Please see [Google Cloud Privacy Notice](https://cloud.google.com/terms/cloud-pr
     <sys:String x:Key="google_cloud_vision_api/initial_setting_2/setup_guide">Register the service account with the application.  
 This application uses your service account key (JSON key file) to access the Google Cloud Vision API, so register your key file from the menu at the bottom.  
 **If you don't have a Google Account**  
-You need to create a Google Account. For details, see the official Google Account Guide below.  
+You need to create a Google Account. For more information, see the official Google Account guide below.  
 [Create a Google Account](https://support.google.com/accounts/answer/27441)  
 **When using the Google Cloud Vision API for the first time (including when the account used is changed)**  
-Issue the service account key after preparing to use the API. For details, see the official Google Cloud guide below.  
+Issue the service account key after preparing to use the API. For more information, see the official Google Cloud guide below.  
 [Quickstart: Setup the Vision API](https://cloud.google.com/vision/docs/setup)  
 **If you have used the Google Cloud Vision API before (only if you don't have the key file)**  
-Please issue the service account key again (for security reasons, we recommend that you revoke the old key). For details, see the official Google Cloud guide below.  
+Please issue the service account key again (for security reasons, we recommend that you revoke the old key). For more information, see the official Google Cloud guide below.  
 [Create a service account and download the private key file](https://cloud.google.com/vision/docs/setup#sa-create)  
   
 \*Enter any name such as the project name.  

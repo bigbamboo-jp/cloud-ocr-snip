@@ -15,8 +15,19 @@
                     <Label Content="{StaticResource settings/general_tab_language_setting_title}" HorizontalAlignment="Left" Margin="8,8,0,0" VerticalAlignment="Top" FontSize="20"/>
                     <ComboBox x:Name="language_combobox" HorizontalAlignment="Left" Margin="15,45,0,0" VerticalAlignment="Top" Width="350" FontSize="20" DisplayMemberPath="Value"/>
                     <Label Content="{StaticResource settings/general_tab_data_selection_setting_title}" HorizontalAlignment="Left" Margin="8,78,0,0" VerticalAlignment="Top" FontSize="20"/>
-                    <Grid HorizontalAlignment="Left" Height="36" Margin="15,114,0,0" VerticalAlignment="Top" Width="167" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
-                        <CheckBox x:Name="data_selection_setting_checkbox" Content="{StaticResource result/command_bar_data_selection_setting_checkbox_text}" VerticalContentAlignment="Center" Margin="8,8,8,8" FontSize="12"/>
+                    <Grid HorizontalAlignment="Left" Height="36" Margin="15,114,0,0" VerticalAlignment="Top" Width="200" Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}">
+                        <CheckBox x:Name="data_selection_setting_checkbox" Content="{StaticResource result/command_bar_data_selection_setting_checkbox_text}" VerticalContentAlignment="Center" Margin="8,8,8,8" FontSize="12">
+                            <CheckBox.ToolTip>
+                                <StackPanel>
+                                    <TextBlock>
+                                        <TextBlock Text="💡" FontWeight="Bold" Foreground="Gold" />
+                                        <TextBlock Text="{StaticResource result/command_bar_data_selection_setting_checkbox_tooltip_title}" FontWeight="Bold" />
+                                        <LineBreak />
+                                        <TextBlock Text="{StaticResource result/command_bar_data_selection_setting_checkbox_tooltip_message}" />
+                                    </TextBlock>
+                                </StackPanel>
+                            </CheckBox.ToolTip>
+                        </CheckBox>
                     </Grid>
                 </Grid>
             </TabItem>

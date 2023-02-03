@@ -12,7 +12,7 @@ namespace Cloud_OCR_Snip
 {
     /// <summary>
     /// 結果ウィンドウ
-    /// 機能：文字読み取り結果の表示及び編集
+    /// 機能：文字読み取り結果の表示及び保存
     /// （Result.xaml の相互作用ロジック）
     /// </summary>
     public partial class Result : Window
@@ -207,7 +207,7 @@ namespace Cloud_OCR_Snip
             // ユーザーが指定したファイルに書き込む
             System.Windows.Forms.SaveFileDialog sfd = new System.Windows.Forms.SaveFileDialog
             {
-                FileName = (string)FindResource("result/save_result_default_file_name"),
+                FileName = (string)FindResource("result/save_result_default_file_name") + " " + DateTime.Now.ToString("yyyy-MM-dd HHmmss"),
                 Filter = (string)FindResource("result/save_result_filter"),
                 FilterIndex = 1,
                 Title = (string)FindResource("result/save_result_title")

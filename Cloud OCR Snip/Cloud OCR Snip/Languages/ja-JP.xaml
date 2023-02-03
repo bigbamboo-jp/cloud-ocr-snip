@@ -188,7 +188,7 @@
     <sys:String x:Key="result/clipboard_copy_error_title">エラー</sys:String>
     <sys:String x:Key="result/save_result_title">結果をファイルに保存</sys:String>
     <sys:String x:Key="result/save_result_filter">テキストドキュメント (*.txt)|*.txt|すべてのファイル (*.*)|*.*</sys:String>
-    <sys:String x:Key="result/save_result_default_file_name">文字読み取り結果</sys:String>
+    <sys:String x:Key="result/save_result_default_file_name">読み取り結果</sys:String>
     <sys:String x:Key="result/command_bar_label_text">コマンド</sys:String>
     <sys:String x:Key="result/command_bar_retry_button_text">再試行</sys:String>
     <sys:String x:Key="result/command_bar_remove_newlines_button_text">選択範囲の各行を結合</sys:String>
@@ -196,7 +196,12 @@
     <sys:String x:Key="result/command_bar_copy_button_text_copy_complete">すべてコピー(完了)</sys:String>
     <sys:String x:Key="result/command_bar_save_button_text">ファイルに保存</sys:String>
     <sys:String x:Key="result/command_bar_web_search_button_text">ウェブ検索</sys:String>
-    <sys:String x:Key="result/command_bar_data_selection_setting_checkbox_text">編集したテキストを使用する</sys:String>
+    <sys:String x:Key="result/command_bar_data_selection_setting_checkbox_text">コマンドに編集したテキストを使用</sys:String>
+    <sys:String x:Key="result/command_bar_data_selection_setting_checkbox_tooltip_title">ヒント</sys:String>
+    <sys:String x:Key="result/command_bar_data_selection_setting_checkbox_tooltip_message">この設定は以下のコマンドにのみ適用されます。
+・すべてコピー
+・ファイルに保存
+・ウェブ検索</sys:String>
 
     <!-- その他 -->
     <sys:String x:Key="other/multiple_startup_error_message">このアプリケーションは既に起動しています。</sys:String>

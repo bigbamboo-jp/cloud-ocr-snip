@@ -34,12 +34,22 @@
             <Button x:Name="copy_button" Grid.Column="4"
                 Content="{StaticResource result/command_bar_copy_button_text}" d:Content="Copy All" Margin="0,0,5,0" Click="Copy_button_Click" />
             <Button x:Name="save_button" Grid.Column="5"
-                Content="{StaticResource result/command_bar_save_button_text}" d:Content="Save to File" Margin="0,0,5,0" Click="Save_button_Click"  />
+                Content="{StaticResource result/command_bar_save_button_text}" d:Content="Save to File" Margin="0,0,5,0" Click="Save_button_Click" />
             <Button x:Name="web_search_button" Grid.Column="6"
-                Content="{StaticResource result/command_bar_web_search_button_text}" d:Content="Web Search" Margin="0,0,5,0" Click="Web_search_button_Click"  />
+                Content="{StaticResource result/command_bar_web_search_button_text}" d:Content="Web Search" Margin="0,0,5,0" Click="Web_search_button_Click" />
             <StackPanel Grid.Column="7" HorizontalAlignment="Right">
-                <CheckBox x:Name="data_selection_setting_checkbox"
-                    Content="{StaticResource result/command_bar_data_selection_setting_checkbox_text}" d:Content="Use edited text" Height="20" VerticalContentAlignment="Center" Margin="2,0,5,0"/>
+                <CheckBox x:Name="data_selection_setting_checkbox" Content="{StaticResource result/command_bar_data_selection_setting_checkbox_text}" d:Content="Use edited text for commands" Height="20" VerticalContentAlignment="Center" Margin="2,0,5,0">
+                    <CheckBox.ToolTip>
+                        <StackPanel>
+                            <TextBlock>
+                                <TextBlock Text="💡" FontWeight="Bold" Foreground="Gold" />
+                                <TextBlock Text="{StaticResource result/command_bar_data_selection_setting_checkbox_tooltip_title}" FontWeight="Bold" />
+                                <LineBreak />
+                                <TextBlock Text="{StaticResource result/command_bar_data_selection_setting_checkbox_tooltip_message}" />
+                            </TextBlock>
+                        </StackPanel>
+                    </CheckBox.ToolTip>
+                </CheckBox>
             </StackPanel>
         </Grid>
         <TextBox x:Name="result_textbox" UndoLimit="10000" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" SelectionChanged="Result_textbox_SelectionChanged" AcceptsTab="True" />
