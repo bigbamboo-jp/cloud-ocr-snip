@@ -264,7 +264,7 @@ APIを使用するための準備を行った後、サービス アカウント 
     <sys:String x:Key="google_cloud_vision_api/initial_setting_2/back_button_text">戻る</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_3/screen_title">Google Cloud Vision API - サービス アカウント設定</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_3/instruction_comment">サービスアカウントの登録が完了しました。  
-※セキュリティ維持のため、登録に使用したキーファイルは削除することをおすすめします（以降必要ありません）。</sys:String>
+※セキュリティ維持のため、登録に使用したキーファイルは削除することをおすすめします（以降は必要ありません）。</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_description">**キーのエクスポート設定**  
 キーのエクスポートを許可すると、設定をファイルに書き出す際にサービスアカウントのキーを含めることができます。この設定は後から変更できません。</sys:String>
     <sys:String x:Key="google_cloud_vision_api/initial_setting_3/key_export_setting_checkbox_text">このキーのエクスポートを許可する</sys:String>

@@ -10,13 +10,13 @@
 
     <Grid>
         <Label x:Name="screen_title_label" Content="{StaticResource google_cloud_vision_api/initial_setting_3/screen_title}" ContentStringFormat="｜{0}" Margin="10,20,0,0" FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <RichTextBox x:Name="instruction_comment_rich_text_box" d:FontSize="20" Margin="40,85,40,285" IsReadOnly="True" IsDocumentEnabled="True" BorderThickness="0,0,0,0" VerticalScrollBarVisibility="Auto" IsHitTestVisible="False">
+        <RichTextBox x:Name="instruction_comment_rich_text_box" d:FontSize="20" Margin="40,85,40,285" IsReadOnly="True" IsDocumentEnabled="True" BorderThickness="0,0,0,0" VerticalScrollBarVisibility="Auto" Focusable="False" Cursor="Arrow">
             <d:FlowDocument>
                 <Paragraph>Instruction Comment</Paragraph>
             </d:FlowDocument>
         </RichTextBox>
         <Rectangle Margin="35,175,35,0" Stroke="Black" Height="125" VerticalAlignment="Top"/>
-        <RichTextBox x:Name="key_export_setting_description_rich_text_box" d:FontSize="20" Margin="40,180,40,180" IsReadOnly="True" IsDocumentEnabled="True" BorderThickness="0,0,0,0" VerticalScrollBarVisibility="Auto" IsHitTestVisible="False">
+        <RichTextBox x:Name="key_export_setting_description_rich_text_box" d:FontSize="20" Margin="40,180,40,180" IsReadOnly="True" IsDocumentEnabled="True" BorderThickness="0,0,0,0" VerticalScrollBarVisibility="Auto" Focusable="False" Cursor="Arrow">
             <d:FlowDocument>
                 <Paragraph>Key Export Setting Description</Paragraph>
             </d:FlowDocument>

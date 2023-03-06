@@ -58,7 +58,7 @@ namespace Cloud_OCR_Snip
             Load_settings();
         }
 
-        public static TabItem static_transcription_settings_tabitem; // 文字読み取り設定タブ
+        public static TabItem static_transcription_settings_tabitem; // 文字読み取り設定のタブ
 
         /// <summary>
         /// ウィンドウに表示されている状態で設定を更新するメソッド
