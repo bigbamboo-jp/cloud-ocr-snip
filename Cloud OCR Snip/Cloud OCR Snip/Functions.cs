@@ -289,7 +289,7 @@ namespace Cloud_OCR_Snip
                 if (MessageBox.Show((string)Application.Current.FindResource("other/file_access_permission_error_message"), (string)Application.Current.FindResource("other/file_access_permission_error_title") + " - " + executing_assembly.GetName().Name, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                 {
                     // ユーザーが指示した場合に管理者権限で再起動する
-                    RestartApplication(run_as: true);
+                    RestartApplication(promote_permission: true);
                 }
                 Environment.Exit(0);
             }
@@ -681,8 +681,9 @@ namespace Cloud_OCR_Snip
 
         /// <summary>
         /// アプリケーションを再起動するメソッド
+        /// ※デフォルト動作では現在の権限を引き継ぐ。オプション指定で権限昇格をさせることが可能（権限降格はできない）。
         /// </summary>
-        public static void RestartApplication(bool run_as = false)
+        public static void RestartApplication(bool promote_permission = false)
         {
             // 移行先のアプリケーションを起動する
             string args = string.Join("\" \"", Environment.GetCommandLineArgs().Skip(1));
@@ -694,9 +695,10 @@ namespace Cloud_OCR_Snip
             {
                 FileName = Environment.ProcessPath,
                 Arguments = args,
-                UseShellExecute = true
+                UseShellExecute = true,
+                CreateNoWindow = true
             };
-            if (run_as == true)
+            if (promote_permission == true)
             {
                 // 指定された場合に管理者権限で起動する
                 psi.Verb = "RunAs";

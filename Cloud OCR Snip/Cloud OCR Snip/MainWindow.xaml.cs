@@ -68,7 +68,7 @@ namespace Cloud_OCR_Snip
                             if (MessageBox.Show((string)Application.Current.FindResource("other/file_access_permission_error_message"), (string)Application.Current.FindResource("other/file_access_permission_error_title") + " - " + executing_assembly.GetName().Name, MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                             {
                                 // ユーザーが指示した場合に管理者権限で再起動する
-                                Functions.RestartApplication(run_as: true);
+                                Functions.RestartApplication(promote_permission: true);
                             }
                             Environment.Exit(0);
                         }
@@ -206,9 +206,7 @@ namespace Cloud_OCR_Snip
                 // 「画面を撮影して文字を読み取る場合のショートカットキー」が押された場合
                 if (Functions.displaying_shoot == false)
                 {
-#pragma warning disable CS4014 // この呼び出しは待機されなかったため、現在のメソッドの実行は呼び出しの完了を待たずに続行されます
                     Functions.DetectScreenshotText();
-#pragma warning restore CS4014 // この呼び出しは待機されなかったため、現在のメソッドの実行は呼び出しの完了を待たずに続行されます
                 }
             }
             else if (hotkey_id == Functions.HOTKEY_ID[01])

@@ -233,8 +233,8 @@ monthly,
   1st to 1000th: Free  
   From the 1001st time: $1.50 charged per 1000 times (If the number of times of use is not divisible by 1000, it will be rounded up to the nearest 1000 and charged)  
 Example: 2500 times → $0 [1000 times] + $3.00 [2000 times (rounded up from 1500 times)] = $3.00  
-If you use more than 5 million times in a month, you will get a $0.40 discount on the excess.  
-Note: The above information is correct at the time of application release. Be sure to check the latest information on [service site](https://cloud.google.com/vision/pricing) before starting to use the service.  
+If you use more than 5 million times in a month, you will get a $0.90 discount on the excess.  
+Note: The above information was current at the time this product was released. Please be sure to check the latest information on the [service site](https://cloud.google.com/vision/pricing) before starting use.  
 \*This explanation assumes that only this application uses the service on the current device.  
 \*Dollars in this description mean US dollars.  
 \*The developer does not guarantee the accuracy of the above information.  

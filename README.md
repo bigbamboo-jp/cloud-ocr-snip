@@ -5,7 +5,7 @@ Accurately read text from screenshots using cloud services.
 
 ## Features
 * Ultra-high precision transcription is possible with cloud services.
-* In addition to screen shots, it is possible to transcribe from image files and images on the clipboard.
+* Transcription is possible not only from screenshots, but also from image files and images on the clipboard.
 * Customizable keyboard shortcuts.
 * Similar in feel to the standard Windows application "Snipping Tool".
 * Easily add available languages and transcription services (rebuild required).
