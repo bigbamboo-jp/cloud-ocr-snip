@@ -10,7 +10,7 @@ Accurately read text from screenshots using cloud services.
 * Similar in feel to the standard Windows application "Snipping Tool".
 * Easily add available languages and transcription services (rebuild required).
 ## Operating environment
-Windows 10, 11 (64bit only)
+Windows 10, 11 (x64 systems only)
 ## Currently available languages
 English, Japanese(日本語)  
 \*This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/Contribution) for details.
