@@ -60,12 +60,12 @@ Name: "turkish"; MessagesFile: "compiler:Languages\Turkish.isl"
 Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 
 [Files]
-Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\publish\win-x64\Cloud OCR Snip.exe"; DestDir: "{app}"; DestName: "{#MyAppExeName}"; Flags: ignoreversion
-Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\publish\win-x64\D3DCompiler_47_cor3.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\publish\win-x64\PenImc_cor3.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\publish\win-x64\PresentationNative_cor3.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\publish\win-x64\vcruntime140_cor3.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net6.0-windows\publish\win-x64\wpfgfx_cor3.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net8.0-windows10.0.22621.0\publish\Cloud OCR Snip.exe"; DestDir: "{app}"; DestName: "{#MyAppExeName}"; Flags: ignoreversion
+Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net8.0-windows10.0.22621.0\publish\D3DCompiler_47_cor3.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net8.0-windows10.0.22621.0\publish\PenImc_cor3.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net8.0-windows10.0.22621.0\publish\PresentationNative_cor3.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net8.0-windows10.0.22621.0\publish\vcruntime140_cor3.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "{#SourcePath}\Cloud OCR Snip\Cloud OCR Snip\bin\Release\net8.0-windows10.0.22621.0\publish\wpfgfx_cor3.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Dirs]
