@@ -73,12 +73,39 @@ namespace Cloud_OCR_Snip
             BitmapSource background_image = null;
             if (live_capture_mode == false)
             {
+                // 全スクリーン情報を取得
+                System.Windows.Forms.Screen[] screens = System.Windows.Forms.Screen.AllScreens;
+
+                // 上下左右の最大位置を格納
+                int minX = 0;
+                int minY = 0;
+                int maxX = 0;
+                int maxY = 0;
+
+                foreach (System.Windows.Forms.Screen screen1 in screens)
+                {
+                    // スクリーンの座標とサイズを取得
+                    var x = screen1.Bounds.X;
+                    var y = screen1.Bounds.Y;
+                    var width = screen1.Bounds.Width;
+                    var height = screen1.Bounds.Height;
+
+                    // 最大値を更新
+                    minX = Math.Min(minX, x);
+                    minY = Math.Min(minY, y);
+                    maxX = Math.Max(maxX, x + width);
+                    maxY = Math.Max(maxY, y + height);
+                }
+                int areaWidth = maxX - minX;
+                int areaHeight = maxY - minY;
+
                 // スクリーンショットを撮影する
                 System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.FromControl(new System.Windows.Forms.Form());
-                System.Drawing.Bitmap image = new System.Drawing.Bitmap(screen.Bounds.Width, screen.Bounds.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                System.Drawing.Bitmap image = new System.Drawing.Bitmap(areaWidth, areaHeight, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
                 // BitmapSourceに変換する
                 using System.Drawing.Graphics graph = System.Drawing.Graphics.FromImage(image);
-                graph.CopyFromScreen(new System.Drawing.Point(), new System.Drawing.Point(), image.Size);
+                graph.CopyFromScreen(new System.Drawing.Point((int)minX, (int)minY), new System.Drawing.Point(), image.Size);
                 IntPtr hbitmap = image.GetHbitmap();
                 background_image = Imaging.CreateBitmapSourceFromHBitmap(hbitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
                 DeleteObject(hbitmap);
