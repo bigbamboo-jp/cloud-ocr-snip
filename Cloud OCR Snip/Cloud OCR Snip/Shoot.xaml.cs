@@ -61,15 +61,41 @@ namespace Cloud_OCR_Snip
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // 全スクリーン情報を取得
+            System.Windows.Forms.Screen[] screens = System.Windows.Forms.Screen.AllScreens;
+
+            // 上下左右の最大位置を格納
+            int minX = 0;
+            int minY = 0;
+            int maxX = 0;
+            int maxY = 0;
+
+            foreach (System.Windows.Forms.Screen screen in screens)
+            {
+                // スクリーンの座標とサイズを取得
+                var x = screen.Bounds.X;
+                var y = screen.Bounds.Y;
+                var width = screen.Bounds.Width;
+                var height = screen.Bounds.Height;
+
+                // 最大値を更新
+                minX = Math.Min(minX, x);
+                minY = Math.Min(minY, y);
+                maxX = Math.Max(maxX, x + width);
+                maxY = Math.Max(maxY, y + height);
+            }
+            int areaWidth = maxX - minX;
+            int areaHeight = maxY - minY;
+
             // ウィンドウサイズの設定
-            this.Left = 0.0;
-            this.Top = 0.0;
-            this.Width = SystemParameters.PrimaryScreenWidth;
-            this.Height = SystemParameters.PrimaryScreenHeight;
+            this.Left = minX;
+            this.Top = minY;
+            this.Width = areaWidth;
+            this.Height = areaHeight;
 
             // ジオメトリサイズの設定
             var protruding_width = this.Path1.StrokeThickness / 2.0;
-            this.ScreenArea.Geometry1 = new RectangleGeometry(new Rect(-protruding_width, -protruding_width, SystemParameters.PrimaryScreenWidth + (protruding_width * 2), SystemParameters.PrimaryScreenHeight + (protruding_width * 2)));
+            this.ScreenArea.Geometry1 = new RectangleGeometry(new Rect(-protruding_width, -protruding_width, areaWidth + (protruding_width * 2), areaHeight + (protruding_width * 2)));
 
             // ウィンドウをアクティブにしないように設定
             var helper = new System.Windows.Interop.WindowInteropHelper(this);
@@ -173,7 +199,8 @@ namespace Cloud_OCR_Snip
 
             // スクリーンイメージの取得
             image = new System.Drawing.Bitmap(width, height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            using (var graph = System.Drawing.Graphics.FromImage(image)) {
+            using (var graph = System.Drawing.Graphics.FromImage(image))
+            {
                 // 画面をコピーする
                 graph.CopyFromScreen(new System.Drawing.Point(x, y), new System.Drawing.Point(), image.Size);
             }
@@ -230,7 +257,8 @@ namespace Cloud_OCR_Snip
             if (msg.message != Functions.WM_HOTKEY)
                 return;
             int hotkey_id = msg.wParam.ToInt32();
-            if (hotkey_id == Functions.HOTKEY_ID[10]) {
+            if (hotkey_id == Functions.HOTKEY_ID[10])
+            {
                 this.DialogResult = false;
                 this.Close();
             }
