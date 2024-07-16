@@ -3,8 +3,8 @@
 
 #define MyAppName "Cloud OCR Snip"
 #define MyAppNameForFilename "CloudOCRSnip"
-#define MyAppVersion "1.3.6.0"
-#define MyAppVersionForFilename "1-3-6-0"
+#define MyAppVersion "1.3.7.0"
+#define MyAppVersionForFilename "1-3-7-0"
 #define MyAppPublisher "Takuma Otake"
 #define MyAppExeName "CloudOCRSnip.exe"
 
@@ -49,6 +49,7 @@ Name: "hungarian"; MessagesFile: "compiler:Languages\Hungarian.isl"
 Name: "icelandic"; MessagesFile: "compiler:Languages\Icelandic.isl"
 Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
 Name: "japanese"; MessagesFile: "compiler:Languages\Japanese.isl"
+Name: "korean"; MessagesFile: "compiler:Languages\Korean.isl"
 Name: "norwegian"; MessagesFile: "compiler:Languages\Norwegian.isl"
 Name: "polish"; MessagesFile: "compiler:Languages\Polish.isl"
 Name: "portuguese"; MessagesFile: "compiler:Languages\Portuguese.isl"
