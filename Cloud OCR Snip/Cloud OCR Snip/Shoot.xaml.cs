@@ -69,7 +69,7 @@ namespace Cloud_OCR_Snip
 
             // ジオメトリサイズの設定
             var protruding_width = this.Path1.StrokeThickness / 2.0;
-            this.ScreenArea.Geometry1 = new RectangleGeometry(new Rect(-protruding_width, -protruding_width, SystemParameters.PrimaryScreenWidth + (protruding_width * 2), SystemParameters.PrimaryScreenHeight + (protruding_width * 2)));
+            this.ScreenArea.Geometry1 = new RectangleGeometry(new Rect(-protruding_width, -protruding_width, SystemParameters.PrimaryScreenWidth + (protruding_width * 2.0), SystemParameters.PrimaryScreenHeight + (protruding_width * 2.0)));
 
             // ウィンドウをアクティブにしないように設定
             var helper = new System.Windows.Interop.WindowInteropHelper(this);
