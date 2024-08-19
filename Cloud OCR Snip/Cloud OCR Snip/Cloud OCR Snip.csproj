@@ -10,7 +10,7 @@
     <UseWindowsForms>True</UseWindowsForms>
     <Copyright>Copyright © 2021 Takuma Otake</Copyright>
     <ApplicationIcon>Icons/BlackIcon.ico</ApplicationIcon>
-    <Version>1.3.7.0</Version>
+    <Version>1.3.8.0</Version>
     <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
@@ -35,7 +35,7 @@
     <PackageReference Include="Markdig.Signed" Version="0.37.0" />
     <PackageReference Include="Markdig.Wpf.Signed" Version="0.5.0.1" />
     <PackageReference Include="MetroRadiance" Version="2.4.0" />
-    <PackageReference Include="System.Drawing.Common" Version="8.0.7" />
+    <PackageReference Include="System.Drawing.Common" Version="8.0.8" />
   </ItemGroup>
 
   <ItemGroup>

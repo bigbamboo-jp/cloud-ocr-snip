@@ -3,8 +3,8 @@
 
 #define MyAppName "Cloud OCR Snip"
 #define MyAppNameForFilename "CloudOCRSnip"
-#define MyAppVersion "1.3.7.0"
-#define MyAppVersionForFilename "1-3-7-0"
+#define MyAppVersion "1.3.8.0"
+#define MyAppVersionForFilename "1-3-8-0"
 #define MyAppPublisher "Takuma Otake"
 #define MyAppExeName "CloudOCRSnip.exe"
 

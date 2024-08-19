@@ -176,7 +176,7 @@ namespace TranscriptionService
                 }
                 else
                 {
-                    throw ex;
+                    throw;
                 }
                 return null;
             }

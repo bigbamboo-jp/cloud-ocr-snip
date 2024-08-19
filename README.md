@@ -10,13 +10,14 @@ Accurately read text from screenshots using cloud services.
 * Similar in feel to the standard Windows application "Snipping Tool".
 * Easily add available languages and transcription services (rebuild required).
 ## Operating environment
-Windows 10, 11 (x64 systems only)
+Windows 10, 11 (x64 architecture only)  
+\*The ARM64 architecture version of Windows 11 can run applications that are created for the x64 architecture.
 ## Currently available languages
 English, Japanese(日本語)  
 \*This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/Contribution) for details.
 ## Currently supported transcription services
 * Google Cloud Vision API ([service website](https://cloud.google.com/vision))  
-  Free up to 1000 times per month, thereafter US$1.50 will be charged for every 1000 times (as of July 16, 2024).
+  Free up to 1000 times per month, thereafter US$1.50 will be charged for every 1000 times (as of August 19, 2024).
 
 \*This list can be expanded by you. Please see the [contribution page](https://github.com/bigbamboo-jp/cloud-ocr-snip/wiki/Contribution) for details.
 ## Start using
