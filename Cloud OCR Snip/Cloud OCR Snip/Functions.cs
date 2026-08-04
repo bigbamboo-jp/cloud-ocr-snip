@@ -69,22 +69,45 @@ namespace Cloud_OCR_Snip
                 window.Activate();
             }
 
-            // 切り取るスクリーンショットを準備する（切り取り方式の場合）
+            // 選択画面に表示するスクリーンショットを準備する
+            // ライブ撮影方式でも、タスクバーを含む選択範囲を確認できるように背景画像を表示する
             BitmapSource background_image = null;
-            if (live_capture_mode == false)
             {
-                // スクリーンショットを撮影する
-                System.Windows.Forms.Screen screen = System.Windows.Forms.Screen.FromControl(new System.Windows.Forms.Form());
-                System.Drawing.Bitmap image = new System.Drawing.Bitmap(screen.Bounds.Width, screen.Bounds.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+                // 全ディスプレイを囲む仮想画面の範囲を取得する
+                // 左側または上側にディスプレイがある場合、Left/Topは負の値になる
+                System.Drawing.Rectangle virtual_screen = System.Windows.Forms.SystemInformation.VirtualScreen;
+                using System.Drawing.Bitmap image = new System.Drawing.Bitmap(
+                    virtual_screen.Width,
+                    virtual_screen.Height,
+                    System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+                // 仮想画面の左上座標から全ディスプレイの画像を取得する
+                using (System.Drawing.Graphics graph = System.Drawing.Graphics.FromImage(image))
+                {
+                    graph.CopyFromScreen(
+                        new System.Drawing.Point(virtual_screen.Left, virtual_screen.Top),
+                        new System.Drawing.Point(),
+                        virtual_screen.Size);
+                }
+
                 // BitmapSourceに変換する
-                using System.Drawing.Graphics graph = System.Drawing.Graphics.FromImage(image);
-                graph.CopyFromScreen(new System.Drawing.Point(), new System.Drawing.Point(), image.Size);
                 IntPtr hbitmap = image.GetHbitmap();
-                background_image = Imaging.CreateBitmapSourceFromHBitmap(hbitmap, IntPtr.Zero, Int32Rect.Empty, BitmapSizeOptions.FromEmptyOptions());
-                DeleteObject(hbitmap);
+                try
+                {
+                    background_image = Imaging.CreateBitmapSourceFromHBitmap(
+                        hbitmap,
+                        IntPtr.Zero,
+                        Int32Rect.Empty,
+                        BitmapSizeOptions.FromEmptyOptions());
+                    background_image.Freeze();
+                }
+                finally
+                {
+                    DeleteObject(hbitmap);
+                }
             }
-            // 画面を撮影して（ライブ撮影方式の場合）、使用する範囲を切り取る
-            Shoot screen_shooting_window = new Shoot(background_image);
+            // 選択方式に応じて、背景画像または選択確定後の画面から範囲を切り取る
+            Shoot screen_shooting_window = new Shoot(background_image, live_capture_mode);
             displaying_shoot = true;
             bool shot = (bool)screen_shooting_window.ShowDialog();
             displaying_shoot = false;
