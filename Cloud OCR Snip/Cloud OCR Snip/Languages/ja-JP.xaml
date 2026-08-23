@@ -216,6 +216,9 @@
     <sys:String x:Key="other/transcription_error_message">文字の読み取りに失敗しました。
 インターネット接続、文字読み取りサービスの設定・サービスステータス等を確認して再試行してください。</sys:String>
     <sys:String x:Key="other/transcription_error_title">エラー</sys:String>
+    <sys:String x:Key="other/screen_capture_error_message">画面を撮影できませんでした。
+しばらく待ってから再試行してください。</sys:String>
+    <sys:String x:Key="other/screen_capture_error_title">エラー</sys:String>
 
     <!-- 文字読み取りサービス：Google Cloud Vision API -->
     <sys:String x:Key="google_cloud_vision_api/explanation">Google Cloud Vision APIはGoogle LLCが提供するクラウド画像認識サービスです。
@@ -231,8 +234,8 @@ Google Cloud Vision APIはGoogle LLCが提供するクラウド画像認識サ�
 **請求される場合がある料金**  
 毎月、  
   1～1000回目：無料  
-  1001回目～：1000回につき$1.50請求（利用回数が1000で割り切れない場合は1000の桁に繰り上げて請求）  
-例：2500回 → $0 [1000回] + $3.00 [2000回（1500回から繰り上げ）] = $3.00  
+  1001回目～：1000回につき$1.50請求（1000回に満たない端数は、使用した回数の分だけ請求）  
+例：2500回 → $0 [1000回] + $2.25 [1500回] = $2.25  
 なお、1ヶ月の間に500万回を超えて使用した場合はその超過分について$0.90の割引が適用されます。  
 注意：上記の情報はこの製品がリリースされた際のものです。利用を開始する前に必ず[サービスサイト](https://cloud.google.com/vision/pricing)で最新の情報を確認してください。  
 ※この説明は現在の端末でこのアプリケーションだけがサービスを使用することを前提としています。  

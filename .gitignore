@@ -1,0 +1,71 @@
+# Cloud OCR Snip
+# Visual Studio (.NET / WPF) と Inno Setup のビルド生成物・作業用ファイルを除外する
+
+# ビルド出力
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+[Ll]og/
+[Ll]ogs/
+*.log
+
+# 発行（Publish）の出力
+# ※ Properties/PublishProfiles/*.pubxml は設定ファイルなので除外しない
+[Pp]ublish/
+PublishScripts/
+*.pubxml.user
+*.azurePubxml
+
+# Inno Setup が出力するインストーラー
+# ※ installer_configuration_*.iss の OutputDir に対応
+/Installers/
+[Oo]utput/
+
+# Visual Studio の作業用ファイル
+.vs/
+*.suo
+*.user
+*.userosscache
+*.userprefs
+*.sln.docstates
+*.VC.db
+*.VC.VC.opendb
+*.psess
+*.vsp
+*.vspx
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+project.lock.json
+project.assets.json
+*.nuget.props
+*.nuget.targets
+
+# テスト・コード解析の結果
+[Tt]est[Rr]esult*/
+*.coverage
+*.coveragexml
+*.VisualState.xml
+TestResult.xml
+
+# エディター・IDE
+.idea/
+.vscode/
+*.sln.iml
+*.swp
+*~
+
+# Windows・その他の一時ファイル
+[Tt]humbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.tmp
+*.temp
+*.bak
+*.orig
+*.rej
+.DS_Store

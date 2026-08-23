@@ -216,6 +216,9 @@ Do you want to recreate the setting file (initialize setting data)?
     <sys:String x:Key="other/transcription_error_message">Transcription failed.
 Please check your Internet connection, transcription service settings and service status, and try again.</sys:String>
     <sys:String x:Key="other/transcription_error_title">Error</sys:String>
+    <sys:String x:Key="other/screen_capture_error_message">Failed to capture the screen.
+Please wait a moment and try again.</sys:String>
+    <sys:String x:Key="other/screen_capture_error_title">Error</sys:String>
 
     <!-- Transcription Service: Google Cloud Vision API -->
     <sys:String x:Key="google_cloud_vision_api/explanation">Google Cloud Vision API is a cloud image recognition service provided by Google LLC.
@@ -231,8 +234,8 @@ Google Cloud Vision API is a cloud image recognition service provided by Google 
 **Fees that may be charged**  
 monthly,  
   1st to 1000th: Free  
-  From the 1001st time: $1.50 charged per 1000 times (If the number of times of use is not divisible by 1000, it will be rounded up to the nearest 1000 and charged)  
-Example: 2500 times → $0 [1000 times] + $3.00 [2000 times (rounded up from 1500 times)] = $3.00  
+  From the 1001st time: $1.50 charged per 1000 times (Any remainder of less than 1000 times is charged only for the number of times actually used)  
+Example: 2500 times → $0 [1000 times] + $2.25 [1500 times] = $2.25  
 If you use more than 5 million times in a month, you will get a $0.90 discount on the excess.  
 Note: The above information was current at the time this product was released. Please be sure to check the latest information on the [service site](https://cloud.google.com/vision/pricing) before starting use.  
 \*This explanation assumes that only this application uses the service on the current device.  
