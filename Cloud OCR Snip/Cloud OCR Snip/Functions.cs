@@ -37,7 +37,6 @@ namespace Cloud_OCR_Snip
         [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool DeleteObject([In] IntPtr hObject);
-
         [DllImport("user32.dll")]
         private static extern IntPtr GetDC(IntPtr window);
         [DllImport("user32.dll")]
@@ -47,26 +46,13 @@ namespace Cloud_OCR_Snip
         [DllImport("gdi32.dll")]
         private static extern bool DeleteDC(IntPtr device_context);
         [DllImport("gdi32.dll")]
-        private static extern IntPtr CreateDIBSection(
-            IntPtr device_context,
-            ref BITMAPINFO bitmap_info,
-            int usage,
-            out IntPtr bits,
-            IntPtr section,
-            int offset);
+        private static extern IntPtr CreateDIBSection(IntPtr device_context, ref BITMAPINFO bitmap_info,
+            int usage, out IntPtr bits, IntPtr section, int offset);
         [DllImport("gdi32.dll")]
         private static extern IntPtr SelectObject(IntPtr device_context, IntPtr object_handle);
         [DllImport("gdi32.dll")]
-        private static extern bool BitBlt(
-            IntPtr destination,
-            int x,
-            int y,
-            int width,
-            int height,
-            IntPtr source,
-            int source_x,
-            int source_y,
-            int raster_operation);
+        private static extern bool BitBlt(IntPtr destination, int x, int y, int width, int height,
+            IntPtr source, int source_x, int source_y, int raster_operation);
 
         [StructLayout(LayoutKind.Sequential)]
         private struct BITMAPINFOHEADER
@@ -83,7 +69,6 @@ namespace Cloud_OCR_Snip
             public int biClrUsed;
             public int biClrImportant;
         }
-
         [StructLayout(LayoutKind.Sequential)]
         private struct BITMAPINFO
         {
@@ -278,13 +263,7 @@ namespace Cloud_OCR_Snip
                 bitmap_info.bmiHeader.biHeight = -virtual_screen.Height;
                 bitmap_info.bmiHeader.biPlanes = 1;
                 bitmap_info.bmiHeader.biBitCount = 32;
-                bitmap = CreateDIBSection(
-                    screen_device_context,
-                    ref bitmap_info,
-                    0,
-                    out _,
-                    IntPtr.Zero,
-                    0);
+                bitmap = CreateDIBSection(screen_device_context, ref bitmap_info, 0, out _, IntPtr.Zero, 0);
                 if (bitmap == IntPtr.Zero)
                     return null;
 
