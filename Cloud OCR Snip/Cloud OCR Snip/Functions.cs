@@ -11,6 +11,7 @@ using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -36,6 +37,7 @@ namespace Cloud_OCR_Snip
         [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool DeleteObject([In] IntPtr hObject);
+
         [DllImport("user32.dll")]
         private static extern IntPtr GetDC(IntPtr window);
         [DllImport("user32.dll")]
@@ -45,13 +47,26 @@ namespace Cloud_OCR_Snip
         [DllImport("gdi32.dll")]
         private static extern bool DeleteDC(IntPtr device_context);
         [DllImport("gdi32.dll")]
-        private static extern IntPtr CreateDIBSection(IntPtr device_context, ref BITMAPINFO bitmap_info,
-            int usage, out IntPtr bits, IntPtr section, int offset);
+        private static extern IntPtr CreateDIBSection(
+            IntPtr device_context,
+            ref BITMAPINFO bitmap_info,
+            int usage,
+            out IntPtr bits,
+            IntPtr section,
+            int offset);
         [DllImport("gdi32.dll")]
         private static extern IntPtr SelectObject(IntPtr device_context, IntPtr object_handle);
         [DllImport("gdi32.dll")]
-        private static extern bool BitBlt(IntPtr destination, int x, int y, int width, int height,
-            IntPtr source, int source_x, int source_y, int raster_operation);
+        private static extern bool BitBlt(
+            IntPtr destination,
+            int x,
+            int y,
+            int width,
+            int height,
+            IntPtr source,
+            int source_x,
+            int source_y,
+            int raster_operation);
 
         [StructLayout(LayoutKind.Sequential)]
         private struct BITMAPINFOHEADER
@@ -68,101 +83,146 @@ namespace Cloud_OCR_Snip
             public int biClrUsed;
             public int biClrImportant;
         }
+
         [StructLayout(LayoutKind.Sequential)]
         private struct BITMAPINFO
         {
             public BITMAPINFOHEADER bmiHeader;
             public int bmiColors;
         }
-        private const int SRCCOPY = 0x00CC0020; // 画面の内容をそのまま複製する
 
-        public static bool displaying_shoot; // Shootを表示しているかのフラグ
+        private const int SRCCOPY = 0x00CC0020;
+
+        private static int _screen_capture_in_progress;
+
+        public static bool displaying_shoot
+        {
+            get { return Volatile.Read(ref _screen_capture_in_progress) != 0; }
+        }
+
+        private static bool TryBeginScreenCapture()
+        {
+            return Interlocked.CompareExchange(ref _screen_capture_in_progress, 1, 0) == 0;
+        }
+
+        private static void EndScreenCapture()
+        {
+            Volatile.Write(ref _screen_capture_in_progress, 0);
+        }
 
         /// <summary>
         /// クリップボードから画像を取得してその画像で文字読み取りをするメソッド
         /// </summary>
         public static async Task<bool> DetectScreenshotText()
         {
-            bool live_capture_mode = (bool)GetUserSettings()["live_capture_mode"];
+            // 背景キャプチャ中を含めて二重起動を防止する。
+            if (!TryBeginScreenCapture())
+                return true;
 
-            // アクティブなウィンドウを取得する
-            IntPtr foreground_window = GetForegroundWindow();
-            // アクティブなウィンドウにTopmostが設定されているか確認する
-            const int GWL_EXSTYLE = -20;
-            const int WS_EX_TOPMOST = 0x0008;
-            IntPtr exStyle = GetWindowLongPtr(foreground_window, GWL_EXSTYLE);
-            bool foreground_window_topmost_setting = ((int)exStyle & WS_EX_TOPMOST) == WS_EX_TOPMOST;
-            // アクティブなウィンドウにTopmostが設定されていた場合（ライブ撮影方式の場合）
             Window window = null;
-            if (foreground_window_topmost_setting == true && live_capture_mode == true)
+            ShootSession screen_shooting_window = null;
+            bool shot = false;
+            try
             {
-                // 新しくウィンドウを表示してこのアプリケーションにフォーカスを当てる
-                window = new Window
-                {
-                    WindowStyle = WindowStyle.None,
-                    Height = 0,
-                    Width = 0,
-                    ShowInTaskbar = false
-                };
-                window.Show();
-                window.Activate();
-            }
+                bool live_capture_mode = (bool)GetUserSettings()["live_capture_mode"];
 
-            // 切り取るスクリーンショットを準備する（切り取り方式の場合）
-            // ライブ撮影方式では、背景の動きをそのまま確認できるように背景画像は用意しない
-            BitmapSource? background_image = null;
-            System.Drawing.Rectangle background_area = System.Drawing.Rectangle.Empty;
-            if (live_capture_mode == false)
-            {
-                // 全ディスプレイを囲む仮想画面の範囲を物理ピクセルで取得する
-                // 左側または上側にディスプレイがある場合、Left/Topは負の値になる
-                System.Drawing.Rectangle virtual_screen = System.Windows.Forms.SystemInformation.VirtualScreen;
-                background_area = virtual_screen;
-                background_image = CaptureVirtualScreen(virtual_screen);
-                if (background_image == null)
+                // アクティブなウィンドウを取得する
+                IntPtr foreground_window = GetForegroundWindow();
+                // アクティブなウィンドウにTopmostが設定されているか確認する
+                const int GWL_EXSTYLE = -20;
+                const int WS_EX_TOPMOST = 0x0008;
+                IntPtr exStyle = GetWindowLongPtr(foreground_window, GWL_EXSTYLE);
+                bool foreground_window_topmost_setting = ((int)exStyle & WS_EX_TOPMOST) == WS_EX_TOPMOST;
+                // アクティブなウィンドウにTopmostが設定されていた場合（ライブ撮影方式の場合）
+                if (foreground_window_topmost_setting == true && live_capture_mode == true)
                 {
-                    // 画面を取得できない場合は、無言で終わらせずに知らせて中止する
-                    // フォーカス確保用のウィンドウを閉じる（表示した場合）
-                    window?.Close();
-                    Assembly assembly = Assembly.GetExecutingAssembly();
-                    MessageBox.Show(
-                        (string)Application.Current.FindResource("other/screen_capture_error_message"),
-                        (string)Application.Current.FindResource("other/screen_capture_error_title") + " - " + assembly.GetName().Name);
-                    // 撮影しなかったものとして扱う
-                    return true;
+                    // 新しくウィンドウを表示してこのアプリケーションにフォーカスを当てる
+                    window = new Window
+                    {
+                        WindowStyle = WindowStyle.None,
+                        Height = 0,
+                        Width = 0,
+                        ShowInTaskbar = false
+                    };
+                    window.Show();
+                    window.Activate();
+                }
+
+                // 選択画面に表示するスクリーンショットを準備する。
+                // 元実装どおり、切り取り方式だけが事前キャプチャを使用する。
+                BitmapSource? background_image = null;
+                var monitor_bounds = DisplayHelper.GetMonitorBounds();
+                var virtual_screen = DisplayHelper.GetVirtualBounds(monitor_bounds);
+                if (!live_capture_mode && virtual_screen.Width > 0 && virtual_screen.Height > 0)
+                {
+                    background_image = CaptureVirtualScreen(virtual_screen);
+                    if (background_image == null)
+                    {
+                        // 画面を取得できない場合は、無言で終わらせずに知らせて中止する。
+                        window?.Close();
+                        Assembly assembly = Assembly.GetExecutingAssembly();
+                        MessageBox.Show(
+                            (string)Application.Current.FindResource("other/screen_capture_error_message"),
+                            (string)Application.Current.FindResource("other/screen_capture_error_title") + " - " + assembly.GetName().Name);
+                        return true;
+                    }
+                }
+
+                // 選択方式に応じて、背景画像または選択確定後の画面から範囲を切り取る。
+                screen_shooting_window = new ShootSession(
+                    background_image,
+                    live_capture_mode,
+                    virtual_screen,
+                    monitor_bounds);
+                shot = screen_shooting_window.ShowDialog();
+            }
+            catch (Exception)
+            {
+                // 撮影準備中の予期しない例外でアプリケーションを終了させず、撮影をキャンセル扱いにする。
+                shot = false;
+            }
+            finally
+            {
+                try
+                {
+                    // 撮影処理が例外終了した場合も、表示中のオーバーレイを確実に閉じる。
+                    screen_shooting_window?.Cancel();
+                }
+                finally
+                {
+                    try
+                    {
+                        // フォーカス確保用のウィンドウを閉じる（表示した場合）
+                        window?.Close();
+                    }
+                    finally
+                    {
+                        EndScreenCapture();
+                    }
                 }
             }
-            // 画面を撮影して（ライブ撮影方式の場合）、使用する範囲を切り取る
-            Shoot screen_shooting_window = new Shoot(background_image, live_capture_mode, background_area);
-            displaying_shoot = true;
-            bool shot = (bool)screen_shooting_window.ShowDialog();
-            displaying_shoot = false;
 
-            // フォーカス確保用のウィンドウを閉じる（表示した場合）
-            window?.Close();
-
-            if (shot == true)
+            if (shot == true && screen_shooting_window?.TakeImage() is System.Drawing.Bitmap captured_image)
             {
-                await Result_Show(screen_shooting_window.image, data_source: 1);
+                using (captured_image)
+                {
+                    await Result_Show(captured_image, data_source: 1);
+                }
             }
             return shot == false;
         }
 
         /// <summary>
-        /// 全ディスプレイを囲む仮想画面の内容を取得するメソッド
+        /// 全ディスプレイを囲む仮想画面の内容を取得するメソッド。
         /// </summary>
-        /// <param name="virtual_screen">取得する範囲（物理ピクセル）</param>
-        /// <returns>取得した画像。取得できなかった場合はnull</returns>
         private static BitmapSource? CaptureVirtualScreen(System.Drawing.Rectangle virtual_screen)
         {
-            // 画面の内容を、そのままBitmapSourceにできる形式（DIBセクション）へ直接取り込む
-            // Bitmapクラスを経由すると同じ内容をもう一度複製することになり、
-            // 高解像度の複数ディスプレイではその分だけ選択画面が出るまで待たされる
+            // 画面の内容を、そのままBitmapSourceにできる形式へ直接取り込む。
             BitmapSource? image = CaptureVirtualScreenDirectly(virtual_screen);
             if (image != null)
                 return image;
 
-            // 直接取り込めなかった場合は、Bitmapクラスを経由して取り込み直す
+            // 直接取り込めなかった場合は、Bitmapクラスを経由して取り込む。
             try
             {
                 using System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(
@@ -200,10 +260,8 @@ namespace Cloud_OCR_Snip
         }
 
         /// <summary>
-        /// 仮想画面の内容をDIBセクションへ直接取得するメソッド
+        /// 仮想画面の内容をDIBセクションへ直接取得するメソッド。
         /// </summary>
-        /// <param name="virtual_screen">取得する範囲（物理ピクセル）</param>
-        /// <returns>取得した画像。取得できなかった場合はnull</returns>
         private static BitmapSource? CaptureVirtualScreenDirectly(System.Drawing.Rectangle virtual_screen)
         {
             IntPtr screen_device_context = GetDC(IntPtr.Zero);
@@ -217,30 +275,44 @@ namespace Cloud_OCR_Snip
                 BITMAPINFO bitmap_info = new BITMAPINFO();
                 bitmap_info.bmiHeader.biSize = Marshal.SizeOf<BITMAPINFOHEADER>();
                 bitmap_info.bmiHeader.biWidth = virtual_screen.Width;
-                bitmap_info.bmiHeader.biHeight = -virtual_screen.Height; // 上から下へ並べる
+                bitmap_info.bmiHeader.biHeight = -virtual_screen.Height;
                 bitmap_info.bmiHeader.biPlanes = 1;
                 bitmap_info.bmiHeader.biBitCount = 32;
-                bitmap = CreateDIBSection(screen_device_context, ref bitmap_info, 0, out _, IntPtr.Zero, 0);
+                bitmap = CreateDIBSection(
+                    screen_device_context,
+                    ref bitmap_info,
+                    0,
+                    out _,
+                    IntPtr.Zero,
+                    0);
                 if (bitmap == IntPtr.Zero)
                     return null;
 
-                // 仮想画面の左上座標から全ディスプレイの画像を取得する
                 IntPtr previous_bitmap = SelectObject(memory_device_context, bitmap);
-                bool copied = BitBlt(
-                    memory_device_context,
-                    0,
-                    0,
-                    virtual_screen.Width,
-                    virtual_screen.Height,
-                    screen_device_context,
-                    virtual_screen.Left,
-                    virtual_screen.Top,
-                    SRCCOPY);
-                SelectObject(memory_device_context, previous_bitmap);
-                if (copied == false)
-                    return null; // 取得できていない画像を使うと、真っ黒な画像で文字を読み取ってしまう
+                if (previous_bitmap == IntPtr.Zero)
+                    return null;
 
-                // BitmapSourceに変換する
+                bool copied;
+                try
+                {
+                    copied = BitBlt(
+                        memory_device_context,
+                        0,
+                        0,
+                        virtual_screen.Width,
+                        virtual_screen.Height,
+                        screen_device_context,
+                        virtual_screen.Left,
+                        virtual_screen.Top,
+                        SRCCOPY);
+                }
+                finally
+                {
+                    SelectObject(memory_device_context, previous_bitmap);
+                }
+                if (!copied)
+                    return null;
+
                 BitmapSource image = Imaging.CreateBitmapSourceFromHBitmap(
                     bitmap,
                     IntPtr.Zero,
